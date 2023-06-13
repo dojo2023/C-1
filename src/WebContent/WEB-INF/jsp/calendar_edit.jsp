@@ -9,7 +9,7 @@
 <body>
 <h1>Schedule editing</h1>
 
- <form method="POST" action="/KSHMY/CalendarEditServlet">
+ <form method="POST" action="/KSHMY/CalendarServlet">
 
 <input type="submit"  name="SUBMIT" value="更新">
 <input type="submit"  name="SUBMIT" value="削除">
