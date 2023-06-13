@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class GourmetServlet
+ * Servlet implementation class WeatherTestServlet
  */
-@WebServlet("/GourmetServlet")
-public class GourmetServlet extends HttpServlet {
+@WebServlet("/WeatherTestServlet")
+public class WeatherTestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GourmetServlet() {
+    public WeatherTestServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,8 +28,8 @@ public class GourmetServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// グルメ一覧/検索ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/gourmet.jsp");
+		// 天気のテストページにフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/weather_test.jsp");
 		dispatcher.forward(request, response);
 	}
 
