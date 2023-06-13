@@ -1,0 +1,14 @@
+@charset "UTF-8";
+/*全てのページに適用*/
+
+
+.list {
+  text-align: center;
+  padding: 10px 0;
+  margin: 0 auto;
+}
+.list-item {
+  list-style: none;
+  display: inline-block;
+  margin: 0 20px;
+}
