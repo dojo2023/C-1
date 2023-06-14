@@ -46,7 +46,22 @@ INSERT INTO BC VALUES (
 
 INSERT INTO BC VALUES (
   '0005',
-  '35.60',
-  '140.12',
-  'chiba',
+  '36.38',
+  '139.73',
+  'tochigi',
   );
+
+INSERT INTO BC VALUES (
+  '0006',
+  '36.40',
+  '139.08',
+  'gunma',
+  );
+
+INSERT INTO BC VALUES (
+  '0007',
+  '36.35',
+  '140.45',
+  'ibaraki',
+  );
+  
