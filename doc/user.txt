@@ -1,0 +1,13 @@
+表の作成（usersテーブル）
+
+create table users(
+number int primary key auto_increment,
+user_id varchar(20) not null,
+user_pw varchar(20) not null,
+name varchar(20) not null,
+workspace varchar(20) not null,
+prefecture_number varchar(4) not null,
+first varchar(3) not null,
+second varchar(3) not null,
+third varchar(3) not null
+)
