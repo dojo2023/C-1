@@ -5,9 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>グルメ編集</title>
+<link rel = "stylesheet" href = "/KSHMY/css/common.css">
 </head>
 <body>
-	<h1>Gourumet editing</h1>
+	<span class="title">Gourumet editing</span>
 	<form id="regist-form" method="POST" action="/KSHMY/GourmetServlet">
         <table>
         	<tr><td><input class="name" type="text" name="name" value="店名"></td>

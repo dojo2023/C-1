@@ -22,16 +22,16 @@
  	</ul>
   </header>
 
-<h1>〇〇/〇〇/Fri 's schedule</h1>
+<span class="title">〇〇/〇〇/Fri 's schedule</span>
 
 	<form action="https://maps.google.com/">
-		<input type="submit" value="MAP">
+		<input class="normal"type="submit" value="MAP">
 	</form>
 
 
  	<form method="POST" action="/KSHMY/GourmetEditServlet">
 
-		<input type="submit"  name="SUBMIT" value="編集">
+		<input class="normal" type="submit"  name="SUBMIT" value="編集">
 
 	</form>
 </body>

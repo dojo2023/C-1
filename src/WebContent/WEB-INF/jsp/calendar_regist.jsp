@@ -5,9 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>カレンダー登録</title>
+<link rel = "stylesheet" href = "/KSHMY/css/common.css">
+<link rel = "stylesheet" href = "/KSHMY/css/calendar.css">
 </head>
 <body>
-<h1>Schedule registration</h1>
+<span class="title">Schedule registration</span>
 
  <form method="POST" action="/KSHMY/CalendarServlet">
 

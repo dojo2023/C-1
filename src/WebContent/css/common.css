@@ -1,7 +1,6 @@
 @charset "UTF-8";
 /*全てのページに適用*/
 
-
 .list {
   text-align: center;
   padding: 10px 0;
@@ -12,3 +11,41 @@
   display: inline-block;
   margin: 0 20px;
 }
+
+/*基本の文字色*/
+body{
+	color:#404040;
+}
+
+/*タイトル（二重下線有りの英語2単語）*/
+.title{
+	border-bottom: double 4px #404040;
+	font-size: 30px;
+}
+
+/*テキストボックス(type=textとpasswordのみ)*/
+input[type=text], [type=password]{
+	border: none;
+    border-bottom: solid 1px #404040;
+}
+
+/*ボタン全体*/
+input[type=submit]{
+	cursor: pointer;
+}
+
+/*通常のボタン*/
+.normal{
+	color:#404040;
+	background:#F2F2F2;
+	border: 1.5px solid #7F7F7F;
+}
+
+/*色反転のボタン*/
+.reversal{
+	color:#F2F2F2;
+	background:#7F7F7F;
+	border: 1.5px solid #7F7F7F;
+}
+
+/*フッター*/

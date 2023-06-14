@@ -5,13 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>ユーザ編集画面</title>
+<link rel = "stylesheet" href = "/KSHMY/css/common.css">
 </head>
 <body>
 
 <!-- ヘッダー -->
 <header>
 	<h1><a href="/KSHMY/MainServlet"><img src="/KSHMY/img/KMlogo.jpeg" width="150" height="100" alt="KM"></a></h1>
-	<h2>User information edition</h2>
+	<span class="title">User information edition</span>
 </header>
 <!-- ヘッダーここまで -->
 

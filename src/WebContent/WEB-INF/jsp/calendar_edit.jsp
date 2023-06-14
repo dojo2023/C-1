@@ -5,14 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>カレンダー編集</title>
+<link rel = "stylesheet" href = "/KSHMY/css/common.css">
 </head>
 <body>
-<h1>Schedule editing</h1>
+<span class="title">Schedule editing</span>
 
  <form method="POST" action="/KSHMY/CalendarServlet">
 
-<input type="submit"  name="SUBMIT" value="更新">
-<input type="submit"  name="SUBMIT" value="削除">
+<input class="normal" type="submit"  name="SUBMIT" value="更新">
+<input class="reversal" type="submit"  name="SUBMIT" value="削除">
 
 
 </form>

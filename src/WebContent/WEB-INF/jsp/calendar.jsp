@@ -5,12 +5,13 @@
 <head>
 <meta charset="UTF-8">
     <!--フルカレンダーのcss情報をもらう -->
+    <link rel = "stylesheet" href = "/KSHMY/css/common.css">
     <link href='/KSHMY/fullcalendar-5.11.5/lib/main.css' rel='stylesheet' />
     <link rel="stylesheet" href="/KSHMY/css/test.css"> <!--↑より先に書くとcssが上書きされるので注意-->
 <title>カレンダーページ</title>
 </head>
 <body>
-<h1>カレンダーページ</h1>
+<span class="title">カレンダーページ</span>
 	<!--カレンダー表示場所-->
     <div id='calendar'></div>
   </body>

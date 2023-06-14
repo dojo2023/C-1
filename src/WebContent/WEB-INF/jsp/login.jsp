@@ -5,9 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>ログインページ｜KSHMY</title>
+<link rel = "stylesheet" href = "/KSHMY/css/common.css">
 </head>
 <body>
 	<main>
+	<span class="title">Login</span>
 	     <section>
 	        <form  method="POST" action="/KSHMY/LoginServlet"><!--フォームタグ-->
 	           <table>
