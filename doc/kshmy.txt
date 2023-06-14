@@ -16,52 +16,45 @@ CREATE TABLE prefecture (
 );
 
 【BCテーブルにサンプルデータを登録するSQL文】
-INSERT INTO BC VALUES (
-  '0001',
+INSERT INTO prefecture VALUES (
   '35.69',
   '139.69',
-  'tokyo',
+  '東京都',
   );
 
-INSERT INTO BC VALUES (
-  '0002',
+INSERT INTO prefecture VALUES (
   '35.47',
   '139.63',
-  'kanagawa',
+  '神奈川県',
   );
 
-INSERT INTO BC VALUES (
-  '0003',
+INSERT INTO prefecture VALUES (
   '35.91',
   '139.66',
-  'saitama',
+  '埼玉県',
   );
 
-INSERT INTO BC VALUES (
-  '0004',
+INSERT INTO prefecture VALUES (
   '35.60',
   '140.12',
-  'chiba',
+  '千葉県',
   );
 
-INSERT INTO BC VALUES (
-  '0005',
+INSERT INTO prefecture VALUES (
   '36.38',
   '139.73',
-  'tochigi',
+  '栃木県',
   );
 
-INSERT INTO BC VALUES (
-  '0006',
+INSERT INTO prefecture VALUES (
   '36.40',
   '139.08',
-  'gunma',
+  '群馬県',
   );
 
-INSERT INTO BC VALUES (
-  '0007',
+INSERT INTO prefecture VALUES (
   '36.35',
   '140.45',
-  'ibaraki',
+  '茨城県',
   );
-  
+
