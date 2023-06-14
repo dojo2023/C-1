@@ -1,0 +1,11 @@
+【calendarテーブルを作成するSQL文】
+CREATE TABLE calendar (
+  number int PRIMARY KEY AUTO_INCREMENT,
+  users_number int NOT NULL ,
+  start_date datetime NOT NULL,
+  end_date datetime NOT NULL,
+  color char(6),
+  memo varchar(100),
+  branch varchar(20) NOT NULL
+);
+
