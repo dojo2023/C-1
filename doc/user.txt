@@ -11,3 +11,71 @@ first varchar(3) not null,
 second varchar(3) not null,
 third varchar(3) not null
 )
+
+
+insert文
+
+insert into users (user_id,user_pw,name,workspase,prefecture_number,first,second,third) values(
+'id1',
+'pw1',
+'和久田暖',
+'サインポスト',
+'1',
+'中華',
+'洋食',
+'和食'
+)
+
+insert into users (user_id,user_pw,name,workspase,prefecture_number,first,second,third) values(
+'id2',
+'pw2',
+'畑中望来',
+'アーチ',
+'5',
+'中華',
+'洋食',
+'和食'
+)
+
+insert into users 
+(user_id,user_pw,name,workspace,prefecture_number,first,second,third)
+ values(
+'id3',
+'pw3',
+'西野和真',
+'マネージビジネス',
+'1',
+'中華',
+'洋食',
+'和食'
+)
+
+insert into users 
+(user_id,user_pw,name,workspace,prefecture_number,first,second,third)
+ values(
+'id4',
+'pw4',
+'渡邊舞香',
+'YSLソリューション',
+'2',
+'中華',
+'洋食',
+'和食'
+)
+
+insert into users (user_id,user_pw,name, workspace, prefecture_number,first,second,third) values(
+'id5',
+'pw5',
+'清水悠花',
+'マネージビジネス',
+'2',
+'中華',
+'洋食',
+'和食'
+)
+
+
+update文
+
+update users(テーブル名) set workspace(変更したいカラム名) = 'マネージビジネス'(値)
+where number = 3
