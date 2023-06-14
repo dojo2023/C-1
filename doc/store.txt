@@ -7,3 +7,10 @@ CREATE TABLE STORE (
   genre varchar(3) NOT NULL             /*ジャンル*/
 );
   
+
+[仮データを挿入する文]
+INSERT INTO STORE (name, branch,genre) VALUES ('A店', 'A営業所', '中華');
+INSERT INTO STORE (name, branch,genre) VALUES ('AB店', 'A営業所', 'その他');
+INSERT INTO STORE (name, branch,genre) VALUES ('B店', 'B営業所', '和食');
+INSERT INTO STORE (name, branch,genre) VALUES ('C店', 'C営業所', '洋食');
+INSERT INTO STORE (name, branch,genre) VALUES ('BB店', 'O営業所', '和食');
