@@ -1,0 +1,52 @@
+【ドライバ】
+org.h2.Driver
+
+【JDBC URL】
+jdbc:h2:file:C:/pleiades/workspace/data/KSHMY
+
+【ユーザー名】	【パスワード】
+sa		          （なし）
+
+【BCテーブルを作成するSQL文】
+CREATE TABLE prefecture (
+  number int primary key auto_increment,		/* 県番号 */
+  ido double not null,			/* 緯度 */
+  keido double not null,		/* 経度 */
+  name varchar(4) not null			/* 県名 */
+);
+
+【BCテーブルにサンプルデータを登録するSQL文】
+INSERT INTO BC VALUES (
+  '0001',
+  '35.69',
+  '139.69',
+  'tokyo',
+  );
+
+INSERT INTO BC VALUES (
+  '0002',
+  '35.47',
+  '139.63',
+  'kanagawa',
+  );
+
+INSERT INTO BC VALUES (
+  '0003',
+  '35.91',
+  '139.66',
+  'saitama',
+  );
+
+INSERT INTO BC VALUES (
+  '0004',
+  '35.60',
+  '140.12',
+  'chiba',
+  );
+
+INSERT INTO BC VALUES (
+  '0005',
+  '35.60',
+  '140.12',
+  'chiba',
+  );
