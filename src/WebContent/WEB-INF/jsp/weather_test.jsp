@@ -20,6 +20,10 @@
 	  .then(function (json) {
 		//コンソールにobjectが書かれる（▼を押すと詳細が見れる）
 	    console.log(json);
+	    console.log("場所:"+json.timezone);
+	    console.log("現在の時間:"+json.current_weather.time);
+	    console.log("現在の気温:"+json.current_weather.temperature);
+	    console.log("配列0番目の天気コードを出す:"+json.hourly.weathercode[0]);
 	  });
 
 

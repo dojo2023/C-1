@@ -35,9 +35,10 @@
               //枠内クリックでクリックされた日付表示
               dateClick: function (jsEvent) {
             	  //jsEvent.dateStr:日付
-                  alert('日付がクリックされました。\n' + jsEvent.dateStr);
+                  //alert('日付がクリックされました。\n' + jsEvent.dateStr);
 
 				　//カレンダー登録ページが新しく開くプログラムを書く
+				window.open('/KSHMY/LoginServlet');
 				
              },
 
@@ -45,9 +46,10 @@
              eventClick: function (jsEvent) {
             	//jsEvent.event.titler:クリックされたイベント
             	//jsEvent.event.startStr:クリックされたイベントの開始日
-                 alert(jsEvent.event.title+'がクリックされました。\n' + jsEvent.event.startStr);
+                 //alert(jsEvent.event.title+'がクリックされました。\n' + jsEvent.event.startStr);
 
 				//カレンダー編集ページが新しく開くプログラムを書く
+				window.open('https://www.google.com');
 				
              },             
              
