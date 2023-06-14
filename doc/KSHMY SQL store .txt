@@ -1,9 +1,0 @@
-[storeテーブルを作成するSQL文]
-
-CREATE TABLE STORE (
-  number int PRIMARY KEY AUTO_INCREMENT,  /* 店舗番号*/
-  name varchar(20) NOT NULL,             /*店名*/
-  branch varchar(20) NOT NULL,            /*営業所*/
-  genre varchar(3) NOT NULL             /*ジャンル*/
-);
-  
