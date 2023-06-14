@@ -1,0 +1,11 @@
+【requtationテーブル作成】
+
+CREATE TABLE requtation (
+  number INT NOT NULL,
+  users_number INT NOT NULL,
+  reputation INT NOT NULL,
+  favorite INT NOT NULL,
+  memo VARCHAR(100),
+  PRIMARY KEY(number,users_number)
+);
+
