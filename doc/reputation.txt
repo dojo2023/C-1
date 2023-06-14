@@ -1,6 +1,6 @@
-【requtationテーブル作成】
+【reputationテーブル作成】
 
-CREATE TABLE requtation (
+CREATE TABLE reputation (
   number INT NOT NULL,
   users_number INT NOT NULL,
   reputation INT NOT NULL,
