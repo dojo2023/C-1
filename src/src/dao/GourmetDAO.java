@@ -33,7 +33,7 @@ public class GourmetDAO {
 					+ "OR memo LIKE ?"
 					+"AND favorite=?";
 
-			//要検証！
+			//genreチェックボックス 要検証！
 			int count = 0;
 			for (String genres : checkedGenre) {
 				if (count == 0) {
@@ -49,6 +49,8 @@ public class GourmetDAO {
 				}
 			}
 			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+//並び替えorderby追加する！！
 
 			// SQL文を完成させる
 			pStmt.setString(1, "%" + keyWord + "%");
