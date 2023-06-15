@@ -41,13 +41,13 @@
 	    if(json.hourly.weathercode[0] == 1){ str = "快晴" + "&#x2600"; }
 	    if(json.hourly.weathercode[0] == 2){ str = "一部曇" +  "&#x1f324"; }
 	    if(json.hourly.weathercode[0] == 3){ str =  "曇り" + "&#x2601"; }
-	    if(json.hourly.weathercode[0] == 49){ str = "霧" + "&#x1f32b"; }
-	    if(json.hourly.weathercode[0] == 59){ str = "霧雨" + "&#x1f327"; }
-	    if(json.hourly.weathercode[0] == 69){ str = "雨" + "&#x2614"; }
-	    if(json.hourly.weathercode[0] == 79){ str =  "雪" + "&#x26c4"; }
-	    if(json.hourly.weathercode[0] == 84){ str =  "俄か雨" + "&#x1f302"; }
-	    if(json.hourly.weathercode[0] == 94){ str = "雹" + "&#x2603"; }
-	    if(json.hourly.weathercode[0] == 99){ str = "雷雨" + "&#x26a1"; }
+	    if(json.hourly.weathercode[0] <= 49){ str = "霧" + "&#x1f32b"; }
+	    if(json.hourly.weathercode[0] <= 59){ str = "霧雨" + "&#x1f327"; }
+	    if(json.hourly.weathercode[0] <= 69){ str = "雨" + "&#x2614"; }
+	    if(json.hourly.weathercode[0] <= 79){ str =  "雪" + "&#x26c4"; }
+	    if(json.hourly.weathercode[0] <= 84){ str =  "俄か雨" + "&#x1f302"; }
+	    if(json.hourly.weathercode[0] <= 94){ str = "雹" + "&#x2603"; }
+	    if(json.hourly.weathercode[0] <= 99){ str = "雷雨" + "&#x26a1"; }
 	    document.getElementById('edit_area').innerHTML = str;
 
 	  });
