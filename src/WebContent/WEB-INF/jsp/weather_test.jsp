@@ -7,6 +7,13 @@
   </head>
   <body>
   <p>天気</p>
+  <!-- チェックボックスのテスト -->
+  <form action="/KSHMY/WeatherTestServlet" method="post">
+    <input type="checkbox" name="checkbox" value="apple">りんご
+    <input type="checkbox" name="checkbox" value="peach">もも
+    <input type="checkbox" name="checkbox" value="banana">ばなな
+    <p><input type="submit" value="選択実行" style="WIDTH: 200px; HEIGHT: 20px"></p>
+	</form>
 
     <script>
 		
