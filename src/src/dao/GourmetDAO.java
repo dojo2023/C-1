@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Gourmet;
+
 public class GourmetDAO {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
 	public List<Gourmet> select(String keyWord, String favorite, String[] checkedGenre) {
@@ -34,20 +36,21 @@ public class GourmetDAO {
 					+"AND favorite=?";
 
 			//genreチェックボックス 要検証！
-			int count = 0;
+/*			int count = 0;
 			for (String genres : checkedGenre) {
 				if (count == 0) {
 					sql += " AND ( ";
 				}
 				sql += "genre = "+ genres;
-				if (count != 0 && count != checkedGenre.length) {
+				count++;
+				if (count != 1 && count != checkedGenre.length) {
 					sql += " OR ";
 				}
-				count++;
 				if (count == checkedGenre.length) {
 					sql += ")";
 				}
 			}
+*/
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 //並び替えorderby追加する！！
@@ -58,6 +61,12 @@ public class GourmetDAO {
 			pStmt.setString(3, "%" + keyWord + "%");
 			pStmt.setString(4,  favorite );
 
+/*			int count2 = 5;
+			for (String genres : checkedGenre) {
+				pStmt.setString(count2, genres);
+				count2++;
+			}
+*/
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
