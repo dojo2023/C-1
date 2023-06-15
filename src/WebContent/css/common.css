@@ -15,9 +15,12 @@
 
 
 .list-item {
-	cursor: pointer;
 	font-size: 20px;
     width: 200px;
+}
+
+.list-item span{
+	cursor: pointer;
 }
 
 
@@ -84,6 +87,9 @@ body{
 input[type=text], [type=password]{
 	border: none;
     border-bottom: solid 1px #404040;
+}
+input{
+	outline: none;
 }
 
 /*ボタン全体*/

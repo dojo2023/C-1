@@ -3,27 +3,25 @@ package model;
 import java.io.Serializable;
 
 public class Users implements Serializable {
-	private String number;
-	private String user_id;
-	private String user_pw;
 	private String name;
 	private String workspace;
-	private String prefecture_number;
+	private int prefecture_number;
+	private String user_id;
+	private String user_pw;
 	private String first;
 	private String second;
 	private String third;
 
 	//引数ありのコンストラクタ
-	public Users(String number, String user_id, String user_pw, String name, String workspace, String prefecture_number,
+	public Users( String name, String workspace, int prefecture_number, String user_id, String user_pw,
 			String first, String second, String third) {
 
 		super();
-		this.number = number;
-		this.user_id = user_id;
-		this.user_pw = user_pw;
 		this.name = name;
 		this.workspace = workspace;
 		this.prefecture_number = prefecture_number;
+		this.user_id = user_id;
+		this.user_pw = user_pw;
 		this.first = first;
 		this.second = second;
 		this.third = third;
@@ -33,24 +31,16 @@ public class Users implements Serializable {
 	public Users() {
 
 		super();
-		this.number = "";
-		this.user_id = "";
-		this.user_pw = "";
 		this.name = "";
 		this.workspace = "";
-		this.prefecture_number = "";
+		this.prefecture_number = 0;
+		this.user_id = "";
+		this.user_pw = "";
 		this.first = "";
 		this.second = "";
 		this.third = "";
 	}
 
-	public String getNumber() {
-		return number;
-	}
-
-	public void setNumber(String number) {
-		this.number = number;
-	}
 
 	public String getUser_id() {
 		return user_id;
@@ -84,11 +74,11 @@ public class Users implements Serializable {
 		this.workspace = workspace;
 	}
 
-	public String getPrefecture_number() {
+	public int getPrefecture_number() {
 		return prefecture_number;
 	}
 
-	public void setPrefecture_number(String prefecture_number) {
+	public void setPrefecture_number(int prefecture_number) {
 		this.prefecture_number = prefecture_number;
 	}
 

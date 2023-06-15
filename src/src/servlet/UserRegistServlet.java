@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.UsersDAO;
+import model.Users;
 /**
  * Servlet implementation class UserRegistServlet
  */
@@ -40,7 +42,23 @@ public class UserRegistServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// ユーザー情報をDBに登録
 		
+		// リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		String name = request.getParameter("name");
+		String workspace = request.getParameter("workspace");
+		String prefecture_number_str = request.getParameter("prefecture_number");
+		int prefecture_number = Integer.valueOf(prefecture_number_str);
+		String user_id = request.getParameter("user_id");
+		String address = request.getParameter("user_pw");
+		String first = request.getParameter("first");
+		String secound = request.getParameter("secound");
+		String third = request.getParameter("third");
 		
+		//user登録時点ではnumberは不明の為beansに要らない。変えたい
+		Users user = new Users(name,workspace,prefecture_number,user_id,address,first,secound,third);
+		UsersDAO dao = new UsersDAO();
+		
+		dao.insert(user); //insertメソッドがない
 		
 		//ログインページにフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
