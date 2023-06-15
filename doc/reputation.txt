@@ -9,3 +9,13 @@ CREATE TABLE reputation (
   PRIMARY KEY(number,users_number)
 );
 
+【仮データを挿入する文】
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('1', '1', '5', '1', '餃子');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('2', '2', '2', '0', '接客は良い');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('3', '1', '3', '0', '');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('4', '5', '3', '0', 'パスタおいしい');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('5', '3', '4', '1', 'いつも混んでる');
+
+【UPDATE文】
+UPDATE reputation SET number=?, user_number=?, reputation=?, favorite=?, memo=?
+UPDATE reputation SET memo='接客は良い、閉店' number=2
