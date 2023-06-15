@@ -34,7 +34,10 @@
 	    console.log("現在の時間:"+json.current_weather.time);
 	    console.log("現在の気温:"+json.current_weather.temperature);
 	    console.log("配列0番目の天気コードを出す:"+json.hourly.weathercode[0]);
-	    console.log("配列0番目の日時を出す:"+json.daily.time[0]);//時間
+	    // console.log("配列0番目の日時を出す:"+json.daily.time[0]);//時間
+
+	  //const jstDate = new Date(Date.now( ) + ((new Date().getTimezoneOffset() + (9 * 60)) * 60 * 1000));
+	    //document.getElementById('edit_area').innerHTML = jstDate;
 
 	    let str = "エラー";
 	    //HTMLのクラス名"edit_area"の場所に表示する
