@@ -20,7 +20,7 @@
 
     <script>
 
-	const url = 'https://api.open-meteo.com/v1/jma?latitude=35.69&longitude=139.69&hourly=temperature_2m,weathercode&daily=weathercode,temperature_2m_max&current_weather=true&past_days=7&timezone=Asia%2FTokyo';
+	const url = 'https://api.open-meteo.com/v1/jma?latitude=35.69&longitude=139.69&hourly=temperature_2m,weathercode&daily=weathercode&current_weather=true&past_days=3&timezone=Asia%2FTokyo';
 
 	fetch(url)
 	  .then(function (response) {
@@ -34,7 +34,7 @@
 	    console.log("現在の時間:"+json.current_weather.time);
 	    console.log("現在の気温:"+json.current_weather.temperature);
 	    console.log("配列0番目の天気コードを出す:"+json.hourly.weathercode[0]);
-	    console.log("配列0番目の天気コードを出す:"+json.daily.time);//時間
+	    console.log("配列0番目の日時を出す:"+json.daily.time[0]);//時間
 
 	    let str = "エラー";
 	    //HTMLのクラス名"edit_area"の場所に表示する
