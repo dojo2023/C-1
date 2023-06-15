@@ -10,7 +10,7 @@ import java.util.List;
 
 public class GourmetDAO {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
-	public List<Gourmet> select(String keyWord, String favorite, String[] genre) {
+	public List<Gourmet> select(String keyWord, String favorite, String[] checkedGenre) {
 		Connection conn = null;
 		List<Gourmet> GourmetList = new ArrayList<Gourmet>();
 
@@ -32,7 +32,24 @@ public class GourmetDAO {
 					+ "OR branch LIKE ? "
 					+ "OR memo LIKE ?"
 					+"AND favorite=?";
+
+			//要検証！
+			int count = 0;
+			for (String genres : checkedGenre) {
+				if (count == 0) {
+					sql += " AND ( ";
+				}
+				sql += "genre = "+ genres;
+				if (count != 0 && count != checkedGenre.length) {
+					sql += " OR ";
+				}
+				count++;
+				if (count == checkedGenre.length) {
+					sql += ")";
+				}
+			}
 			PreparedStatement pStmt = conn.prepareStatement(sql);
+
 			// SQL文を完成させる
 			pStmt.setString(1, "%" + keyWord + "%");
 			pStmt.setString(2, "%" + keyWord + "%");
