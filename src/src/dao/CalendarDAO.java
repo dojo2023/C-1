@@ -29,11 +29,11 @@ public class CalendarDAO {
 
 			// SQL文を完成させる
 
-			pStmt.setString(1,schedule.getUsers_number());
+			pStmt.setInt(1,schedule.getUsers_number());
 
-			pStmt.setString(2,schedule.getStart_date());
+			pStmt.setLong(2,schedule.getStart_date());
 
-			pStmt.setString(3,schedule.getEnd_date());
+			pStmt.setLong(3,schedule.getEnd_date());
 
 			pStmt.setString(4,schedule.getColor());
 
@@ -94,9 +94,9 @@ public class CalendarDAO {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setString(1, schedule.getStart_date());
+			pStmt.setLong(1, schedule.getStart_date());
 
-			pStmt.setString(2, schedule.getEnd_date());
+			pStmt.setLong(2, schedule.getEnd_date());
 
 			pStmt.setString(3, schedule.getColor());
 
