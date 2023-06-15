@@ -15,7 +15,7 @@ third varchar(3) not null
 
 insert文
 
-insert into users (user_id,user_pw,name,workspase,prefecture_number,first,second,third) values(
+insert into users (user_id,user_pw,name,workspace,prefecture_number,first,second,third) values(
 'id1',
 'pw1',
 '和久田暖',
@@ -26,7 +26,7 @@ insert into users (user_id,user_pw,name,workspase,prefecture_number,first,second
 '和食'
 )
 
-insert into users (user_id,user_pw,name,workspase,prefecture_number,first,second,third) values(
+insert into users (user_id,user_pw,name,workspace,prefecture_number,first,second,third) values(
 'id2',
 'pw2',
 '畑中望来',
