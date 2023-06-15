@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import model.LoginUser;
 import model.Users;
 
 
@@ -62,8 +63,64 @@ public class UsersDAO {
 		return loginResult;
 	}
 
+	// 引数paramで検索項目を指定し、検索結果のリストを返す
+	public Users select(LoginUser number) {
+		Connection conn = null;
+		Users card = new Users();
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select * from USERS WHERE NUMBER = ? ";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setInt(1, number.getNumber());
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			rs.next();
+			card = new Users(
+					rs.getString("NAME"),
+					rs.getString("WORKSPACE"),
+					rs.getInt("PREFECTURE_NUMBER"),
+					rs.getString("USER_ID"),
+					rs.getString("USER_PW"),
+					rs.getString("FIRST"),
+					rs.getString("SECOND"),
+					rs.getString("THIRD"));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			card = null;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			card = null;
+		} finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+					card= null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return card;
+	}
+
 	// 引数user_cardで指定されたレコードを登録し、成功したらtrueを返す
-	public boolean select(Users user_card) {
+	public boolean insert(Users user_card) {
 		Connection conn = null;
 		boolean result = false;
 		try {
@@ -79,46 +136,46 @@ public class UsersDAO {
 
 			// SQL文を完成させる
 			//if (user_card.getUser_id() != null && !user_card.getUser_id().equals("")) {
-				pStmt.setString(1, user_card.getUser_id());
-//			} else {
-//				pStmt.setString(1, null);
-//			}
+			pStmt.setString(1, user_card.getUser_id());
+			//			} else {
+			//				pStmt.setString(1, null);
+			//			}
 
-//			if (user_card.getCompany() != null && !user_card.getCompany().equals("")) {
-				pStmt.setString(2, user_card.getUser_pw());
-//			} else {
-//				pStmt.setString(2, null);
-//			}
-//			if (user_card.getDepartment() != null && !user_card.getDepartment().equals("")) {
-				pStmt.setString(3, user_card.getName());
-//			} else {
-//				pStmt.setString(3, null);
-//			}
-//			if (card.getPosition() != null && !card.getPosition().equals("")) {
-				pStmt.setString(4, user_card.getWorkspace());
-//			} else {
-//				pStmt.setString(4, null);
-//			}
-//			if (card.getName() != null && !card.getName().equals("")) {
-				pStmt.setString(5, user_card.getPrefecture_number());
-//			} else {
-//				pStmt.setString(5, null);
-//			}
-//			if (card.getZipcode() != null && !card.getZipcode().equals("")) {
-				pStmt.setString(6, user_card.getFirst());
-//			} else {
-//				pStmt.setString(6, null);
-//			}
-//			if (card.getAddress() != null && !card.getAddress().equals("")) {
-				pStmt.setString(7, user_card.getSecond());
-//			} else {
-//				pStmt.setString(7, null);
-//			}
-//			if (card.getPhone() != null && !card.getPhone().equals("")) {
-				pStmt.setString(8, user_card.getThird());
-//			} else {
-//				pStmt.setString(8, null);
-//			}
+			//			if (user_card.getCompany() != null && !user_card.getCompany().equals("")) {
+			pStmt.setString(2, user_card.getUser_pw());
+			//			} else {
+			//				pStmt.setString(2, null);
+			//			}
+			//			if (user_card.getDepartment() != null && !user_card.getDepartment().equals("")) {
+			pStmt.setString(3, user_card.getName());
+			//			} else {
+			//				pStmt.setString(3, null);
+			//			}
+			//			if (card.getPosition() != null && !card.getPosition().equals("")) {
+			pStmt.setString(4, user_card.getWorkspace());
+			//			} else {
+			//				pStmt.setString(4, null);
+			//			}
+			//			if (card.getName() != null && !card.getName().equals("")) {
+			pStmt.setString(5, user_card.getPrefecture_number());
+			//			} else {
+			//				pStmt.setString(5, null);
+			//			}
+			//			if (card.getZipcode() != null && !card.getZipcode().equals("")) {
+			pStmt.setString(6, user_card.getFirst());
+			//			} else {
+			//				pStmt.setString(6, null);
+			//			}
+			//			if (card.getAddress() != null && !card.getAddress().equals("")) {
+			pStmt.setString(7, user_card.getSecond());
+			//			} else {
+			//				pStmt.setString(7, null);
+			//			}
+			//			if (card.getPhone() != null && !card.getPhone().equals("")) {
+			pStmt.setString(8, user_card.getThird());
+			//			} else {
+			//				pStmt.setString(8, null);
+			//			}
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -156,7 +213,7 @@ public class UsersDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 			// SQL文を準備する
-			String sql = "update USERS set user_id=?, user_pw=? ,name=?, workspace=?, prefecture_number=?, first=?, second=?, third=? where NUMBER=?";
+			String sql = "update USERS set USER_ID=?, USER_PW=? ,NAME=?, WORKSPACE=?, PREFECTURE_NUMBER=?, FIRST=?, SECOND=?, THIRD=? where NUMBER=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// SQL文を完成させる
 
@@ -200,28 +257,28 @@ public class UsersDAO {
 			} else {
 				pStmt.setString(8, null);
 			}
-			pStmt.setString(9, user_card.getNumber());
+			pStmt.setInt(9, user_card.getNumber());
 
 			// SQL文を実行する
-						if (pStmt.executeUpdate() == 1) {
-							result = true;
-						}
-					} catch (SQLException e) {
-						e.printStackTrace();
-					} catch (ClassNotFoundException e) {
-						e.printStackTrace();
-					} finally {
-						// データベースを切断
-						if (conn != null) {
-							try {
-								conn.close();
-							} catch (SQLException e) {
-								e.printStackTrace();
-							}
-						}
-					}
-
-					// 結果を返す
-					return result;
+			if (pStmt.executeUpdate() == 1) {
+				result = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
+			}
 		}
+
+		// 結果を返す
+		return result;
+	}
+}
