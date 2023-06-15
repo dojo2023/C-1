@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 //フィールド( オブジェクトが持つデータ)
 public class Prefecture implements Serializable {
-	private String number;
-	private String ido;
-	private String keido;
+	private int number;
+	private Double ido;
+	private Double keido;
 	private String name;
 
 	// コンストラクタ (クラスのインスタンス生成時に実行されるメソッド)
-	public Prefecture(String number, String ido, String keido, String name) {
+	public Prefecture(int number, Double ido, Double keido, String name) {
 		this.number = number;
 		this.ido = ido;
 		this.keido = keido;
@@ -19,33 +19,33 @@ public class Prefecture implements Serializable {
 
 	// コンストラクタ（デフォルトコンストラクタ）
 	public Prefecture() {
-		this.number = "";
-		this.ido = "";
-		this.keido = "";
+		this.number = 0;
+		this.ido = 0.0;
+		this.keido = 0.0;
 		this.name = "";
 	}
 
-	public String getNumber() {
+	public int getNumber() {
 		return number;
 	}
 
-	public void setNumber(String number) {
+	public void setNumber(int number) {
 		this.number = number;
 	}
 
-	public String getIdo() {
+	public Double getIdo() {
 		return ido;
 	}
 
-	public void setIdo(String ido) {
+	public void setIdo(Double ido) {
 		this.ido = ido;
 	}
 
-	public String getKeido() {
+	public Double getKeido() {
 		return keido;
 	}
 
-	public void setKeido(String keido) {
+	public void setKeido(Double keido) {
 		this.keido = keido;
 	}
 
