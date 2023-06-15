@@ -35,9 +35,9 @@ import model.Prefecture;
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 				Prefecture pf = new Prefecture(
-				rs.getString("NUMBER"),
-				rs.getString("IDO"),
-				rs.getString("KEIDO"),
+				rs.getInt("NUMBER"),
+				rs.getDouble("IDO"),
+				rs.getDouble("KEIDO"),
 				rs.getString("NAME")
 				);
 			}
