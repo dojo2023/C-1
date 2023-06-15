@@ -14,7 +14,7 @@
 	  	<ul class = "list">
 	 		<li class = "list-item "><a href="/KSHMY/MainServlet">メイン</a></li>
 	 		<li class = "list-item "><a href="/KSHMY/CalendarServlet">カレンダー</a></li>
-	 		<li class = "list-item sub">グルメ
+	 		<li class = "list-item sub"><span>グルメ</span>
 		 		<ul>
 		 		<li class = "sub-list"><a href="/KSHMY/GourmetServlet">一覧/検索</a></li>
 		 		<li class = "sub-list"><a href="/KSHMY/GourmetRegistServlet">登録</a></li>
