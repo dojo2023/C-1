@@ -1,16 +1,73 @@
 @charset "UTF-8";
 /*全てのページに適用*/
 
+.top{
+	display: flex;
+}
+
 .list {
-  text-align: center;
-  padding: 10px 0;
-  margin: 0 auto;
+	display:flex;
+  	padding: 10px 0;
+  	margin: 0 auto;
+  	text-align: center;
+  	align-items: center;
 }
+
+
 .list-item {
-  list-style: none;
-  display: inline-block;
-  margin: 0 20px;
+	cursor: pointer;
+	font-size: 20px;
+    width: 200px;
 }
+
+
+.sub-list{
+    position: absolute;
+    background: #aaa;
+    width: 100%;
+    transform: translateY(-500px);
+  transition: .5s;
+    z-index: -3;
+}
+
+
+.sub-list>li{
+    padding:20px 0;
+}
+
+.sub-list>li:hover{
+    background:red;
+}
+
+.open{
+    transform: translateY(20px);
+}
+
+
+
+/*上部メニューの文字について*/
+.list-item a{
+	text-decoration: none;
+	color:#404040;
+}
+.list-item a:hover{
+	text-decoration: none;
+	color:#A6A6A6;
+}
+
+
+
+/*上部メニューの"/"のこと*/
+.list:not(.sub-list) li+li{
+    border-left: 1px solid #999;
+}
+
+
+/*listの・は無し*/
+li{
+	list-style: none;
+}
+
 
 /*基本の文字色*/
 body{

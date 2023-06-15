@@ -7,6 +7,7 @@
   </head>
   <body>
   <p>天気</p>
+  <div id="edit_area"></div>
   <!-- チェックボックスのテスト -->
   <form action="/KSHMY/WeatherTestServlet" method="post">
     <input type="checkbox" name="checkbox" value="apple">りんご
@@ -31,7 +32,16 @@
 	    console.log("現在の時間:"+json.current_weather.time);
 	    console.log("現在の気温:"+json.current_weather.temperature);
 	    console.log("配列0番目の天気コードを出す:"+json.hourly.weathercode[0]);
+	    
+	    let str = "エラー";
+	    //HTMLのクラス名"edit_area"の場所に表示する
+	    if(json.hourly.weathercode[0] == 2){ str = "晴れ"; }
+	    
+	    document.getElementById('edit_area').innerHTML = str;
+	    
+	    
 	  });
+	
 
 
     </script>
