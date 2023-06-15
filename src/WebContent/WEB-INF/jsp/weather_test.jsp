@@ -10,6 +10,7 @@
   <body>
   <p>天気</p>
   <div id="edit_area"></div>
+  <div id="nitizi_area"></div>
   <!-- チェックボックスのテスト -->
   <form action="/KSHMY/WeatherTestServlet" method="post">
     <input type="checkbox" name="checkbox" value="apple">りんご
@@ -31,13 +32,14 @@
 		//コンソールにobjectが書かれる（▼を押すと詳細が見れる）
 	    console.log(json);
 	    console.log("場所:"+json.timezone);
-	    console.log("現在の時間:"+json.current_weather.time);
+	    let nitizi =json.current_weather.time;
 	    console.log("現在の気温:"+json.current_weather.temperature);
 	    console.log("配列0番目の天気コードを出す:"+json.hourly.weathercode[0]);
 	    // console.log("配列0番目の日時を出す:"+json.daily.time[0]);//時間
 
-	  //const jstDate = new Date(Date.now( ) + ((new Date().getTimezoneOffset() + (9 * 60)) * 60 * 1000));
+	     //const jstDate = new Date(Date.now( ) + ((new Date().getTimezoneOffset() + (9 * 60)) * 60 * 1000));
 	    //document.getElementById('edit_area').innerHTML = jstDate;
+	    document.getElementById('nitizi_area').innerHTML = nitizi;
 
 	    let str = "エラー";
 	    //HTMLのクラス名"edit_area"の場所に表示する
