@@ -58,3 +58,9 @@ INSERT INTO prefecture VALUES (
   '茨城県'
   );
 
+
+INSERT INTO prefecture (ido,keido,name) VALUES (
+  '35.91',
+  '139.66',
+  '埼玉県'
+  );

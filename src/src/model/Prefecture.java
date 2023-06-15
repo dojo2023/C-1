@@ -2,14 +2,14 @@ package model;
 
 import java.io.Serializable;
 
-//フィールド
+//フィールド( オブジェクトが持つデータ)
 public class Prefecture implements Serializable {
 	private String number;
 	private String ido;
 	private String keido;
 	private String name;
 
-	// コンストラクタ
+	// コンストラクタ (クラスのインスタンス生成時に実行されるメソッド)
 	public Prefecture(String number, String ido, String keido, String name) {
 		this.number = number;
 		this.ido = ido;
