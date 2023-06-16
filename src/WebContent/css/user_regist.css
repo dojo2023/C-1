@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+#new{
+	display:none
+}
+.newOpen{
+	/*display.noneにかき消されるため"!important"追加で重要度を上げてる*/
+	display:block !important;
+	
+}

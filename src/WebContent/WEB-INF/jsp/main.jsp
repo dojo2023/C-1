@@ -15,9 +15,9 @@
 	 		<li class = "list-item "><a href="/KSHMY/MainServlet">メイン</a></li>
 	 		<li class = "list-item "><a href="/KSHMY/CalendarServlet">カレンダー</a></li>
 	 		<li class = "list-item sub"><span>グルメ</span>
-		 		<ul>
-		 		<li class = "sub-list"><a href="/KSHMY/GourmetServlet">一覧/検索</a></li>
-		 		<li class = "sub-list"><a href="/KSHMY/GourmetRegistServlet">登録</a></li>
+		 		<ul class = "sub-list">
+		 		<li><a href="/KSHMY/GourmetServlet">一覧/検索</a></li>
+		 		<li><a href="/KSHMY/GourmetRegistServlet">登録</a></li>
 		 		</ul>
 	 		</li>
 	 		<li class = "list-item "><a href="/KSHMY/LogoutServlet">ログアウト</a></li>
