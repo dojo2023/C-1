@@ -3,12 +3,99 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Calendar;
 
-
 public class CalendarDAO {
+	// 引数paramで検索項目を指定し、検索結果のリストを返す
+	public List<Calendar> select(Calendar schedule) { //selectメソッド(・・・)サーブレットで呼び出す際に気を付けること
+		Connection conn = null;
+		List<Calendar> cardList = new ArrayList<Calendar>();
+
+		try {
+			// JDBCドライバを読み込む  javaによるデータベース接続
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する                  URL                                     ユーザ名 PW
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select * from Calendar WHERE users_number = ? and start_date = ? and end_date = ? and color = ? and memo = ? and branch = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+
+			// SQL文を完成させる
+
+			pStmt.setInt(1, schedule.getUsers_number());
+
+
+			pStmt.setLong(2, schedule.getStart_date());
+
+
+			pStmt.setLong(3, schedule.getEnd_date());
+
+
+			pStmt.setString(4, schedule.getColor());
+
+			if (schedule.getMemo() != null) {
+			pStmt.setString(5, schedule.getMemo());
+			}
+			else {
+				pStmt.setString(5, null);
+			}
+
+
+			pStmt.setString(6, schedule.getBranch());
+
+			// SQL文を実行し、検索結果を保持
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {  //nextメソッドを使用し取得した表のカラム名にカーソルがあっているのをネクストでデータの行にカーソルを変更する
+				Calendar list = new Calendar(
+						rs.getInt("users_number"),
+						rs.getLong("start_date"),
+						rs.getLong("end_date"),
+						rs.getString("color"),
+						rs.getString("memo"),
+						rs.getString("branch")
+						);
+
+						cardList.add(list);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			cardList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			cardList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					cardList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return cardList;
+	}
+
+
+
+
 	// 引数cardで指定されたレコードを登録し、成功したらtrueを返す
 	public boolean insert (Calendar schedule) {  //insertメソッド Calendar型の schedule
 		Connection conn = null;
