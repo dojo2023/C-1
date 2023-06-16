@@ -1,25 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang='ja'>
-<link rel="stylesheet"  href="/KSHMY/css/calendar.css">
+<link rel="stylesheet" href="/KSHMY/css/calendar.css">
 <div class=calendar>
-  <head>
-    <meta charset="UTF-8">
-  </head>
-  <body>
-  <p>天気</p>
-  <div id="edit_area"></div>
-  <div id="nitizi_area"></div>
-  <!-- チェックボックスのテスト -->
-  <form action="/KSHMY/WeatherTestServlet" method="post">
-    <input type="checkbox" name="checkbox" value="apple">りんご
-    <input type="checkbox" name="checkbox" value="peach">もも
-    <input type="checkbox" name="checkbox" value="banana">ばなな
-    <p><input type="submit" value="選択実行" style="WIDTH: 200px; HEIGHT: 20px"></p>
-	</form>
+	<head>
+<meta charset="UTF-8">
+	</head>
+	<body>
+		<p>天気</p>
+		<div id="edit_area"></div>
+		<div id="nitizi_area"></div>
 
-    <script>
+		<!-- チェックボックスのテスト -->
+		<form action="/KSHMY/WeatherTestServlet" method="post">
+			<input type="checkbox" name="checkbox" value="apple">りんご <input
+				type="checkbox" name="checkbox" value="peach">もも <input
+				type="checkbox" name="checkbox" value="banana">ばなな
+			<p>
+				<input type="submit" value="選択実行" style="WIDTH: 200px; HEIGHT: 20px">
+			</p>
+		</form>
+
+		<script>
 
 	const url = 'https://api.open-meteo.com/v1/jma?latitude=35.69&longitude=139.69&hourly=temperature_2m,weathercode&daily=weathercode&current_weather=true&past_days=3&timezone=Asia%2FTokyo';
 
@@ -32,14 +35,23 @@
 		//コンソールにobjectが書かれる（▼を押すと詳細が見れる）
 	    console.log(json);
 	    console.log("場所:"+json.timezone);
-	    let nitizi =json.current_weather.time;
+	    //let nitizi =json.current_weather.time;      // 現在の日時を表示する
 	    console.log("現在の気温:"+json.current_weather.temperature);
 	    console.log("配列0番目の天気コードを出す:"+json.hourly.weathercode[0]);
-	    // console.log("配列0番目の日時を出す:"+json.daily.time[0]);//時間
 
-	     //const jstDate = new Date(Date.now( ) + ((new Date().getTimezoneOffset() + (9 * 60)) * 60 * 1000));
-	    //document.getElementById('edit_area').innerHTML = jstDate;
+	    let nitizi =("配列0番目の日時を出す:"+json.daily.time[0]);    //時間
 	    document.getElementById('nitizi_area').innerHTML = nitizi;
+
+
+ 		let now = 0;
+		for(let i = 0 ; i < json.daily.time.length ; i++)  {
+		json.current_weather.time === json.daily.time[i];
+		now = i;
+ 		}
+		let nitizi2 =("配列i番目の日時を出す:"+json.daily.time[now]);    //時間
+	    document.getElementById('nitizi_area').innerHTML = nitizi2;
+		console.log("現在の気温:"+json.current_weather.temperature[0]);
+
 
 	    let str = "エラー";
 	    //HTMLのクラス名"edit_area"の場所に表示する
@@ -61,6 +73,6 @@
 
 
     </script>
-    </div>
-   </body>
+</div>
+</body>
 </html>
