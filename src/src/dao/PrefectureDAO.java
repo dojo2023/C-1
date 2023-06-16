@@ -10,7 +10,7 @@ import model.Prefecture;
 
 	public class PrefectureDAO {
 		// 引数paramで検索項目を指定し、検索結果のリストを返す
-		public Prefecture select(String param) {
+		public Prefecture select(int param) {
 			Connection conn = null;
 			Prefecture pref = new Prefecture();
 
@@ -27,14 +27,14 @@ import model.Prefecture;
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-				pStmt.setString(1, param);
+				pStmt.setInt(1, param);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
-				Prefecture pf = new Prefecture(
+				pref = new Prefecture(
 				rs.getInt("NUMBER"),
 				rs.getDouble("IDO"),
 				rs.getDouble("KEIDO"),
