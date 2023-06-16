@@ -63,7 +63,7 @@ public class UsersDAO {
 		return loginResult;
 	}
 
-	// 引数paramで検索項目を指定し、検索結果のリストを返す
+	// 引数numberで検索項目を指定し、検索結果を返す　該当するユーザの登録情報をリターンする
 	public Users select(LoginUser number) {
 		Connection conn = null;
 		Users card = new Users();
@@ -119,7 +119,62 @@ public class UsersDAO {
 		return card;
 	}
 
-	// 引数user_cardで指定されたレコードを登録し、成功したらtrueを返す
+	// 引数workspaceで検索項目を指定し、検索結果を返す　該当する所属地（DISTINCT被りなし）をリターンする
+	public String select_workspace(String workspace) {
+		Connection conn = null;
+		Users work = new Users();
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select DISTINCT workspace from USERS";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setString(1, workspace.getWorkspace());
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			rs.next();
+			workspace = new String(
+					rs.getString("NAME"),
+					rs.getString("WORKSPACE"),
+					rs.getInt("PREFECTURE_NUMBER"),
+					rs.getString("USER_ID"),
+					rs.getString("USER_PW"),
+					rs.getString("FIRST"),
+					rs.getString("SECOND"),
+					rs.getString("THIRD"));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			card = null;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			card = null;
+		} finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+					card= null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return card;
+	}
+	// 引数user_cardで指定されたユーザ情報を登録し、成功したらtrueを返す
 	public boolean insert(Users user_card) {
 		Connection conn = null;
 		boolean result = false;
@@ -131,7 +186,7 @@ public class UsersDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into USERS (user_id,user_pw,name,workspase,prefecture_number,first,second,third) values (?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into USERS (user_id,user_pw,name,workspace,prefecture_number,first,second,third) values (?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -157,7 +212,7 @@ public class UsersDAO {
 			//				pStmt.setString(4, null);
 			//			}
 			//			if (card.getName() != null && !card.getName().equals("")) {
-			pStmt.setString(5, user_card.getPrefecture_number());
+			pStmt.setInt(5, user_card.getPrefecture_number());
 			//			} else {
 			//				pStmt.setString(5, null);
 			//			}
@@ -200,8 +255,8 @@ public class UsersDAO {
 		return result;
 	}
 
-	// 引数で指定されたレコードを更新(編集)し、成功したらtrueを返す
-	public boolean update(Users user_card) {
+	// 引数で指定されたユーザ情報を更新(編集)し、成功したらtrueを返す
+	public boolean update(Users user_card, LoginUser number) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -237,8 +292,8 @@ public class UsersDAO {
 			} else {
 				pStmt.setString(4, null);
 			}
-			if (user_card.getPrefecture_number() != null && !user_card.getPrefecture_number().equals("")) {
-				pStmt.setString(5, user_card.getPrefecture_number());
+			if (user_card.getPrefecture_number() != 0) {
+				pStmt.setInt(5, user_card.getPrefecture_number());
 			} else {
 				pStmt.setString(5, null);
 			}
@@ -257,7 +312,7 @@ public class UsersDAO {
 			} else {
 				pStmt.setString(8, null);
 			}
-			pStmt.setInt(9, user_card.getNumber());
+			pStmt.setInt(9, number.getNumber());
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
