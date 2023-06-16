@@ -6,15 +6,15 @@ import java.io.Serializable;
 
 public class Calendar implements Serializable {
 	private int users_number;
-	private long start_date;
-	private long end_date;
+	private String start_date;
+	private String end_date;
 	private String color;
 	private String memo;
 	private String branch;
 
 
 	//引数ありのコンストラクタ
-	public Calendar(int users_number, long start_date, long end_date, String color, String memo, String branch) {
+	public Calendar(int users_number,String start_date, String end_date, String color, String memo, String branch) {
 
 		this.users_number = users_number;
 		this.start_date= start_date;
@@ -30,8 +30,8 @@ public class Calendar implements Serializable {
 	public Calendar() {
 
 		this.users_number = 0;
-		this.start_date= 0;
-		this.end_date = 0;
+		this.start_date= "";
+		this.end_date = "";
 		this.color = "";
 		this.memo = "";
 		this.branch = "";
@@ -46,31 +46,34 @@ public class Calendar implements Serializable {
 
 
 
+
 	public void setUsers_number(int users_number) {
 		this.users_number = users_number;
 	}
 
 
 
-	public long getStart_date() {
+
+
+	public String getStart_date() {
 		return start_date;
 	}
 
 
 
-	public void setStart_date(long start_date) {
+	public void setStart_date(String start_date) {
 		this.start_date = start_date;
 	}
 
 
 
-	public long getEnd_date() {
+	public String getEnd_date() {
 		return end_date;
 	}
 
 
 
-	public void setEnd_date(long end_date) {
+	public void setEnd_date(String end_date) {
 		this.end_date = end_date;
 	}
 
