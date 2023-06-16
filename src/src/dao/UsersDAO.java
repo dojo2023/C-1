@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.LoginUser;
 import model.Users;
@@ -120,10 +122,9 @@ public class UsersDAO {
 	}
 
 	// 引数workspaceで検索項目を指定し、検索結果を返す　該当する所属地（DISTINCT被りなし）をリターンする
-	public String select_workspace(String workspace) {
+	public List<String> select_workspace() {
 		Connection conn = null;
-		Users work = new Users();
-
+		List <String> workspace = new ArrayList<String>();
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -132,33 +133,23 @@ public class UsersDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select DISTINCT workspace from USERS";
+			String sql = "select * DISTINCT workspace from USERS";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			// SQL文を完成させる
-			pStmt.setString(1, workspace.getWorkspace());
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
 			// 結果表をコレクションにコピーする
-			rs.next();
-			workspace = new String(
-					rs.getString("NAME"),
-					rs.getString("WORKSPACE"),
-					rs.getInt("PREFECTURE_NUMBER"),
-					rs.getString("USER_ID"),
-					rs.getString("USER_PW"),
-					rs.getString("FIRST"),
-					rs.getString("SECOND"),
-					rs.getString("THIRD"));
-
+			while(rs.next()) {
+			workspace.add (rs.getString("WORKSPACE"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			card = null;
+			workspace = null;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			card = null;
+			workspace = null;
 		} finally {
 			// データベースを切断
 			if (conn != null) {
@@ -166,13 +157,13 @@ public class UsersDAO {
 					conn.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
-					card= null;
+					workspace= null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return card;
+		return workspace;
 	}
 	// 引数user_cardで指定されたユーザ情報を登録し、成功したらtrueを返す
 	public boolean insert(Users user_card) {
