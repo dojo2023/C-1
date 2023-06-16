@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 
 public class Calendar implements Serializable {
-	private String users_number;
+	private int users_number;
 	private String start_date;
 	private String end_date;
 	private String color;
@@ -14,7 +14,7 @@ public class Calendar implements Serializable {
 
 
 	//引数ありのコンストラクタ
-	public Calendar(String users_number, String start_date, String end_date, String color, String memo, String branch) {
+	public Calendar(int users_number,String start_date, String end_date, String color, String memo, String branch) {
 
 		this.users_number = users_number;
 		this.start_date= start_date;
@@ -29,7 +29,7 @@ public class Calendar implements Serializable {
 	//引数なしの（デフォルト）コンストラクタ
 	public Calendar() {
 
-		this.users_number = "";
+		this.users_number = 0;
 		this.start_date= "";
 		this.end_date = "";
 		this.color = "";
@@ -40,15 +40,18 @@ public class Calendar implements Serializable {
 
 
 
-	public String getUsers_number() {
+	public int getUsers_number() {
 		return users_number;
 	}
 
 
 
-	public void setUsers_number(String users_number) {
+
+	public void setUsers_number(int users_number) {
 		this.users_number = users_number;
 	}
+
+
 
 
 

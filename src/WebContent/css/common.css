@@ -27,9 +27,8 @@
 .sub-list{
     position: absolute;
     background: #aaa;
-    width: 100%;
-    transform: translateY(-500px);
-  transition: .5s;
+    display:none;
+  	transition: .5s;
     z-index: -3;
 }
 
@@ -43,7 +42,7 @@
 }
 
 .open{
-    transform: translateY(20px);
+    display:block;
 }
 
 
