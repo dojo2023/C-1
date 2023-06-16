@@ -9,3 +9,38 @@ CREATE TABLE calendar (
   branch varchar(20) NOT NULL
 );
 
+
+
+Calendarテーブルにサンプルデータを登録する
+
+
+
+INSERT INTO CALENDAR(users_number, start_date, end_date, color, memo, branch)values
+('1','2022-12-01 12:01:00','2022-12-01 12:01:00' , 'FF0000', '手土産持っていく', 'サインポスト');
+
+INSERT INTO CALENDAR(users_number, start_date, end_date, color, memo, branch)values
+('2','2022-12-01 12:01:00','2022-12-01 12:01:00' , 'FF0000', '手土産持っていく', 'アーチ');
+
+INSERT INTO CALENDAR(users_number, start_date, end_date, color, memo, branch)values
+('3','2022-12-01 12:01:00','2022-12-01 12:01:00' , 'FF0000', '手土産持っていく', 'YSL');
+
+INSERT INTO CALENDAR(users_number, start_date, end_date, color, memo, branch)values
+('4','2022-12-01 12:01:00','2022-12-01 12:01:00' , 'FF0000', '手土産持っていく', 'YSL');
+
+INSERT INTO CALENDAR(users_number, start_date, end_date, color, memo, branch)values
+('5','2022-12-01 12:01:00','2022-12-01 12:01:00' , 'FF0000', '手土産持っていく', 'アーチ');
+
+INSERT INTO CALENDAR(users_number, start_date, end_date, color, memo, branch)values
+('5','2022-12-01 12:01:00','2022-12-01 12:01:00' , 'FF0000', '手土産持っていく', 'マネージ');
+
+INSERT INTO CALENDAR(users_number, start_date, end_date, color, memo, branch)values
+('1','2022-12-01 12:01:00','2022-12-01 12:01:00' , 'FF0000', '手土産持っていく', 'マネージ');
+
+INSERT INTO CALENDAR(users_number, start_date, end_date, color, memo, branch)values
+('4','2022-12-01 12:01:00','2022-12-01 12:01:00' , 'FF0000', '手土産持っていく', 'サインポスト');
+
+INSERT INTO CALENDAR(users_number, start_date, end_date, color, memo, branch)values
+('2','2022-12-01 12:01:00','2022-12-01 12:01:00' , 'FF0000', '手土産持っていく', 'アーチ');
+
+INSERT INTO CALENDAR(users_number, start_date, end_date, color, memo, branch)values
+('3','2022-12-01 12:01:00','2022-12-01 12:01:00' , 'FF0000', '手土産持っていく', 'サインポスト');
