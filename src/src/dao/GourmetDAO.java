@@ -12,7 +12,7 @@ import model.Gourmet;
 
 public class GourmetDAO {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
-	public List<Gourmet> select(String keyWord, String favorite, String[] checkedGenre) {
+	public List<Gourmet> select(String keyWord, int favorite, String[] checkedGenre) {
 		Connection conn = null;
 		List<Gourmet> GourmetList = new ArrayList<Gourmet>();
 
@@ -28,7 +28,7 @@ public class GourmetDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT store.number, name, branch, genre, reputation, favorite, memo "
+			String sql = "SELECT store.number, users_number, name, branch, genre, reputation, favorite, memo "
 					+ "from store INNER JOIN reputation on store.number = reputation.number "
 					+"WHERE name LIKE ? "
 					+ "OR branch LIKE ? "
@@ -59,7 +59,7 @@ public class GourmetDAO {
 			pStmt.setString(1, "%" + keyWord + "%");
 			pStmt.setString(2, "%" + keyWord + "%");
 			pStmt.setString(3, "%" + keyWord + "%");
-			pStmt.setString(4,  favorite );
+			pStmt.setInt(4,  favorite );
 
 /*			int count2 = 5;
 			for (String genres : checkedGenre) {
@@ -72,9 +72,15 @@ public class GourmetDAO {
 
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
+				System.out.println("0");
 				Gourmet list = new Gourmet(
+				rs.getInt("store.number"),
+				rs.getInt("users_number"),
 				rs.getString("name"),
 				rs.getString("branch"),
+				rs.getString("genre"),
+				rs.getInt("reputation"),
+				rs.getInt("favorite"),
 				rs.getString("memo")
 				);
 				GourmetList.add(list);
@@ -107,7 +113,7 @@ public class GourmetDAO {
 	}
 
 	// 引数listで指定されたstoreレコードを登録し、成功したらtrueを返す
-	public boolean insert(Gourmet list) {
+	public boolean insert_store(Gourmet list) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -119,26 +125,26 @@ public class GourmetDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 			// SQL文を準備する
-			String sql = "INSERT INTO STORE (name, branch,genre) VALUES (?, ?, ?);";
+			String sql = "INSERT INTO STORE (name, branch, genre) VALUES (?, ?, ?);";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if (list.getname() != null && !list.getname().equals("")) {
-				pStmt.setString(1, list.getname());
+			if (list.getName() != null && !list.getName().equals("")) {
+				pStmt.setString(1, list.getName());
 			}
 			else {
 				pStmt.setString(1, null);
 			}
 
-			if (list.getbranch() != null && !list.getbranch().equals("")) {
-				pStmt.setString(2, list.getbranch());
+			if (list.getBranch() != null && !list.getBranch().equals("")) {
+				pStmt.setString(2, list.getBranch());
 			}
 			else {
 				pStmt.setString(2, null);
 			}
 
-			if (list.getgenre() != null && !list.getgenre().equals("")) {
-				pStmt.setString(3, list.getgenre());
+			if (list.getGenre() != null && !list.getGenre().equals("")) {
+				pStmt.setString(3, list.getGenre());
 			}
 			else {
 				pStmt.setString(3, null);
@@ -174,7 +180,7 @@ public class GourmetDAO {
 
 
 	// 引数listで指定されたreputationレコードを登録し、成功したらtrueを返す
-	public boolean insert(Gourmet list) {
+	public boolean insert_reputation(Gourmet list) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -186,29 +192,43 @@ public class GourmetDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 			// SQL文を準備する
-			String sql = "INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES (?, ?, ?)";
+			String sql = "INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if (list.getreputation() != null && !list.getreputation().equals("")) {
-				pStmt.setString(1, list.getreputation());
+			if (list.getNumber() != 0 ) {
+				pStmt.setInt(1, list.getNumber());
 			}
 			else {
-				pStmt.setString(1, null);
+				pStmt.setInt(1, 0);
 			}
 
-			if (list.getfavorite() != null && !list.getfavorite().equals("")) {
-				pStmt.setString(2, list.getfavorite());
+			if (list.getUsers_number() != 0 ) {
+				pStmt.setInt(2, list.getUsers_number());
 			}
 			else {
-				pStmt.setString(2, null);
+				pStmt.setInt(2, 0);
 			}
 
-			if (list.getmemo() != null && !list.getmemo().equals("")) {
-				pStmt.setString(3, list.getmemo());
+			if (list.getReputation() != 0 ) {
+				pStmt.setInt(3, list.getReputation());
 			}
 			else {
-				pStmt.setString(3, null);
+				pStmt.setInt(3, 0);
+			}
+
+			if (list.getFavorite() != 0 ) {
+				pStmt.setInt(4, list.getFavorite());
+			}
+			else {
+				pStmt.setInt(4, 0);
+			}
+
+			if (list.getMemo() != null && !list.getMemo().equals("")) {
+				pStmt.setString(5, list.getMemo());
+			}
+			else {
+				pStmt.setString(5, null);
 			}
 
 
@@ -240,7 +260,7 @@ public class GourmetDAO {
 	}
 
 	// 引数listで指定されたstoreレコードを更新し、成功したらtrueを返す
-	public boolean update(Gourmet list) {
+	public boolean update_store(Gourmet list,int number) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -252,32 +272,32 @@ public class GourmetDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 			// SQL文を準備する
-			String sql = "UPDATE store SET name=?, branch=?, genre=?";
+			String sql = "UPDATE store SET name=?, branch=?, genre=? WHERE number=? ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if (list.getname() != null && !list.getname().equals("")) {
-				pStmt.setString(1, list.getname());
+			if (list.getName() != null && !list.getName().equals("")) {
+				pStmt.setString(1, list.getName());
 			}
 			else {
 				pStmt.setString(1, null);
 			}
 
-			if (list.getbranch() != null && !list.getbranch().equals("")) {
-				pStmt.setString(2, list.getbranch());
+			if (list.getBranch() != null && !list.getBranch().equals("")) {
+				pStmt.setString(2, list.getBranch());
 			}
 			else {
 				pStmt.setString(2, null);
 			}
 
-			if (list.getgenre() != null && !list.getbranch().equals("")) {
-				pStmt.setString(3, list.getbranch());
+			if (list.getGenre() != null && !list.getGenre().equals("")) {
+				pStmt.setString(3, list.getGenre());
 			}
 			else {
 				pStmt.setString(3, null);
 			}
 
-			pStmt.setString(4, list.getnumber());
+			pStmt.setInt(4, number);
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -308,7 +328,7 @@ public class GourmetDAO {
 
 
 	// 引数listで指定されたreputationレコードを更新し、成功したらtrueを返す
-	public boolean update(Gourmet list) {
+	public boolean update_reputation(Gourmet list) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -320,32 +340,34 @@ public class GourmetDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 			// SQL文を準備する
-			String sql = "UPDATE reputation SET number=?, user_number=?, reputation=?, favorite=?, memo=?";
+			String sql = "UPDATE reputation SET reputation=?, favorite=?, memo=? WHERE number=? AND users_number=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if (list.getname() != null && !list.getname().equals("")) {
-				pStmt.setString(1, list.getname());
+
+			if (list.getReputation() != 0 ) {
+				pStmt.setInt(1, list.getReputation());
 			}
 			else {
-				pStmt.setString(1, null);
+				pStmt.setInt(1, 0);
 			}
 
-			if (list.getbranch() != null && !list.getbranch().equals("")) {
-				pStmt.setString(2, list.getbranch());
+			if (list.getFavorite() != 0 ) {
+				pStmt.setInt(2, list.getFavorite());
 			}
 			else {
-				pStmt.setString(2, null);
+				pStmt.setInt(2, 0);
 			}
 
-			if (list.getgenre() != null && !list.getbranch().equals("")) {
-				pStmt.setString(3, list.getbranch());
+			if (list.getMemo() != null && !list.getMemo().equals("")) {
+				pStmt.setString(3, list.getMemo());
 			}
 			else {
 				pStmt.setString(3, null);
 			}
 
-			pStmt.setString(4, list.getnumber());
+			pStmt.setInt(4, list.getNumber());
+			pStmt.setInt(5, list.getUsers_number());
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

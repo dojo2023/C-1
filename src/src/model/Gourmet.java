@@ -9,17 +9,33 @@ public class Gourmet implements Serializable {
 	private String branch;
 	private String genre;
 	private int reputation;
-	private String favorite;
+	private int favorite;
 	private String memo;
 
 	//引数ありのコンストラクタ
-	public Gourmet(int number, int users_number, String name, String branch, String genre, int reputation, String favorite, String memo) {
+	public Gourmet(int number, int users_number, String name, String branch, String genre, int reputation, int favorite, String memo) {
 
 		this.number = number;
 		this.users_number = users_number;
 		this.name = name;
 		this.branch = branch;
 		this.genre = genre;
+		this.reputation = reputation;
+		this.favorite = favorite;
+		this.memo = memo;
+	}
+	//引数ありのコンストラクタ(Store)
+	public Gourmet(String name, String branch, String genre) {
+
+		this.name = name;
+		this.branch = branch;
+		this.genre = genre;
+	}
+	//引数ありのコンストラクタ(Reputation)
+	public Gourmet(int number, int users_number, int reputation, int favorite, String memo) {
+
+		this.number = number;
+		this.users_number = users_number;
 		this.reputation = reputation;
 		this.favorite = favorite;
 		this.memo = memo;
@@ -33,7 +49,7 @@ public class Gourmet implements Serializable {
 		this.branch = "";
 		this.genre = "";
 		this.reputation = 0;
-		this.favorite = "";
+		this.favorite = 0;
 		this.memo = "";
 	}
 
@@ -87,10 +103,10 @@ public class Gourmet implements Serializable {
 	}
 
 
-	public String getFavorite() {
+	public int getFavorite() {
 		return favorite;
 	}
-	public void setFavorite(String favorite) {
+	public void setFavorite(int favorite) {
 		this.favorite = favorite;
 	}
 
