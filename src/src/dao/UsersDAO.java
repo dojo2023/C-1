@@ -66,7 +66,7 @@ public class UsersDAO {
 	}
 
 	// 引数numberで検索項目を指定し、検索結果を返す　該当するユーザの登録情報をリターンする
-	public Users select(LoginUser number) {
+	public Users select_User(LoginUser number) {
 		Connection conn = null;
 		Users card = new Users();
 
@@ -133,7 +133,7 @@ public class UsersDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select * DISTINCT workspace from USERS";
+			String sql = "select DISTINCT workspace from USERS";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 

@@ -12,7 +12,7 @@ public class UsersDAOTest {
 		// select()のテスト
 		System.out.println("---------- select()のテスト ----------");
 		 LoginUser number = new LoginUser(1);
-		Users cardList2 = dao.select(number);
+		Users cardList2 = dao.select_User(number);
 
 			System.out.println("NAME：" + cardList2.getName());
 			System.out.println("WORKSPACE：" + cardList2.getWorkspace());
@@ -31,7 +31,7 @@ public class UsersDAOTest {
 		Users insRec = new Users("山田太郎", "ポケット", 6, "id6", "pw6", "中華", "洋食", "和食");
 		 if (dao.insert(insRec)) {
 			System.out.println("登録成功！");
-			Users cardList3 = dao.select(number);
+			Users cardList3 = dao.select_User(number);
 				System.out.println("NAME：" + cardList3.getName());
 				System.out.println("WORKSPACE：" + cardList3.getWorkspace());
 				System.out.println("PREFECTURE_NUMBER：" + cardList3.getPrefecture_number());
@@ -51,7 +51,7 @@ public class UsersDAOTest {
 		Users upRec = new Users("山田太郎", "AAA", 3, "id6", "pw6", "和食", "中華", "洋食");
 		if (dao.update(upRec,number)) {
 			System.out.println("更新成功！");
-			Users cardList4 = dao.select(number);
+			Users cardList4 = dao.select_User(number);
 				System.out.println("NAME：" + cardList4.getName());
 				System.out.println("WORKSPACE：" + cardList4.getWorkspace());
 				System.out.println("PREFECTURE_NUMBER：" + cardList4.getPrefecture_number());
