@@ -45,7 +45,7 @@ public class GourmetDAO {
 				}
 				sql += "genre = "+ genres;
 				count++;
-				if (count != 1 && count != checkedGenre.length) {
+				if (count != 1 || count != checkedGenre.length) {
 					sql += " OR ";
 				}
 				if (count == checkedGenre.length) {
