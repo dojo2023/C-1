@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Calendar;
+import model.CalendarDate;
 import model.LoginUser;
 
 public class CalendarDAO {
@@ -79,7 +80,7 @@ public class CalendarDAO {
 	}
 
 	// 日付とログインユーザーの番号からその日の予定を取得する
-	public List<Calendar> dayselect(LoginUser user, Calendar date) { //userselectメソッド(ログインユーザーの番号, 選択された日付を引数に）
+	public List<Calendar> dayselect(LoginUser user, CalendarDate date) { //userselectメソッド(ログインユーザーの番号, 選択された日付を引数に）
 		Connection conn = null;
 		List<Calendar> cardList = new ArrayList<Calendar>();
 
@@ -145,6 +146,74 @@ public class CalendarDAO {
 		// 結果を返す
 		return cardList;
 	}
+
+	// 予定から詳細を取得する
+		public Calendar editselect(LoginUser user, Calendar store) { //userselectメソッド(ログインユーザーの番号, 選択された日付を引数に）
+			Connection conn = null;
+			Calendar schedule;
+
+			try {
+				// JDBCドライバを読み込む  javaによるデータベース接続
+				Class.forName("org.h2.Driver");
+
+				// データベースに接続する                  URL                                     ユーザ名 PW
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
+
+				// SQL文を準備する
+				String sql = "select * from Calendar WHERE users_number = ? and start_date and end_date ";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+
+				// SQL文を完成させる
+
+				pStmt.setInt(1, user.getNumber());
+
+				pStmt.setString(2, date.getStart_date());
+
+				pStmt.setString(3, date.getEnd_date());
+
+
+				// SQL文を実行し、検索結果を保持
+				ResultSet rs = pStmt.executeQuery();
+
+				// 結果表をコレクションにコピーする
+				while (rs.next()) {  //nextメソッドを使用し取得した表のカラム名にカーソルがあっているのをネクストでデータの行にカーソルを変更する
+					Calendar list = new Calendar(
+							rs.getInt("USERS_NUMBER"),
+							rs.getString("START_DATE"),
+							rs.getString("END_DATE"),
+							rs.getString("COLOR"),
+							rs.getString("MEMO"),
+							rs.getString("BRANCH")
+							);
+
+							cardList.add(list);
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+				cardList = null;
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				cardList = null;
+			}
+			finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+						cardList = null;
+					}
+				}
+			}
+
+			// 結果を返す
+			return cardList;
+		}
 
 
 

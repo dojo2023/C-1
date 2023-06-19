@@ -4,6 +4,7 @@ import java.util.List;
 
 import dao.CalendarDAO;
 import model.Calendar;
+import model.CalendarDate;
 import model.LoginUser;
 
 public class CalendarDAOTest {
@@ -27,11 +28,12 @@ public class CalendarDAOTest {
 			System.out.println();
 		}
 
-		Calendar date = new Calendar(1, null, null, null, null, null);
+		CalendarDate date = new CalendarDate("2022-12-01 12:01:00", "2022-12-01 12:01:00");
+
 		// dayselect()のテスト
 				System.out.println("---------- dayselect()のテスト ----------");
-				List<Calendar> cardList3 = cdao.userselect(user, date);  //Calendarの持つselectメソッドを読みだす
-				for (Calendar list : cardList2) {    //データ型：コレクション
+				List<Calendar> cardList3 = cdao.dayselect(user,date);  //Calendarの持つselectメソッドを読みだす
+				for (Calendar list : cardList3) {    //データ型：コレクション
 					System.out.println("USERS_NUMBER：" + list.getUsers_number());
 					System.out.println("START_DATE：" + list.getStart_date());
 					System.out.println("END_DATE：" + list.getEnd_date());
