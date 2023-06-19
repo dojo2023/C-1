@@ -12,7 +12,7 @@ import model.Gourmet;
 
 public class GourmetDAO {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
-	public List<Gourmet> select(String keyWord, int favorite, String[] checkedGenre) {
+	public List<Gourmet> select(String keyWord, int favorite, String[] checkedGenre, String kind, String order) {
 		Connection conn = null;
 		List<Gourmet> GourmetList = new ArrayList<Gourmet>();
 
@@ -28,15 +28,17 @@ public class GourmetDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT store.number, users_number, name, branch, genre, reputation, favorite, memo "
-					+ "from store INNER JOIN reputation on store.number = reputation.number "
-					+"WHERE name LIKE ? "
-					+ "OR branch LIKE ? "
-					+ "OR memo LIKE ?"
-					+"AND favorite=?";
+			String sql = "SELECT store.number, users_number, name, branch, genre, reputation, AVG(reputation), favorite, memo "
+					+ " from store INNER JOIN reputation on store.number = reputation.number "
+					+" WHERE name LIKE ? "
+					+ " OR branch LIKE ? "
+					+ " OR memo LIKE ? ";
+
+
+
 
 			//genreチェックボックス 要検証！
-/*			int count = 0;
+			int count = 0;
 			for (String genres : checkedGenre) {
 				if (count == 0) {
 					sql += " AND ( ";
@@ -50,23 +52,53 @@ public class GourmetDAO {
 					sql += ")";
 				}
 			}
-*/
+
+			//お気に入り絞り込み
+			if(favorite != 2) {
+				sql +=" AND favorite = ? ";
+			}
+
+			//グループ化と並び替えorderby
+			sql += " GROUP BY store.number ";
+
+			if(kind.equals("ジャンル")) {
+				sql += " ORDER BY genre ";
+			}else if(kind.equals("営業所")){
+				sql += " ORDER BY branch ";
+			}else if(kind.equals("店名")) {
+				sql += " ORDER BY store ";
+			}else if(kind.equals("総合評価")) {
+				sql += " ORDER BY AVG(reputation) ";
+			}else if(kind.equals("個人評価")) {
+				sql += " ORDER BY reputation ";
+			}
+
+			if(order.equals("昇順")) {
+				sql += " ASC ";
+			}else {
+				sql += " DESC ";
+			}
+
+
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-//並び替えorderby追加する！！
+
 
 			// SQL文を完成させる
 			pStmt.setString(1, "%" + keyWord + "%");
 			pStmt.setString(2, "%" + keyWord + "%");
 			pStmt.setString(3, "%" + keyWord + "%");
-			pStmt.setInt(4,  favorite );
 
-/*			int count2 = 5;
+			int count2 = 4;
 			for (String genres : checkedGenre) {
 				pStmt.setString(count2, genres);
 				count2++;
 			}
-*/
+
+			if(favorite != 2) {
+				pStmt.setInt(count2,  favorite );
+			}
+
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
@@ -86,6 +118,7 @@ public class GourmetDAO {
 				GourmetList.add(list);
 			}
 		}
+
 		catch (SQLException e) {
 			e.printStackTrace();
 			GourmetList = null;

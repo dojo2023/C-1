@@ -12,5 +12,4 @@ function workspaceAdd() {
 		}
 		document.getElementById('add').innerHTML = str;
 		document.getElementById('new').classList.toggle('newOpen');
-		//document.getElementById('pw-eye').classList.toggle('workspace_open');
 }
