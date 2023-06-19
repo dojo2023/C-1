@@ -44,14 +44,21 @@ public class CalendarDAO {
 			while (rs.next()) {  //nextメソッドを使用し取得した表のカラム名にカーソルがあっているのをネクストでデータの行にカーソルを変更する
 				Calendar list = new Calendar(
 						rs.getInt("USERS_NUMBER"),
-						rs.getString("START_DATE"),
-						rs.getString("END_DATE"),
+						rs.getTimestamp("START_DATE"),
+						rs.getTimestamp("END_DATE"),
 						rs.getString("COLOR"),
 						rs.getString("MEMO"),
 						rs.getString("BRANCH")
 						);
 
 						cardList.add(list);
+//				System.out.println(rs.getTimestamp("START_DATE"));
+
+				//java.sql.Date date = rs.getDate("START_DATE");
+				//date.toString();
+
+				//java.sql.Timestamp time = rs.getTimestamp("START_DATE")
+				//time.toString();
 			}
 		}
 		catch (SQLException e) {
@@ -92,7 +99,10 @@ public class CalendarDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select * from Calendar WHERE users_number = ? and start_date and end_date ";
+			String sql = "select * from Calendar "
+					+ "WHERE users_number = ? "
+					+ "and start_date = ?"
+					+ "and end_date = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 
@@ -100,9 +110,9 @@ public class CalendarDAO {
 
 			pStmt.setInt(1, user.getNumber());
 
-			pStmt.setString(2, date.getStart_date());
+			pStmt.setTimestamp(2, date.getStart_date());
 
-			pStmt.setString(3, date.getEnd_date());
+			pStmt.setTimestamp(3, date.getEnd_date());
 
 
 			// SQL文を実行し、検索結果を保持
@@ -112,8 +122,8 @@ public class CalendarDAO {
 			while (rs.next()) {  //nextメソッドを使用し取得した表のカラム名にカーソルがあっているのをネクストでデータの行にカーソルを変更する
 				Calendar list = new Calendar(
 						rs.getInt("USERS_NUMBER"),
-						rs.getString("START_DATE"),
-						rs.getString("END_DATE"),
+						rs.getTimestamp("START_DATE"),
+						rs.getTimestamp("END_DATE"),
 						rs.getString("COLOR"),
 						rs.getString("MEMO"),
 						rs.getString("BRANCH")
@@ -150,7 +160,7 @@ public class CalendarDAO {
 	// 予定から詳細を取得する
 		public Calendar editselect(LoginUser user, Calendar store) { //userselectメソッド(ログインユーザーの番号, 選択された日付を引数に）
 			Connection conn = null;
-			Calendar schedule;
+			Calendar schedule = new Calendar();
 
 			try {
 				// JDBCドライバを読み込む  javaによるデータベース接続
@@ -160,7 +170,9 @@ public class CalendarDAO {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 				// SQL文を準備する
-				String sql = "select * from Calendar WHERE users_number = ? and start_date and end_date ";
+				String sql = "select * from Calendar "
+						+ "WHERE users_number = ? "
+						+ "and branch = ? ";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 
@@ -168,35 +180,32 @@ public class CalendarDAO {
 
 				pStmt.setInt(1, user.getNumber());
 
-				pStmt.setString(2, date.getStart_date());
+				pStmt.setString(2, store.getBranch());
 
-				pStmt.setString(3, date.getEnd_date());
 
 
 				// SQL文を実行し、検索結果を保持
 				ResultSet rs = pStmt.executeQuery();
 
 				// 結果表をコレクションにコピーする
-				while (rs.next()) {  //nextメソッドを使用し取得した表のカラム名にカーソルがあっているのをネクストでデータの行にカーソルを変更する
-					Calendar list = new Calendar(
+				 rs.next() ;  //nextメソッドを使用し取得した表のカラム名にカーソルがあっているのをネクストでデータの行にカーソルを変更する
+					schedule = new Calendar(
 							rs.getInt("USERS_NUMBER"),
-							rs.getString("START_DATE"),
-							rs.getString("END_DATE"),
+							rs.getTimestamp("START_DATE"),
+							rs.getTimestamp("END_DATE"),
 							rs.getString("COLOR"),
 							rs.getString("MEMO"),
 							rs.getString("BRANCH")
 							);
 
-							cardList.add(list);
-				}
 			}
 			catch (SQLException e) {
 				e.printStackTrace();
-				cardList = null;
+				schedule = null;
 			}
 			catch (ClassNotFoundException e) {
 				e.printStackTrace();
-				cardList = null;
+				schedule = null;
 			}
 			finally {
 				// データベースを切断
@@ -206,13 +215,13 @@ public class CalendarDAO {
 					}
 					catch (SQLException e) {
 						e.printStackTrace();
-						cardList = null;
+						schedule = null;
 					}
 				}
 			}
 
 			// 結果を返す
-			return cardList;
+			return schedule;
 		}
 
 
@@ -239,9 +248,9 @@ public class CalendarDAO {
 
 			pStmt.setInt(1,schedule.getUsers_number());
 
-			pStmt.setString(2,schedule.getStart_date());
+			pStmt.setTimestamp(2,schedule.getStart_date());
 
-			pStmt.setString(3,schedule.getEnd_date());
+			pStmt.setTimestamp(3,schedule.getEnd_date());
 
 			pStmt.setString(4,schedule.getColor());
 
@@ -302,9 +311,9 @@ public class CalendarDAO {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setString(1, schedule.getStart_date());
+			pStmt.setTimestamp(1, schedule.getStart_date());
 
-			pStmt.setString(2, schedule.getEnd_date());
+			pStmt.setTimestamp(2, schedule.getEnd_date());
 
 			pStmt.setString(3, schedule.getColor());
 
