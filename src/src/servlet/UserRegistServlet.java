@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,6 +31,11 @@ public class UserRegistServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Userテーブルから今まで登録された所属地の一覧を持ってくる（プルダウンメニューに使用）
+		UsersDAO uDAO = new UsersDAO();	
+		List<String> workspace= uDAO. select_workspace();	
+		request.setAttribute("workspace",workspace);	
+		
 		// ユーザー登録ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/user_regist.jsp");
 		dispatcher.forward(request, response);
@@ -54,11 +60,10 @@ public class UserRegistServlet extends HttpServlet {
 		String secound = request.getParameter("secound");
 		String third = request.getParameter("third");
 		
-		//user登録時点ではnumberは不明の為beansに要らない。変えたい
-		Users user = new Users(name,workspace,prefecture_number,user_id,address,first,secound,third);
+		//Usersテーブルに登録
+		Users user = new Users(name,workspace,prefecture_number,user_id,address,first,secound,third);		
 		UsersDAO dao = new UsersDAO();
-		
-		dao.insert(user); //insertメソッドがない
+		dao.insert(user);
 		
 		//ログインページにフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
