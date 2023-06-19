@@ -1,20 +1,21 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 
 
 public class Calendar implements Serializable {
 	private int users_number;
-	private String start_date;
-	private String end_date;
+	private Timestamp start_date;
+	private Timestamp end_date;
 	private String color;
 	private String memo;
 	private String branch;
 
 
 	//引数ありのコンストラクタ
-	public Calendar(int users_number,String start_date, String end_date, String color, String memo, String branch) {
+	public Calendar(int users_number,Timestamp start_date, Timestamp end_date, String color, String memo, String branch) {
 
 		this.users_number = users_number;
 		this.start_date= start_date;
@@ -30,8 +31,8 @@ public class Calendar implements Serializable {
 	public Calendar() {
 
 		this.users_number = 0;
-		this.start_date= "";
-		this.end_date = "";
+		this.start_date = null;
+		this.end_date = null ;
 		this.color = "";
 		this.memo = "";
 		this.branch = "";
@@ -55,25 +56,25 @@ public class Calendar implements Serializable {
 
 
 
-	public String getStart_date() {
+	public Timestamp getStart_date() {
 		return start_date;
 	}
 
 
 
-	public void setStart_date(String start_date) {
+	public void setStart_date(Timestamp start_date) {
 		this.start_date = start_date;
 	}
 
 
 
-	public String getEnd_date() {
+	public Timestamp getEnd_date() {
 		return end_date;
 	}
 
 
 
-	public void setEnd_date(String end_date) {
+	public void setEnd_date(Timestamp end_date) {
 		this.end_date = end_date;
 	}
 
