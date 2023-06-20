@@ -1,36 +1,38 @@
 /**
  * 
  */
+ 
+var formObj = document.getElementById('regist-form');
+var errorMessageObj = document.getElementById('error_message');
+
+ formObj.onsubmit = function(event) {
+ 	if (!((formObj.first.value !== formObj.secound.value) && (formObj.secound.value !== formObj.third.value) && (formObj.first.value !== formObj.third.value))) {
+ 		errorMessageObj.textContent = '※好きなジャンルは第1位から第3位まで被らないよう選択してください';
+ 		return false;
+ 	}
+ }
+ 
+ 
 let str = "";
 
 const pulldown = document.getElementById("select_workspace");
 
 function workspaceAdd() {
 		if(add.textContent === '+'){
-		console.log("テキストボックス表示！");
-			console.log("プルダウンのname:"+pulldown.getAttribute("name"));
-			console.log("テキストボックスのname変更前:"+document.getElementById('add').getAttribute("name"));
 			
 			str = "-";
 			pulldown.setAttribute("disabled", true);
 			pulldown.setAttribute("name", "none");
 			document.getElementById('new').setAttribute("name", "workspace");
 			
-			console.log("プルダウンのname変更後:"+pulldown.getAttribute("name"));
-			console.log("テキストボックスのname変更後:"+document.getElementById('add').getAttribute("name"));
 			
 		}else{
-			console.log("テキストボックス非表示！");
-			console.log("プルダウンのname変更前:"+pulldown.getAttribute("name"));
-			console.log("テキストボックスのname変更前:"+document.getElementById('add').getAttribute("name"));
 			
 			str = "+";
 			pulldown.setAttribute("name", "workspace");
 			document.getElementById('new').setAttribute("name", "none");
 			pulldown.removeAttribute("disabled");
-			
-			console.log("プルダウンのname変更後:"+pulldown.getAttribute("name"));
-			console.log("テキストボックスのname変更後:"+document.getElementById('add').getAttribute("name"));
+
 		}
 		document.getElementById('add').innerHTML = str;
 		document.getElementById('new').classList.toggle('newOpen');

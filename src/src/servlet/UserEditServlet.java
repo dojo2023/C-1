@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.UsersDAO;
 import model.LoginUser;
@@ -32,6 +33,17 @@ public class UserEditServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Userテーブルから今まで登録されたユーザー情報を持ってくる
+		HttpSession session = request.getSession();
+		LoginUser user = (LoginUser)session.getAttribute("number");
+		UsersDAO uDAO = new UsersDAO();
+		Users card = uDAO.select_User(user);
+		request.setAttribute("card",card);
+		
+		//
+
+
+
 		// ユーザ情報編集ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/user_edit.jsp");
 		dispatcher.forward(request, response);
@@ -55,10 +67,11 @@ public class UserEditServlet extends HttpServlet {
 		String secound = request.getParameter("secound");
 		String third = request.getParameter("third");
 
-		//user情報更新
+		//ユーザー情報編集（更新）
 		UsersDAO udao = new UsersDAO();
 
-		LoginUser user = new LoginUser(1);
+		HttpSession session = request.getSession();
+		LoginUser user = (LoginUser)session.getAttribute("number");
 
 		if (request.getParameter("submit").equals("保存")) {
 			if (udao.update (new Users(name,workspace,prefecture_number,user_id,address,first,secound,third), user));
