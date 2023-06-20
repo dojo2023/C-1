@@ -13,11 +13,11 @@
 <body>
 	<span class="title">Schedule editing</span>
 
-	<form  id=editform method="GET"  action="/KSHMY/CalendarEditServlet">
+	<form  id=editform method="POST"  action="/KSHMY/CalendarEditServlet">
 
 
 			<br>
-			営業所：<select id="workspace" name="workspace">
+			営業所：<select id="branc" name="branc">
 			<c:forEach var="e" items="${branch}" >
 				<option value="${e}">${e}</option>
 	        </c:forEach>
@@ -25,14 +25,17 @@
 		<div id = "new"><input type="text" name="workspace" value="" placeholder="営業所">
 		</div>
 			<br>
-			開始日時：<input type="text" name="start_date" value="${Calendar.start_date}"><br>
-			終了日時：<input type="text" name="end_date" value="${Calendar.end_date}"><br>
+			<label for="date">開始日時：</label>
+			<input type="datetime-local"  id="date" name="start_date" value="" />
+			<br>
+			<label for="date">終了日時：</label>
+			<input type="datetime-local"  id="date" name="end_date" value="" />
+			<br>
+			色：<label><input type="radio" name="color" value="e49aab" checked>赤</label>
+			<label><input type="radio" name="color" value="9ae3ae">緑</label>
+			<label><input type="radio" name="color" value="9ad0e3">青</label><br>
 
-			色：<label><input type="radio" name="color" value="color1">青</label>
-			<label><input type="radio" name="color" value="color2">緑</label>
-			<label><input type="radio" name="color" value="color3">赤</label><br>
-
-			 メモ：<textarea name = "memo">${Calendar.memo}</textarea><br>
+			メモ：<textarea name = "memo">${Calendar.memo}</textarea><br>
 
 				<input class="normal" type="submit" name="SUBMIT" value="更新">
 				<input class="reversal" type="submit" name="SUBMIT" value="削除">
