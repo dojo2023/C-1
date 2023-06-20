@@ -52,8 +52,7 @@ public class GourmetRegistServlet extends HttpServlet {
 
 		//	リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		/*		String number_str = request.getParameter("number");
-				int number = Integer.valueOf(number_str);*/
+
 		// セッションスコープにユーザのNumberを格納する
 		HttpSession session = request.getSession();
 
@@ -67,7 +66,6 @@ public class GourmetRegistServlet extends HttpServlet {
 		String favorite_str =  request.getParameter("favorite");
 		int favorite = Integer.valueOf(favorite_str);
 		String memo = request.getParameter("memo");
-		//		int autoIncrementKey = list.getNumber(1);
 
 		//登録処理を行う（storeテーブルに登録）
 		Gourmet list1 = new Gourmet(name, branch, genre);
@@ -75,9 +73,7 @@ public class GourmetRegistServlet extends HttpServlet {
 		int autoIncrementKey = gDao.insert_store(list1);
 
 
-		//		int number = gDao.select_store_number(gourmet);
 		//登録処理を行う（reputationテーブルに登録）
-
 		Gourmet list2 = new Gourmet(autoIncrementKey, users_number, reputation, favorite, memo);
 
 		gDao.insert_reputation(list2);
