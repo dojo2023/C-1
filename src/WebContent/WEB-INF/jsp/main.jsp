@@ -23,8 +23,8 @@
         <li class="main_menu">
             グルメ
             <ul class="sub_menu">
-			 		<li><a href="/KSHMY/GourmetServlet">一覧/検索</a></li>
-			 		<li><a href="/KSHMY/GourmetRegistServlet">登録</a></li>
+			 		<a href="/KSHMY/GourmetServlet"><li>一覧/検索</li></a>
+			 		<a href="/KSHMY/GourmetRegistServlet"><li>登録</li></a>
             </ul>
         </li>
         <li class="main_menu"><a href="/KSHMY/LogoutServlet">ログアウト</a></li>
