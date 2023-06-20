@@ -9,7 +9,7 @@
 </head>
 <body>
 	<span class="title">Gourumet editing</span>
-	<form id="regist-form" method="POST" action="/KSHMY/GourmetEditServlet">
+	<form id="edit-form" method="POST" action="/KSHMY/GourmetEditServlet">
 		<table>
 			<tr>
 				<td><input class="name" type="text" name="name" value="店名"></td>
