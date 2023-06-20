@@ -398,6 +398,50 @@ public class CalendarDAO {
 		return result;
 	}
 
+	// 引数branchで検索項目を指定し、検索結果を返す　該当する営業所（DISTINCT被りなし）をリターンする
+	public List<String> select_branch() {
+		Connection conn = null;
+		List <String> branch = new ArrayList<String>();
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select DISTINCT branch from Calendar";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while(rs.next()) {
+			branch.add (rs.getString("BRANCH"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			branch = null;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			branch = null;
+		} finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+					branch= null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return branch;
+	}
 
 }
 
