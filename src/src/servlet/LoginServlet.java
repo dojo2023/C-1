@@ -41,20 +41,27 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("user_id");
 		String pw = request.getParameter("user_pw");
+//		String idnumber= request.getParameter("number");
+//		int number = Integer.valueOf(idnumber);
 
-		// ログイン処理を行う
+		// ログイン処理を
 		UsersDAO uDao = new UsersDAO();
-		if (uDao.isLoginOK(new Users(null, null, 0, id, pw, null, null, null))) {	// ログイン成功
+		//if( true or false){}
+		//if( int )
+		//int result = uDao.idCheck();
+		//if( result > 0){}
+		int idNumber = uDao.idCheck(new Users(null, null, 0, id, pw, null, null, null));
+		if (idNumber > 0 ) {	// ログイン成功
 			// セッションスコープにNumberを格納する
 			HttpSession session = request.getSession();
-			session.setAttribute("number", new LoginUser(number));    //setAtributeはスコープでデータを設定する際のメソッド
+			session.setAttribute("number", new LoginUser(idNumber));    //setAtributeはスコープでデータを設定する際のメソッド
 
 			// メニューサーブレットにリダイレクトする
 			response.sendRedirect("/KSHMY/MainServlet");
 		}
 		else {									// ログイン失敗
 			response.sendRedirect("/KSHMY/LoginServlet");
-			}
+		}
 
 		/**
 		 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

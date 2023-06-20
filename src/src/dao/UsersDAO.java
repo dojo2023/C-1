@@ -65,6 +65,67 @@ public class UsersDAO {
 		return loginResult;
 	}
 
+
+	// ログインできるならid番号をLoginUserに返す
+		public int idCheck(Users users) {
+			Connection conn = null;
+			int idNumber = 0;
+
+			try {
+				// JDBCドライバを読み込む
+				Class.forName("org.h2.Driver");
+
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
+
+				// SELECT文を準備する
+				String sql = "select * from USERS where user_id = ? and user_pw = ?";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+				pStmt.setString(1, users.getUser_id());
+				pStmt.setString(2,users.getUser_pw());
+
+				// SELECT文を実行し、結果表を取得する
+				ResultSet rs = pStmt.executeQuery();
+
+				// ユーザーIDとパスワードが一致するユーザーがいたかどうかをチェックする
+				if (rs.next()) {
+					//結果がある 1行存在する
+					idNumber = rs.getInt("number");
+				}
+//				} else {
+//					//結果がない 存在しない
+//
+//				}
+//
+//
+//
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+				idNumber = 0;
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				idNumber = 0;
+			}
+			finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+						idNumber = 0;
+					}
+				}
+			}
+
+			// 結果を返す
+			return idNumber;
+		}
+
+
 	// 引数numberで検索項目を指定し、検索結果を返す　該当するユーザの登録情報をリターンする
 	public Users select_User(LoginUser number) {
 		Connection conn = null;
