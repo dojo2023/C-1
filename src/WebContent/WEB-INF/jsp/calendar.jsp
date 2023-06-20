@@ -21,9 +21,9 @@
       	<script src='/KSHMY/fullcalendar-5.11.5/lib/main.js'></script>
 
 		<script src='/KSHMY/js/calendar.js'></script>
-<form method="POST" action="/KSHMY/CalendarRegistServlet" onsubmit="return check()" >
+<!-- <form method="POST" action="/KSHMY/CalendarRegistServlet" onsubmit="return check()" >
 <input type="submit" name="REGIST" value="登録"><br>
 <form method="POST" action="/KSHMY/CalendarEditServlet" onsubmit="return check()" >
-<input type="submit" name="EDIT" value="編集"><br>
+<input type="submit" name="EDIT" value="編集"><br>  -->
 </body>
 </html>
