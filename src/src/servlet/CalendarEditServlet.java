@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,11 +35,9 @@ public class CalendarEditServlet extends HttpServlet {
 
 		//getはもともとある情報を書く
 		// 営業所のデータ
-		CalendarDAO uDAO = new CalendarDAO ();
-		String  branch[] = {"サインポスト","YSL","マネージビジネス","アーチ"};
+		CalendarDAO uDAO = new CalendarDAO();
+		List <String>  branch = uDAO.select_branch();
 		request.setAttribute("branch",branch);
-
-
 
 		// 登録する内容
 		Timestamp start_date = new Timestamp (System.currentTimeMillis());
@@ -49,7 +48,6 @@ public class CalendarEditServlet extends HttpServlet {
 		// 登録内容をリクエストスコープに格納する
 		Calendar calendar = new Calendar(0,start_date, end_date, color, memo, null);
 		request.setAttribute("Calendar", calendar);
-
 
 		//カレンダー編集ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/calendar_edit.jsp");
@@ -64,19 +62,40 @@ public class CalendarEditServlet extends HttpServlet {
 		// postは更新したりする場合に書く
 
 		// リクエストパラメータを取得する
-		request.setCharacterEncoding("UTF-8");
-		Timestamp start_date = new Timestamp (System.currentTimeMillis());
-		Timestamp end_date = new Timestamp (System.currentTimeMillis());
-//		Timestamp start_dat = request.getParameter("start_dat");
-//		Timestamp end_datet = request.getParameter("end_date");
-		String color = request.getParameter("color");
-		String memo = request.getParameter("memo");
+			// 開始日時
+			request.setCharacterEncoding("UTF-8");
+			String sDate = request.getParameter("start_date");		//YYYY-MM-DDThh:mm
+			sDate = sDate.replace("T", " ");											//YYYY-MM-DD hh:mm
+			sDate = sDate + ":00";														//YYYY-MM-DD hh:mm:00
+			System.out.println(request.getParameter("start_date"));
+			System.out.println(sDate);
+
+			// 修了日時
+			request.setCharacterEncoding("UTF-8");
+			String eDate = request.getParameter("end_date");		//YYYY-MM-DDThh:mm
+			eDate = eDate.replace("T", " ");											//YYYY-MM-DD hh:mm
+			eDate = eDate + ":00";														//YYYY-MM-DD hh:mm:00
+			System.out.println(request.getParameter("end_date"));
+			System.out.println(eDate);
+
+			Timestamp start_date = Timestamp.valueOf(sDate);
+			Timestamp end_date =Timestamp.valueOf(eDate);
+
+
+
+//			Timestamp start_date = new Timestamp (System.currentTimeMillis());
+//			Timestamp end_date = new Timestamp (System.currentTimeMillis());
+
+			String color = request.getParameter("color");
+			String memo = request.getParameter("memo");
+
 
 
 		// 登録内容をリクエストスコープに格納する
 //		Calendar calendar = new Calendar(start_date, end_date, color, memo);
-//		CalendarDAO schedule = CalendarDAO();
-//		schedule.update_reputation(schedule);
+//		CalendarDAO schedule = new CalendarDAO();
+//		schedule.update(schedule);
+
 
 
 		// カレンダーページに フォワードする
