@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -9,9 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.CalendarDAO;
 import model.Calendar;
+import model.LoginUser;
 
 /**
  * Servlet implementation class CalendarRegistServlet
@@ -51,23 +54,35 @@ public class CalendarRegistServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// カレンダーの日付に対する予定をDBに登録する
 
-		// リクエストパラメータを取得する
+		// リクエストパラメータを取得する クライアント側のフォームから送られてきたデータを取得する
 				request.setCharacterEncoding("UTF-8");
-				String branch = request.getParameter("branch");
-				String prefecture_number_str = request.getParameter("prefecture_number");
-				int prefecture_number = Integer.valueOf(prefecture_number_str);
-				String  = request.getParameter("memo");
+				HttpSession session = request.getSession();
+
+				LoginUser user = (LoginUser)session.getAttribute("number");
+				int users_number = user.getNumber();
+				String sDate = request.getParameter("start_date");		//YYYY-MM-DDThh:mm
+				sDate = sDate.replace("T", " ");											//Tを消している
+				sDate = sDate + ":00";
+				Timestamp start_date = Timestamp.valueOf(sDate);
+				String eDate = request.getParameter("end_date");		//YYYY-MM-DDThh:mm
+				eDate = eDate.replace("T", " ");											//Tを消している
+				eDate = eDate + ":00";
+				Timestamp end_date = Timestamp.valueOf(eDate);
 				String color = request.getParameter("color");
 				String memo = request.getParameter("memo");
+				String branch = request.getParameter("branch");
 
 
 				//Calendarテーブルに登録
-				Calendar schedule = new Calendar(branch,prefecture_number,,color,memo);
+				Calendar schedule = new Calendar(users_number,start_date,end_date,color,memo,branch);
 				CalendarDAO dao = new CalendarDAO();
 				dao.insert(schedule);
 
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		// カレンダーページに フォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/calendar.jsp");
+		dispatcher.forward(request, response);
+
 	}
 
 }

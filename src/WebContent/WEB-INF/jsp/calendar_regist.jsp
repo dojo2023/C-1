@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ page import="model.Calendar" %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,9 +16,15 @@
 
 	<form method="GET" action="/KSHMY/CalendarRegistServlet">
 
-		<br> 営業所：<select id="workspace" name="workspace">
+		<br>
+		営業所：
+		<select id="branch" name="branch">
+		<c:forEach var="e" items="${branch}" >
+			<option value="${e}">${e}</option>
+	    </c:forEach>
 
 		</select>
+
 		<button id="add" type="button" onclick="workspaceAdd()">+</button>
 		<div id="new">
 			<input type="text" name="workspace" value="" placeholder="営業所">
@@ -36,5 +43,5 @@
 
 	</form>
 </body>
-<script src='/KSHMY/js/common.js'></script>
+<script src='/KSHMY/js/calendar_regist.js'></script>
 </html>
