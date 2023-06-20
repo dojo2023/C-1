@@ -38,8 +38,7 @@ public class CalendarEditServlet extends HttpServlet {
 		String  branch[] = {"サインポスト","YSL","マネージビジネス","アーチ"};
 		request.setAttribute("branch",branch);
 
-		// ラジオボタン
-		String lang = request.getParameter("lang");
+
 
 		// 登録する内容
 		Timestamp start_date = new Timestamp (System.currentTimeMillis());

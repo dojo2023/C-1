@@ -28,11 +28,11 @@
 			開始日時：<input type="text" name="start_date" value="${Calendar.start_date}"><br>
 			終了日時：<input type="text" name="end_date" value="${Calendar.end_date}"><br>
 
-			色：<label><input type="radio" name="lang" value="color1">青</label>
-			<label><input type="radio" name="lang" value="color2">緑</label>
-			<label><input type="radio" name="lang" value="color3">赤</label><br>
+			色：<label><input type="radio" name="color" value="color1">青</label>
+			<label><input type="radio" name="color" value="color2">緑</label>
+			<label><input type="radio" name="color" value="color3">赤</label><br>
 
-			 メモ：<input type="text"  name="memo" value="${Calendar.memo}"><br>
+			 メモ：<textarea name = "memo">${Calendar.memo}</textarea><br>
 
 				<input class="normal" type="submit" name="SUBMIT" value="更新">
 				<input class="reversal" type="submit" name="SUBMIT" value="削除">
