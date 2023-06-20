@@ -16,13 +16,13 @@
 	              <tr>
 	                <td>
 	                    <!-- ID入力フォーム -->
-	                    <input type="text" name="ID" placeholder = "username">
+	                    <input type="text" name="user_id" placeholder = "username">
 	                </td>
 	              </tr>
 	              <tr>
 	                <td>
 	                  <!-- PW入力フォーム -->
-	                    <input type="password" name="PW" placeholder = "password">
+	                    <input type="password" name="user_pw" placeholder = "password">
 	                </td>
 	              </tr>
 	              <tr>
