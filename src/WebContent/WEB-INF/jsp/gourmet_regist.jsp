@@ -20,9 +20,8 @@
 						<c:forEach var="e" items="${branch}">
 							<option value="${e}">${e}</option>
 						</c:forEach>
-						<option id="new_select" value="新規">新規</option>
 				</select>
-					<button id="add" type="button" onclick="branchAdd()">+</button></td>
+					</td>
 			</tr>
 			<tr>
 				<td><input id="new" type="text" name="workspace" value=""
