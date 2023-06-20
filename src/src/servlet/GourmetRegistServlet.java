@@ -70,17 +70,17 @@ public class GourmetRegistServlet extends HttpServlet {
 		//		int autoIncrementKey = list.getNumber(1);
 
 		//登録処理を行う（storeテーブルに登録）
-		Gourmet gourmet1 = new Gourmet(name, branch, genre);
+		Gourmet list1 = new Gourmet(name, branch, genre);
 		GourmetDAO gDao = new GourmetDAO();
-		int autoIncrementKey = gDao.insert_store(gourmet1);
+		int autoIncrementKey = gDao.insert_store(list1);
 
 
 		//		int number = gDao.select_store_number(gourmet);
 		//登録処理を行う（reputationテーブルに登録）
 
-		Gourmet gourmet2 = new Gourmet(autoIncrementKey, users_number, reputation, favorite, memo);
+		Gourmet list2 = new Gourmet(autoIncrementKey, users_number, reputation, favorite, memo);
 
-		gDao.insert_reputation(gourmet2);
+		gDao.insert_reputation(list2);
 
 
 		// 一覧ページにフォワードする
