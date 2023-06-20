@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-//import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CalendarDAO;
 import model.Calendar;
 /**
  * Servlet implementation class CalendarEditServlet
@@ -31,6 +31,15 @@ public class CalendarEditServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		//getはもともとある情報を書く
+		// 営業所のデータ
+		CalendarDAO uDAO = new CalendarDAO ();
+		String  branch[] = {"サインポスト","YSL","マネージビジネス","アーチ"};
+		request.setAttribute("branch",branch);
+
+		// ラジオボタン
+		String lang = request.getParameter("lang");
 
 		// 登録する内容
 		Timestamp start_date = new Timestamp (System.currentTimeMillis());
@@ -53,8 +62,25 @@ public class CalendarEditServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		// postは更新したりする場合に書く
 
-		// フォワードする
+		// リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		Timestamp start_date = new Timestamp (System.currentTimeMillis());
+		Timestamp end_date = new Timestamp (System.currentTimeMillis());
+//		Timestamp start_dat = request.getParameter("start_dat");
+//		Timestamp end_datet = request.getParameter("end_date");
+		String color = request.getParameter("color");
+		String memo = request.getParameter("memo");
+
+
+		// 登録内容をリクエストスコープに格納する
+//		Calendar calendar = new Calendar(start_date, end_date, color, memo);
+//		CalendarDAO schedule = CalendarDAO();
+//		schedule.update_reputation(schedule);
+
+
+		// カレンダーページに フォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/calendar.jsp");
 			dispatcher.forward(request, response);
 
