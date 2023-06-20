@@ -32,7 +32,7 @@
 						<option value=0>〇</option>
 						<option value=1>×</option>
 				</select></td>
-				<td>ジャンル<select>
+				<td>ジャンル<select name = "genre">
 						<option value="和食">和食</option>
 						<option value="洋食">洋食</option>
 						<option value="中華">中華</option>
