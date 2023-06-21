@@ -29,9 +29,26 @@ SELECT store.number, name, branch, genre, reputation, favorite, memo
 from store INNER JOIN reputation on store.number = reputation.number 
 WHERE name LIKE ? OR branch LIKE? OR memo LIKE ?
 
+/*store.number、店名、営業所、ジャンル、総合評価を表示*/
+SELECT store.number, name, branch, genre,  AVG(reputation) from store INNER JOIN reputation on store.number = reputation.number group by store.number
+
+/*users_number、お気に入り、個人評価、メモを表示*/
+SELECT users_number, favorite,reputation, memo from store INNER JOIN reputation on store.number = reputation.number 
+
 SELECT store.number, name, branch, genre, reputation, favorite, memo 
 from store INNER JOIN reputation on store.number = reputation.number 
 GROUP BY store.number
+
+/*グルメ一覧のテーブルを表示(ジャンル順)*/
+SELECT store.number, users_number,  favorite, name, genre, branch, avg_reputation, reputation, memo  
+from store 
+INNER JOIN reputation
+on store.number = reputation.number
+JOIN (SELECT number, cast(avg(cast(reputation as decimal)) as decimal(10,1)) as avg_reputation from reputation group by number) as avg_table
+on store.number = avg_table.number
+where users_number = 3
+group by store.number 
+order by genre
 
 SELECT * FROM STORE where branch='A営業所' AND (genre='中華' OR genre='和食')
 

@@ -145,6 +145,84 @@ public class GourmetDAO {
 
 	}
 
+	// 引数listで検索項目を指定し、storeのリストを返す(reputationテーブルと結合)
+	public List<Gourmet> select_GourmetList(Gourmet gourmet) {
+		Connection conn = null;
+		List<Gourmet> GourmetList = new ArrayList<Gourmet>();
+
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
+
+			// SQL文を準備する
+			String sql = "SELECT store.number, users_number,  favorite, name, genre, branch, avg_reputation, reputation, memo "
+					+ "from store "
+					+ "INNER JOIN reputation "
+					+ "on store.number = reputation.number "
+					+ "JOIN (SELECT number, cast(avg(cast(reputation as decimal)) as decimal(10,1)) as avg_reputation from reputation group by number) as avg_table "
+					+ "on store.number = avg_table.number "
+					+ "where users_number = ? "
+					+ "group by store.number "
+					+ "order by genre ";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setInt(1,  gourmet.getUsers_number());
+
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {
+				Gourmet card = new Gourmet(
+						rs.getInt("number"),
+						rs.getInt("users_number"),
+						rs.getInt("favorite"),
+						rs.getString("genre"),
+						rs.getString("name"),
+						rs.getString("branch"),
+						rs.getDouble("avg_reputation"),
+						rs.getInt("reputation"),
+						rs.getString("memo")
+
+						);
+				GourmetList.add(card);
+			}
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+			GourmetList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			GourmetList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					GourmetList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return GourmetList;
+
+	}
+
 	// 登録済み営業所（DISTINCT被りなし）をリターンする
 	public List<String> select_branch() {
 		Connection conn = null;
@@ -231,12 +309,12 @@ public class GourmetDAO {
 
 			// SQL文を実行する
 			pStmt.executeUpdate();
-				ResultSet res = pStmt.getGeneratedKeys();
+			ResultSet res = pStmt.getGeneratedKeys();
 
-				if(res.next()){
-					autoIncrementKey = res.getInt(1);
-					System.out.println(autoIncrementKey);
-				}
+			if(res.next()){
+				autoIncrementKey = res.getInt(1);
+				System.out.println(autoIncrementKey);
+			}
 
 
 
@@ -414,53 +492,53 @@ public class GourmetDAO {
 		return result;
 	}
 
-//	//店名から店番号を取ってくるメソッド
-//	public int select_store_number(Gourmet gourmet){
-//		Connection conn = null;
-//		int store_number = 0;
-//		try {
-//			// JDBCドライバを読み込む
-//			Class.forName("org.h2.Driver");
-//
-//			// データベースに接続する
-//			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
-//
-//			// SQL文を準備する
-//			String sql = "select  number from store where name.equals  ?";
-//			PreparedStatement pStmt = conn.prepareStatement(sql);
-//
-//			pStmt.setInt(1, gourmet.getNumber());
-//
-//			// SQL文を実行し、結果表を取得する
-//			ResultSet rs = pStmt.executeQuery();
-//
-//				if(rs.next()) {
-//
-//					store_number = rs.getInt("number");
-//				}
-//
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			store_number = 0;
-//		} catch (ClassNotFoundException e) {
-//			e.printStackTrace();
-//			store_number = 0;
-//		} finally {
-//			// データベースを切断
-//			if (conn != null) {
-//				try {
-//					conn.close();
-//				} catch (SQLException e) {
-//					e.printStackTrace();
-//					store_number = 0;
-//				}
-//			}
-//		}
-//
-//		// 結果を返す
-//		return number;
-//	}
+	//	//店名から店番号を取ってくるメソッド
+	//	public int select_store_number(Gourmet gourmet){
+	//		Connection conn = null;
+	//		int store_number = 0;
+	//		try {
+	//			// JDBCドライバを読み込む
+	//			Class.forName("org.h2.Driver");
+	//
+	//			// データベースに接続する
+	//			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
+	//
+	//			// SQL文を準備する
+	//			String sql = "select  number from store where name.equals  ?";
+	//			PreparedStatement pStmt = conn.prepareStatement(sql);
+	//
+	//			pStmt.setInt(1, gourmet.getNumber());
+	//
+	//			// SQL文を実行し、結果表を取得する
+	//			ResultSet rs = pStmt.executeQuery();
+	//
+	//				if(rs.next()) {
+	//
+	//					store_number = rs.getInt("number");
+	//				}
+	//
+	//
+	//		} catch (SQLException e) {
+	//			e.printStackTrace();
+	//			store_number = 0;
+	//		} catch (ClassNotFoundException e) {
+	//			e.printStackTrace();
+	//			store_number = 0;
+	//		} finally {
+	//			// データベースを切断
+	//			if (conn != null) {
+	//				try {
+	//					conn.close();
+	//				} catch (SQLException e) {
+	//					e.printStackTrace();
+	//					store_number = 0;
+	//				}
+	//			}
+	//		}
+	//
+	//		// 結果を返す
+	//		return number;
+	//	}
 
 
 	// 引数listで指定されたreputationレコードを更新し、成功したらtrueを返す

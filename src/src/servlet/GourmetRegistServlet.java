@@ -79,6 +79,13 @@ public class GourmetRegistServlet extends HttpServlet {
 		gDao.insert_reputation(list2);
 
 
+		//グルメリストの表示を行う
+		GourmetDAO GDAO= new GourmetDAO();
+		Gourmet gourmet = new Gourmet();
+		gourmet.setUsers_number(users_number);
+		List<Gourmet> gourmetList= GDAO.select_GourmetList(gourmet);
+		request.setAttribute("gourmetList", gourmetList);
+
 		// 一覧ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/gourmet.jsp");
 		dispatcher.forward(request, response);
