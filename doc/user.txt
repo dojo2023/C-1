@@ -20,22 +20,22 @@ insert into users (user_id,user_pw,name,workspace,prefecture_number,first,second
 'pw1',
 '和久田暖',
 'サインポスト',
-'1',
+1,
 '中華',
 '洋食',
 '和食'
-)
+);
 
 insert into users (user_id,user_pw,name,workspace,prefecture_number,first,second,third) values(
 'id2',
 'pw2',
 '畑中望来',
 'アーチ',
-'5',
+5,
 '中華',
 '洋食',
 '和食'
-)
+);
 
 insert into users 
 (user_id,user_pw,name,workspace,prefecture_number,first,second,third)
@@ -44,11 +44,11 @@ insert into users
 'pw3',
 '西野和真',
 'マネージビジネス',
-'1',
+1,
 '中華',
 '洋食',
 '和食'
-)
+);
 
 insert into users 
 (user_id,user_pw,name,workspace,prefecture_number,first,second,third)
@@ -57,22 +57,22 @@ insert into users
 'pw4',
 '渡邊舞香',
 'YSLソリューション',
-'2',
+2,
 '中華',
 '洋食',
 '和食'
-)
+);
 
 insert into users (user_id,user_pw,name, workspace, prefecture_number,first,second,third) values(
 'id5',
 'pw5',
 '清水悠花',
 'マネージビジネス',
-'2',
+2,
 '中華',
 '洋食',
 '和食'
-)
+);
 
 
 update文

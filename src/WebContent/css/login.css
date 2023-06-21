@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+/* ログインページに適用*/
+
+/* フォーム部分を角が丸い四角で囲う*/
+.form {
+	 padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    color: #000000;/*文字色*/
+    background: #FFF;
+    border: solid 3px #000000;/*線*/
+    border-radius: 10px;/*角の丸み*/
+
+}
