@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 
 
 public class Calendar implements Serializable {
+	private int number;
 	private int users_number;
 	private Timestamp start_date;
 	private Timestamp end_date;
@@ -16,7 +17,16 @@ public class Calendar implements Serializable {
 
 	//引数ありのコンストラクタ
 	public Calendar(int users_number,Timestamp start_date, Timestamp end_date, String color, String memo, String branch) {
+		this.users_number = users_number;
+		this.start_date= start_date;
+		this.end_date = end_date;
+		this.color = color;
+		this.memo = memo;
+		this.branch = branch;
+	}
 
+	public Calendar(int number,int users_number,Timestamp start_date, Timestamp end_date, String color, String memo, String branch) {
+		this.number = number;
 		this.users_number = users_number;
 		this.start_date= start_date;
 		this.end_date = end_date;
@@ -29,7 +39,7 @@ public class Calendar implements Serializable {
 
 	//引数なしの（デフォルト）コンストラクタ
 	public Calendar() {
-
+		this.number = 0;
 		this.users_number = 0;
 		this.start_date = null;
 		this.end_date = null ;
@@ -39,7 +49,13 @@ public class Calendar implements Serializable {
 
 	}
 
+	public int getNumber() {
+		return number;
+	}
 
+	public void setNumber(int number) {
+		this.number = number;
+	}
 
 	public int getUsers_number() {
 		return users_number;

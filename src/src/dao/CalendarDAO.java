@@ -158,7 +158,7 @@ public class CalendarDAO {
 	}
 
 	// 予定から詳細を取得する
-		public Calendar editselect(LoginUser user, Calendar store) { //userselectメソッド(ログインユーザーの番号, 選択された日付を引数に）
+		public Calendar editselect(int number) { //userselectメソッド(ログインユーザーの番号, 選択された日付を引数に）
 			Connection conn = null;
 			Calendar schedule = new Calendar();
 
@@ -171,18 +171,11 @@ public class CalendarDAO {
 
 				// SQL文を準備する
 				String sql = "select * from Calendar "
-						+ "WHERE users_number = ? "
-						+ "and branch = ? ";
+						+ "WHERE number = ?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
-
 				// SQL文を完成させる
-
-				pStmt.setInt(1, user.getNumber());
-
-				pStmt.setString(2, store.getBranch());
-
-
+				pStmt.setInt(1,number);
 
 				// SQL文を実行し、検索結果を保持
 				ResultSet rs = pStmt.executeQuery();
@@ -307,7 +300,7 @@ public class CalendarDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 			// SQL文を準備する
-			String sql = "update Calendar set START_DATE=?, END_DATE=?,  COLOR=?, MEMO=?, BRANCH=?";
+			String sql = "update Calendar set START_DATE=?, END_DATE=?,  COLOR=?, MEMO=?, BRANCH=?  where NUMBER=? ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -325,6 +318,7 @@ public class CalendarDAO {
 			}
 
 			pStmt.setString(5, schedule.getBranch());
+			pStmt.setInt(5, schedule.getNumber());
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -353,7 +347,7 @@ public class CalendarDAO {
 		return result;
 	}
 	// 引数numberで指定されたレコードを削除し、成功したらtrueを返す
-	public boolean delete(String number) {   //delateメソッド
+	public boolean delete(int number) {   //delateメソッド
 		Connection conn = null;
 		boolean result = false;
 
@@ -369,7 +363,7 @@ public class CalendarDAO {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setString(1, number);
+			pStmt.setInt(1, number);
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
