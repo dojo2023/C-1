@@ -106,15 +106,15 @@ public class GourmetDAO {
 			while (rs.next()) {
 				System.out.println("0");
 				Gourmet list = new Gourmet(
-				rs.getInt("store.number"),
-				rs.getInt("users_number"),
-				rs.getString("name"),
-				rs.getString("branch"),
-				rs.getString("genre"),
-				rs.getInt("reputation"),
-				rs.getInt("favorite"),
-				rs.getString("memo")
-				);
+						rs.getInt("store.number"),
+						rs.getInt("users_number"),
+						rs.getString("name"),
+						rs.getString("branch"),
+						rs.getString("genre"),
+						rs.getInt("reputation"),
+						rs.getInt("favorite"),
+						rs.getString("memo")
+						);
 				GourmetList.add(list);
 			}
 		}
@@ -145,10 +145,54 @@ public class GourmetDAO {
 
 	}
 
-	// 引数listで指定されたstoreレコードを登録し、成功したらtrueを返す
-	public boolean insert_store(Gourmet list) {
+	// 登録済み営業所（DISTINCT被りなし）をリターンする
+	public List<String> select_branch() {
 		Connection conn = null;
-		boolean result = false;
+		List <String> branch = new ArrayList<String>();
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select DISTINCT branch from store";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while(rs.next()) {
+				branch.add (rs.getString("BRANCH"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			branch = null;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			branch = null;
+		} finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+					branch= null;
+				}
+			}
+		}
+		// 結果を返す
+		return branch;
+	}
+
+	// 引数listで指定されたstoreレコードを登録し、成功したらnumber(主キー)を返す
+	public int insert_store(Gourmet list) {
+		Connection conn = null;
+		int autoIncrementKey = 0;
 
 		try {
 			// JDBCドライバを読み込む
@@ -159,7 +203,8 @@ public class GourmetDAO {
 
 			// SQL文を準備する
 			String sql = "INSERT INTO STORE (name, branch, genre) VALUES (?, ?, ?);";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			PreparedStatement pStmt = conn.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
 
 			// SQL文を完成させる
 			if (list.getName() != null && !list.getName().equals("")) {
@@ -185,9 +230,19 @@ public class GourmetDAO {
 
 
 			// SQL文を実行する
-			if (pStmt.executeUpdate() == 1) {
-				result = true;
-			}
+			pStmt.executeUpdate();
+				ResultSet res = pStmt.getGeneratedKeys();
+
+				if(res.next()){
+					autoIncrementKey = res.getInt(1);
+					System.out.println(autoIncrementKey);
+				}
+
+
+
+
+
+
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -208,7 +263,7 @@ public class GourmetDAO {
 		}
 
 		// 結果を返す
-		return result;
+		return autoIncrementKey;
 	}
 
 
@@ -358,6 +413,54 @@ public class GourmetDAO {
 		// 結果を返す
 		return result;
 	}
+
+//	//店名から店番号を取ってくるメソッド
+//	public int select_store_number(Gourmet gourmet){
+//		Connection conn = null;
+//		int store_number = 0;
+//		try {
+//			// JDBCドライバを読み込む
+//			Class.forName("org.h2.Driver");
+//
+//			// データベースに接続する
+//			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
+//
+//			// SQL文を準備する
+//			String sql = "select  number from store where name.equals  ?";
+//			PreparedStatement pStmt = conn.prepareStatement(sql);
+//
+//			pStmt.setInt(1, gourmet.getNumber());
+//
+//			// SQL文を実行し、結果表を取得する
+//			ResultSet rs = pStmt.executeQuery();
+//
+//				if(rs.next()) {
+//
+//					store_number = rs.getInt("number");
+//				}
+//
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//			store_number = 0;
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//			store_number = 0;
+//		} finally {
+//			// データベースを切断
+//			if (conn != null) {
+//				try {
+//					conn.close();
+//				} catch (SQLException e) {
+//					e.printStackTrace();
+//					store_number = 0;
+//				}
+//			}
+//		}
+//
+//		// 結果を返す
+//		return number;
+//	}
 
 
 	// 引数listで指定されたreputationレコードを更新し、成功したらtrueを返す
