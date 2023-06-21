@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  <!-- C:を使うという宣言 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +14,17 @@
 <body>
 <span class="title">カレンダーページ</span>
 <br>
-<c:forEach var="e" items="${cardList}" >
-<input type="text" name="branch" value="${e.branch}">
+
+<c:forEach var = "e" items = "${cardlist}">
+${e.users_number}
+${e.start_date}
+${e.end_date}
+${e.color}
+${e.memo}
+${e.branch}
 </c:forEach>
+<br>
+
 	<!--カレンダー表示場所-->
     <div id='calendar'></div>
   </body>

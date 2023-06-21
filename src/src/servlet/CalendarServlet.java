@@ -43,17 +43,19 @@ public class CalendarServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//セッションスコープに保存されているuser_numberを取り出したい
-		HttpSession session = request.getSession();
+		//セッションスコープに保存されているuser_numberを取り出したい?
 
+		HttpSession session = request.getSession();
 		LoginUser user = (LoginUser)session.getAttribute("number");
 
 		// ユーザー番号からユーザーが登録している予定の一覧を検索する
 		CalendarDAO cldDao = new CalendarDAO();
 		List<Calendar> cardlist = cldDao.userselect(user);
 
-		// 検索結果をリクエストスコープに格納する
+		// リクエストスコープに"cardlist"という名前でcardlidtを格納する
 		request.setAttribute("cardlist",cardlist);
+
+
 
 
 		// カレンダーページにフォワードする
