@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="model.Calendar" %>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="model.Calendar"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,9 +20,9 @@
 		<br>
 		営業所：
 		<select id="branch" name="branch">
-		<c:forEach var="e" items="${branch}" >
+		<c:forEach var="e" items="${branch}">
 			<option value="${e}">${e}</option>
-	    </c:forEach>
+		</c:forEach>
 
 		</select>
 
@@ -29,17 +30,29 @@
 		<div id="new">
 			<input type="text" name="workspace" value="" placeholder="営業所">
 		</div>
-		<br>
-		開始日時：<input type="text" name="start_date" value="${Calendar.start_date}"><br>
-		終了日時：<input type="text" name="end_date" value="${Calendar.end_date}"><br>
 
-		色：<label><input type="radio" name="color" value="color1">青</label>
-		<label><input type="radio" name="color" value="color2">緑</label>
-		<label><input type="radio" name="color" value="color3">赤</label><br>
+		<br>
+		<label for="date">開始日時：</label>
+		<input type="datetime-local"
+			id="date" name="start_date" value="" />
+			 <br>
+		<label for="date">終了日時：</label>
+		<input type="datetime-local" id="date" name="end_date" value="" />
+		<br>
+
+		色：<label><input type="radio" name="color"
+			value="e49aab" checked>赤</label>
+			<label><input type="radio" name="color"
+			value="9ae3ae">緑</label> <label>
+			<input type="radio" name="color"
+			value="9ad0e3">青</label>
+			<br>
 
 		メモ：
-		<textarea name="memo">${Calendar.memo}</textarea>
-		<br> <input type="submit" name="SUBMIT" value="登録">
+		<textarea name="memo"></textarea>
+		<br>
+
+		<input type="submit" name="SUBMIT" value="登録">
 
 	</form>
 </body>
