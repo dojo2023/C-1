@@ -16,12 +16,12 @@
     else if (id !== "" && password === "") {
      	window.alert("パスワードを入力してください!");
     }
-    else if (id !== "DOJO"){
+    /*else if (id !== "DOJO"){
     	window.alert("IDが間違っています！");
     }
     else if (password !== "password"){
     	window.alert("パスワードが間違っています!");
-    }
+    }*/
 
 
   };/**
