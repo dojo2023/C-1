@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.CalendarDAO;
 import model.Calendar;
@@ -40,14 +41,14 @@ public class CalendarEditServlet extends HttpServlet {
 		request.setAttribute("branch",branch);
 
 		// 登録する内容
-		Timestamp start_date = new Timestamp (System.currentTimeMillis());
-		Timestamp end_date = new Timestamp (System.currentTimeMillis());
-		String color = "赤";
-		String memo = "発表会";
+//		Timestamp start_date = new Timestamp (System.currentTimeMillis());
+//		Timestamp end_date = new Timestamp (System.currentTimeMillis());
+//		String color = "赤";
+//		String memo = "発表会";
 
 		// 登録内容をリクエストスコープに格納する
-		Calendar calendar = new Calendar(0,start_date, end_date, color, memo, null);
-		request.setAttribute("Calendar", calendar);
+//		Calendar calendar = new Calendar(0,start_date, end_date, color, memo, null);
+//		request.setAttribute("Calendar", calendar);
 
 		//カレンダー編集ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/calendar_edit.jsp");
@@ -81,21 +82,25 @@ public class CalendarEditServlet extends HttpServlet {
 			Timestamp start_date = Timestamp.valueOf(sDate);
 			Timestamp end_date =Timestamp.valueOf(eDate);
 
-
-
-//			Timestamp start_date = new Timestamp (System.currentTimeMillis());
-//			Timestamp end_date = new Timestamp (System.currentTimeMillis());
-
 			String color = request.getParameter("color");
 			String memo = request.getParameter("memo");
 
 
+		// リクエストスコープに格納してスケジュールを編集（更新）
+		// （CalendarDAOのupdateのところにusers_numberがないのって関係あったりしますか…？）
+		Calendar calendar = new Calendar(users_number, start_date, end_date, color, memo);
+		HttpSession session = request.getSession();
+		Calendar user = (Calendar)session.getAttribute("number");
+		int users_number = user.getUsers_number();
+		CalendarDAO schedule = new CalendarDAO();
+		schedule.update(calendar);
 
-		// 登録内容をリクエストスコープに格納する
-//		Calendar calendar = new Calendar(start_date, end_date, color, memo);
-//		CalendarDAO schedule = new CalendarDAO();
-//		schedule.update(schedule);
-
+//			CalendarDAO calendar = new CalendarDAO();
+//			HttpSession session = request.getSession();
+//			Calendar user = (Calendar)session.getAttribute("number");
+//			if (request.getParameter("submit").equals("保存")) {
+//				if (calendar.update (new Calendar(users_number, start_date, end_date, color, memo), user));
+//			}
 
 
 		// カレンダーページに フォワードする
