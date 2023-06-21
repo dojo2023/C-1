@@ -22,45 +22,50 @@
 	<tr><td><input type="text" name="name" value="${card.name}" placeholder="氏名"></td></tr>
 
 		<tr><td>所属地
-		<select id="workspace" name="workspace">
-			<c:forEach var="e" items="${card.workspace}" >
-			<option value="${e}">${e}</option>
+		<select id="select_workspace" name="workspace">
+			<c:forEach var="e" items="${workspace}" >
+				<option value="${e}">${e}</option>
 			</c:forEach>
+			<option id="new_select" value="新規">新規</option>
 	    </select><button id="add" type="button" onclick="workspaceAdd()">+</button></td>
 
 	    <td>都道府県
 	    	<select id="prefecture_number" name="prefecture_number">
-	    	<c:forEach var="e" items="${prefecture_number}" >
-			<option value="${e}">${e}</option>
-			</c:forEach>
+			<option value=1>東京都</option><option value=2>神奈川県</option><option value=3>埼玉県</option><option value=4>千葉県</option><option value=5>栃木県</option>
+			<option value=6>群馬県</option><option value=7>茨城県</option>
 			</select></td>
 	    </tr>
 
-	    <tr><td id = "new"><input type="text" name="workspace" value="${card.workspace}" placeholder="所属地"></td></tr>
+	    <tr><td id = "new"><input type="text" name="workspace" value="" placeholder="所属地"></td></tr>
 
-	<tr><td><input type="text" name="user_id" value="${card.user_id}" placeholder="ID" readonly></td>
-
-		<td><input type="password" name="user_pw" value="${card.user_pw}" placeholder="パスワード" readonly></td></tr>
-
+	<tr><td><input type="text" name="user_id" value="${card.user_id}" placeholder="ID" readonly></td><td><input type="password" name="user_pw" value="${card.user_pw}" placeholder="パスワード" readonly></td></tr>
+		</table>
+		<table>
 		<tr><td>好きなジャンル</td></tr>
-			<tr><td>第1位<select name="first">
-				<c:forEach var="e" items="${card.first}" >
-				<option value="${e}">${e}</option>
-				</c:forEach>
-			</select></td>
-			<td>第2位<select name="second">
-				<c:forEach var="e" items="${card.second}" >
-				<option value="${e}">${e}</option>
-				</c:forEach>
-			</select></td>
-			<td>第3位<select name="third">
-				<c:forEach var="e" items="${card.third}" >
-				<option value="${e}">${e}</option>
-				</c:forEach>
-			</select></td></tr>
+			<tr><td colspan="2">第1位<select name="first">
+				<option value="和食">和食</option>
+				<option value="洋食">洋食</option>
+				<option value="中華">中華</option>
+				<option value="その他">その他</option></td>
+			<td colspan="2">第2位<select name="second">
+				<option value="和食">和食</option>
+				<option value="洋食">洋食</option>
+				<option value="中華">中華</option>
+				<option value="その他">その他</option></td>
+			<td colspan="2">第3位<select name="third">
+				<option value="和食">和食</option>
+				<option value="洋食">洋食</option>
+				<option value="中華">中華</option>
+				<option value="その他">その他</option></td></tr>
 	</table>
 		<input class="normal edit" id="save" name="save" type="submit" value="保存">
 	</form>
+
+	<input type="hidden" id="cw" value="${card.workspace}">
+	<input type="hidden" id="cp" value="${card.prefecture_number}">
+	<input type="hidden" id="cf" value="${card.first}">
+	<input type="hidden" id="cs" value="${card.second}">
+	<input type="hidden" id="ct" value="${card.third}">
 
 </body>
 <script src='/KSHMY/js/user_edit.js'></script>
