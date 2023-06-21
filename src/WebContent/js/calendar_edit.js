@@ -17,7 +17,7 @@ window.onload = function(){
 }
 
 
-/* 営業所のプルダウン */
+/* 営業所のプルダウン
 const branch =  document.getElementById('branch_box').value;
 
 let elements = document.getElementsByName('branch');
@@ -32,6 +32,7 @@ window.onload = function(){
 	    }
 	}
 }
+*/
 
 
 
