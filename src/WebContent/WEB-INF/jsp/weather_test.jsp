@@ -24,10 +24,12 @@
 		</form>
 
 		<script>
-
-	//const url = 'https://api.open-meteo.com/v1/jma?latitude=35.69&longitude=139.69&hourly=temperature_2m,weathercode&daily=weathercode&current_weather=true&past_days=3&timezone=Asia%2FTokyo';
-	const url = 'https://api.open-meteo.com/v1/jma?latitude=35.47&longitude=139.63&hourly=temperature_2m,weathercode&daily=weathercode&current_weather=true&past_days=3&timezone=Asia%2FTokyo';
 	
+		const ido = 35.47;
+		const keido = 139.63;
+	//const url = 'https://api.open-meteo.com/v1/jma?latitude=35.69&longitude=139.69&hourly=temperature_2m,weathercode&daily=weathercode&current_weather=true&past_days=3&timezone=Asia%2FTokyo';
+	const url = 'https://api.open-meteo.com/v1/jma?latitude='+ido+'&longitude='+keido+'&hourly=temperature_2m,weathercode&daily=weathercode&current_weather=true&past_days=3&timezone=Asia%2FTokyo';
+	console.log("ido|keido:"+ido+"|"+keido);
 	fetch(url)
 	  .then(function (response) {
 	    console.log(response);
@@ -52,12 +54,12 @@
 		const now_date = year + "-" + month +"-"+ date; //今日の日付
 		
 		//翌日を取りたい　現在エラー
-		const dt2 = dt.setDate(dt.getDate() + 1); 
+		const dt2 = new Date(dt.setDate(dt.getDate() + 1)); 
 	    const year2 = dt2.getFullYear();
 	    const month2 = (dt2.getMonth()+1).toString().padStart(2, '0');
 	    const date2 = dt2.getDate().toString().padStart(2, '0');
 		const next_date = year2 + "-" + month2 +"-"+ date2; //翌日の日付
-		console.log(next_date);
+		console.log("翌日"+next_date);
 
  		let now = 0;
 /* 		for(let i = 0 ; i < json.daily.time.length ; i++)  {

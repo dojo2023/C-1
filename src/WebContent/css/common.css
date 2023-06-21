@@ -42,7 +42,6 @@ li{
 }
 .main{
 	position:absolute;
-	background:red;
 	z-index:-5;
 }
 

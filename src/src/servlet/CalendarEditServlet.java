@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.CalendarDAO;
 import model.Calendar;
+import model.LoginUser;
 /**
  * Servlet implementation class CalendarEditServlet
  */
@@ -33,19 +34,25 @@ public class CalendarEditServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		//getはもともとある情報を書く
+
 		// 営業所のデータ
-		CalendarDAO uDAO = new CalendarDAO();
-		List <String>  branch = uDAO.select_branch();
+		CalendarDAO cDAO = new CalendarDAO();
+		List <String>  branch = cDAO.select_branch();
 		request.setAttribute("branch",branch);
+
+
+		int number = 1 ; //未完成
+		Calendar calendar = new Calendar();
+		calendar =cDAO.editselect(number);
+		request.setAttribute("calendar",calendar);
+
 
 		// 登録する内容
 //		Timestamp start_date = new Timestamp (System.currentTimeMillis());
 //		Timestamp end_date = new Timestamp (System.currentTimeMillis());
 //		String color = "赤";
 //		String memo = "発表会";
-
 		// 登録内容をリクエストスコープに格納する
 //		Calendar calendar = new Calendar(0,start_date, end_date, color, memo, null);
 //		request.setAttribute("Calendar", calendar);
@@ -81,26 +88,19 @@ public class CalendarEditServlet extends HttpServlet {
 
 			Timestamp start_date = Timestamp.valueOf(sDate);
 			Timestamp end_date =Timestamp.valueOf(eDate);
-
 			String color = request.getParameter("color");
 			String memo = request.getParameter("memo");
+			String branch = request.getParameter("branch");
 
+			// セッションスコープ取得
+			HttpSession session = request.getSession();
+			LoginUser user = (LoginUser)session.getAttribute("number");
+			int users_number = user.getNumber();
 
 		// リクエストスコープに格納してスケジュールを編集（更新）
-		// （CalendarDAOのupdateのところにusers_numberがないのって関係あったりしますか…？）
-		Calendar calendar = new Calendar(users_number, start_date, end_date, color, memo);
-		HttpSession session = request.getSession();
-		Calendar user = (Calendar)session.getAttribute("number");
-		int users_number = user.getUsers_number();
-		CalendarDAO schedule = new CalendarDAO();
-		schedule.update(calendar);
-
-//			CalendarDAO calendar = new CalendarDAO();
-//			HttpSession session = request.getSession();
-//			Calendar user = (Calendar)session.getAttribute("number");
-//			if (request.getParameter("submit").equals("保存")) {
-//				if (calendar.update (new Calendar(users_number, start_date, end_date, color, memo), user));
-//			}
+			Calendar calendar = new Calendar(users_number, start_date, end_date, color, memo,branch);
+			CalendarDAO schedule = new CalendarDAO();
+			schedule.update(calendar);
 
 
 		// カレンダーページに フォワードする

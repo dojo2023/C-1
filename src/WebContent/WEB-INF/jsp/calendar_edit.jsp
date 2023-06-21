@@ -17,32 +17,35 @@
 
 
 			<br>
-			営業所：<select id="branc" name="branc">
+			営業所：<select id="branch" name="none">
 			<c:forEach var="e" items="${branch}" >
 				<option value="${e}">${e}</option>
 	        </c:forEach>
-	    </select><button id="add" type="button" onclick="workspaceAdd()">+</button>
-		<div id = "new"><input type="text" name="workspace" value="" placeholder="営業所">
+	    </select>
+	    <button id="add" type="button" onclick="workspaceAdd()">+</button>
+		<div id = "new"><input type="text" name="branch" value="" placeholder="営業所">
 		</div>
 			<br>
 			<label for="date">開始日時：</label>
-			<input type="datetime-local"  id="date" name="start_date" value="" />
+			<input type="datetime-local"  id="date" name="start_date" value="${calendar.start_date}" />
 			<br>
 			<label for="date">終了日時：</label>
-			<input type="datetime-local"  id="date" name="end_date" value="" />
+			<input type="datetime-local"  id="date" name="end_date" value="${calendar.end_date}" />
 			<br>
-			色：<label><input type="radio" name="color" value="e49aab" checked>赤</label>
-			<label><input type="radio" name="color" value="9ae3ae">緑</label>
-			<label><input type="radio" name="color" value="9ad0e3">青</label><br>
+			色：<label><input type="radio" name="color" value="e49aab" > 赤</label>
+			<label><input type="radio" name="color" value="9ae3ae"> 緑</label>
+			<label><input type="radio" name="color" value="9ad0e3"> 青</label><br>
 
-			メモ：<textarea name = "memo">${Calendar.memo}</textarea><br>
+			メモ：<textarea name = "memo">${calendar.memo}</textarea><br>
 
 				<input class="normal" type="submit" name="SUBMIT" value="更新">
 				<input class="reversal" type="submit" name="SUBMIT" value="削除">
 
 
-
 	</form>
+		<input type="hidden"  id = "branch_box"  value="${calendar.branch}">
+		<input type="hidden"  id = "color_box"  value="${calendar.color}">
+
 </body>
 <script src='/KSHMY/js/calendar_edit.js'></script>
 </html>

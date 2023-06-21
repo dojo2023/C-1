@@ -12,6 +12,10 @@
 </head>
 <body>
 <span class="title">カレンダーページ</span>
+<br>
+<c:forEach var="e" items="${cardList}" >
+<input type="text" name="branch" value="${e.branch}">
+</c:forEach>
 	<!--カレンダー表示場所-->
     <div id='calendar'></div>
   </body>
@@ -21,9 +25,5 @@
       	<script src='/KSHMY/fullcalendar-5.11.5/lib/main.js'></script>
 
 		<script src='/KSHMY/js/calendar.js'></script>
-<!-- <form method="POST" action="/KSHMY/CalendarRegistServlet" onsubmit="return check()" >
-<input type="submit" name="REGIST" value="登録"><br>
-<form method="POST" action="/KSHMY/CalendarEditServlet" onsubmit="return check()" >
-<input type="submit" name="EDIT" value="編集"><br>  -->
-</body>
+
 </html>

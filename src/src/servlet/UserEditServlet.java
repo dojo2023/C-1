@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,9 +40,10 @@ public class UserEditServlet extends HttpServlet {
 		UsersDAO uDAO = new UsersDAO();
 		Users card = uDAO.select_User(user);
 		request.setAttribute("card",card);
-		
-		//
 
+		//Userテーブルから今まで登録された所属地の一覧を持ってくる（プルダウンメニューに使用）
+		List<String> workspace= uDAO. select_workspace();
+		request.setAttribute("workspace",workspace);
 
 
 		// ユーザ情報編集ページにフォワードする
@@ -64,7 +66,7 @@ public class UserEditServlet extends HttpServlet {
 		String user_id = request.getParameter("user_id");
 		String address = request.getParameter("user_pw");
 		String first = request.getParameter("first");
-		String secound = request.getParameter("secound");
+		String second = request.getParameter("second");
 		String third = request.getParameter("third");
 
 		//ユーザー情報編集（更新）
@@ -74,7 +76,7 @@ public class UserEditServlet extends HttpServlet {
 		LoginUser user = (LoginUser)session.getAttribute("number");
 
 		if (request.getParameter("submit").equals("保存")) {
-			if (udao.update (new Users(name,workspace,prefecture_number,user_id,address,first,secound,third), user));
+			if (udao.update (new Users(name,workspace,prefecture_number,user_id,address,first,second,third), user));
 		}
 
 		// メインページにフォワードする
