@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="model.Prefecture" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,29 +34,19 @@
     </ul>
 </nav>
 </header>
-<!-- 
- <header>
- 
-  <div class="top">
- 		<a href ="/KSHMY/MainServlet" ><img src = "/KSHMY/img/KMlogo.jpeg" width="100" height="100" alt="KSHMY"></a>
-	  	<ul class = "list">
-	 		<li class = "list-item "><a href="/KSHMY/MainServlet">メイン</a></li>
-	 		<li class = "list-item "><a href="/KSHMY/CalendarServlet">カレンダー</a></li>
-	 		<li class = "list-item sub">
-	 			<span>グルメ</span>
-		 		<ul class = "sub-list">
-			 		<a href="/KSHMY/GourmetServlet"><li>一覧/検索</li></a>
-			 		<li><a href="/KSHMY/GourmetRegistServlet">登録</a></li>
-		 		</ul>
-	 		</li>
-	 		<li class = "list-item "><a href="/KSHMY/LogoutServlet">ログアウト</a></li>
-		 	<li class = "list-item "><a href ="/KSHMY/UserEditServlet" >ユーザー</a></li>
-	 	</ul>
- 	</div>
-  </header>
-  -->
+
 <div class="main">
-<span class="title">〇〇/〇〇/Fri 's schedule</span>
+	<span id = "title" class="title"></span>
+	<div class = "syuzo">"${msg}"</div>
+	<div class = "weather">
+		<div id = "today"></div>
+		<div id = "today_weather"></div>
+		<div id = "today_temp"></div>
+		<div id = "nextday"></div>
+		<div id = "nextday_weather"></div>
+		<div id = "nextday_temp"></div>
+		
+	</div>
 
 	<form action="https://maps.google.com/">
 		<input class="normal"type="submit" value="MAP">
@@ -67,6 +59,9 @@
 
 	</form>
 	</div>
+	<input type = "hidden" id="ido" value="${prefecture.ido}">
+	<input type = "hidden" id="keido" value="${prefecture.keido}">
 </body>
 <script src='/KSHMY/js/common.js'></script>
+<script src='/KSHMY/js/main.js'></script>
 </html>
