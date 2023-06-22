@@ -7,14 +7,14 @@
 <meta charset="UTF-8">
 <title>グルメ登録</title>
 <link rel="stylesheet" href="/KSHMY/css/common.css">
-<link rel="stylesheet" href="/KSHMY/css/user_regist.css">
+<link rel="stylesheet" href="/KSHMY/css/gourmet_regist.css">
 </head>
 <body>
 	<header>
 		<nav>
 			<ul class="gnav_wrap">
 				<li class="main_menu"><a href="/KSHMY/MainServlet"><img
-						src="/KSHMY/img/KMlogo.jpeg" width="100" height="100" alt="KSHMY"></a>
+						src="/KSHMY/img/KMlogo.jpeg" width="150" height="100" alt="KSHMY"></a>
 				</li>
 				<li class="main_menu"><a href="/KSHMY/MainServlet">メイン</a></li>
 				<li class="main_menu"><a href="/KSHMY/CalendarServlet">カレンダー</a>
@@ -30,7 +30,14 @@
 			</ul>
 		</nav>
 	</header>
-	<span class="title">Gourmet Registration</span>
+
+<div class = "conteinar">
+<hr size="3" color="#404040">
+	<div class="title-box" id="title-box">
+		<span class="title">Gourmet Registration</span>
+	</div>
+
+
 	<form id="regist-form" method="POST"
 		action="/KSHMY/GourmetRegistServlet">
 		<table>
@@ -76,6 +83,14 @@
 		<input class="regist" id="regist" name="regist" type="submit"
 			value="登録">
 	</form>
+	</div>
+
+
+<hr>
+ <div id="footer">
+    <p>&copy;Copyright KSHMY. All rights reserved.</p>
+ </div>
+
 </body>
 <script src='/KSHMY/js/common.js'></script>
 <script src='/KSHMY/js/gourmet_regist.js'></script>
