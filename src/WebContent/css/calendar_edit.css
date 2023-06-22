@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/* textとプルダウン */
 #new{
 	display:none
 }
@@ -8,11 +9,49 @@
 	display:block !important;
 }
 
+/* タイトル */
 
+
+/* フォーム*/
 #editform {
   width: 80%;
   margin: 0 auto;
   max-width: 500px;
-  margin-top: 10%;
+  margin-top: 3%;
+}
+
+
+body {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    background: #FFF;
+    border: solid 3px #9d9d9f;/*線*/
+    border-radius: 10px;/*角の丸み*/
+}
+
+
+
+/* ラジオボタン */
+input[type=radio]+label:before{
+    content: "";
+    display: inline-block;
+    background-size: contain;
+    width: 40px;
+    height: 30px;
+}
+
+input[type=radio][value="e49aab"]+label:before{
+	background-image: url(/KSHMY/img/e49aab.png);
+}
+input[type=radio][value="9ae3ae"]+label:before{
+	background-image: url(/KSHMY/img/9ae3ae.png);
+}
+input[type=radio][value="9ad0e3"]+label:before{
+	background-image: url(/KSHMY/img/9ad0e3.png);
+}
+input[type=radio]:checked+label::before{
+    border: 2px solid #3c3c3c;
+    box-sizing: border-box;
 }
 
