@@ -10,18 +10,24 @@
 <link rel = "stylesheet" href = "/KSHMY/css/user_regist.css">
 </head>
 <body>
+	<h1><img src="/KSHMY/img/KMlogo.jpeg" width="150" height="100" alt="KM"></h1>
+
+<div class = "conteinar">
+<hr size="3" color="#404040">
 	<div class="title-box">
 		<span class="title">User registration</span>
 	</div>
-	<div class = "conteinar">
+
 	<div class="item">
 		<a href="/KSHMY/LoginServlet">＜戻る</a>
 		<div class="attention">項目はすべて入力してください</div>
 	</div>
+
 	<form id="regist-form" method="POST" action="/KSHMY/UserRegistServlet">
 	<table>
+
 	<tr><td colspan="3"><input type="text" name="name" value="" placeholder="氏名" required></td></tr>
-		<tr><td colspan="3">所属地	                
+		<tr><td colspan="3">所属地
 		<select id="select_workspace" name="workspace">
 			<c:forEach var="e" items="${workspace}" >
 				<option value="${e}">${e}</option>
@@ -34,7 +40,7 @@
 			<option value=6>群馬県</option><option value=7>茨城県</option>
 			</select></td>
 	    </tr>
-	    <tr><td colspan="3"><input id = "new" type="text" name="workspace" value="" placeholder="所属地" ></td></tr>
+	    <tr><td colspan="3"><input id = "new" type="text" name="none" value="" placeholder="所属地" ></td></tr>
 	<tr><td colspan="3"><input type="text" name="user_id" value="" placeholder="ID" required></td><td><input type="text" name="user_pw" value="" placeholder="パスワード" required></td></tr>
 		</table>
 		<table>
@@ -55,9 +61,18 @@
 				<option value="中華">中華</option>
 				<option value="その他">その他</option></td></tr>
 	</table>
-    	<input class="normal regist" id="regist" name="regist" type="submit" value="登録"> 
-    </form>     
-    </div>    
+	<div class="error-box">
+		<span id="error_message"></span>
+	</div>
+    	<input class="normal regist" id="regist" name="regist" type="submit" value="登録">
+    </form>
+    </div>
+
+<hr>
+ <div id="footer">
+    <p>&copy;Copyright KSHMY. All rights reserved.</p>
+ </div>
+
 </body>
 <script src='/KSHMY/js/user_regist.js'></script>
 </html>
