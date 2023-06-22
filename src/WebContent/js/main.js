@@ -40,30 +40,31 @@
  		}
  		
 		//今日の日付
-		let today =("今日の日付:"+json.daily.time[now]);   
+		let today =(json.daily.time[now]);   
 	    document.getElementById('today').innerHTML = today;
 
 		//weatherコードに応じた天気
-	    let weather = "本日の天気予報：";	
+	    let weather = "天気予報：";	
 		weather += weather_select(json,now); 	//下の方でweather_selectメソッドを定義してる
 	    document.getElementById('today_weather').innerHTML = weather;
 
 		//現在の気温
-		let tempreture = ("現在の気温:"+json.current_weather.temperature); 
-		document.getElementById('today_temp').innerHTML = tempreture;
+		let tempreture = ("気温:"+json.current_weather.temperature); 
+		//document.getElementById('today_temp').innerHTML = tempreture;
 
 		//翌日の分
-		let nextday =("今日の日付:"+json.daily.time[now+1]);   
+		let nextday =(json.daily.time[now+1]);   
 	    document.getElementById('nextday').innerHTML = nextday;
-	    let nextday_weather = "本日の天気予報：";	
+	    let nextday_weather = "天気予報：";	
 		nextday_weather += weather_select(json,now+1); 	//下の方でweather_selectメソッドを定義してる
 	    document.getElementById('nextday_weather').innerHTML = nextday_weather;
-		let nextday_temp = ("現在の気温:"+json.current_weather.temperature);  //仮　翌日の気温は存在しない（同じ時間帯の次の日を選択する）
-		document.getElementById('nextday_temp').innerHTML = nextday_temp;
+		let nextday_temp = ("気温:"+json.current_weather.temperature);  //仮　翌日の気温は存在しない（同じ時間帯の次の日を選択する）
+		//document.getElementById('nextday_temp').innerHTML = nextday_temp;
 
 	  });
 
-	window.onload = function(){	　//タイトル部分(英語&二重下線)現在日時を書く
+	window.onload = function(){	　
+			//タイトル部分(英語&二重下線)現在日時を書く
 			const week = dt.getDay();
 			const weekItems = ["Sat","Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
 			const dayOfWeek = weekItems[week];
@@ -88,4 +89,16 @@
 	    else{ return "雷雨" + "&#x26a1"; }
 	}
 
+
+let str = "";
+
+function msg() {
+		if(tr1.textContent === '▼'){			
+			str = "▲";						
+		}else{
+			str = "▼";
+		}
+		document.getElementById('tr1').innerHTML = str;
+		document.getElementById('msg').classList.toggle('open');
+}
 

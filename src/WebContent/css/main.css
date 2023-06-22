@@ -1,0 +1,51 @@
+@charset "UTF-8";
+.main{
+	width: 100%;
+}
+
+.flex{
+	display: flex;
+}
+
+.syuzo, .allSchedule, .weather{
+	margin: 10px;
+}
+
+.syuzo{
+	width: 25%;
+	text-align: center;
+}
+.allSchedule{
+	width: 50%;
+}
+.weather{
+	width: 25%;
+}
+
+.title-box{
+	text-align: center;
+}
+
+#msg{
+	display:none;
+	margin: 10px auto;
+	writing-mode: vertical-rl;
+}
+.open{
+	/*display.noneにかき消されるため"!important"追加で重要度を上げてる*/
+	display:block !important;
+}
+
+.triangle{
+	background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.schedule{
+	margin: 0 0 20px 0;
+}
+
+.today, .nextday-box{
+	margin:10px 0;
+}

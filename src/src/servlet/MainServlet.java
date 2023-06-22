@@ -1,6 +1,9 @@
 package servlet;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
@@ -11,8 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.CalendarDAO;
 import dao.PrefectureDAO;
 import dao.UsersDAO;
+import model.Calendar;
 import model.LoginUser;
 import model.Prefecture;
 
@@ -44,8 +49,24 @@ public class MainServlet extends HttpServlet {
 		Prefecture prefecture = pDAO.select(prefecture_num);	//ユーザの所属地の県番号に関する緯度経度県名取得
 		request.setAttribute("prefecture",prefecture);
 		
+		//ログイン中ユーザの本日の予定表示
+		Date d = new Date();
+        SimpleDateFormat d1 = new SimpleDateFormat("yyyy-MM-dd");
+        String start = d1.format(d) + " 00:00:00"; 
+        String end = d1.format(d) + " 23:59:59"; 
+        
+		CalendarDAO cDAO = new CalendarDAO();
+		List<Calendar> todayList = cDAO.dayselect(user, start,end);
+		request.setAttribute("todayList",todayList);
+		
+		String test = "2023-06-22 12:01:00.0";
+		String test2 = test.substring(11, 16);
+		
+		System.out.println(test);
+		System.out.println(test2);
+		
 		//修造用テキスト
-		String allMsg[] = {"あ","い","う","え"};
+		String allMsg[] = {"あああああああああああ","いいいいいいいい","うううううううう","えええええええええ"};
 		Random rnd = new Random();
 		String msg = allMsg[rnd.nextInt(allMsg.length)];
 		request.setAttribute("msg",msg);

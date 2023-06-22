@@ -6,10 +6,12 @@ var formObj = document.getElementById('regist-form');
 var errorMessageObj = document.getElementById('error_message');
 
  formObj.onsubmit = function(event) {
- 	if (!((formObj.first.value !== formObj.secound.value) && (formObj.secound.value !== formObj.third.value) && (formObj.first.value !== formObj.third.value))) {
+ 	if (!((formObj.first.value !== formObj.second.value) && (formObj.second.value !== formObj.third.value) && (formObj.first.value !== formObj.third.value))) {
  		errorMessageObj.textContent = '※好きなジャンルは第1位から第3位まで被らないよう選択してください';
  		return false;
+
  	}
+ 	errorMessageObj.textContent = null;
  }
  
  

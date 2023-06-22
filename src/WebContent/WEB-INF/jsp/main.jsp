@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>メインページ</title>
 <link rel = "stylesheet" href = "/KSHMY/css/common.css">
+<link rel = "stylesheet" href = "/KSHMY/css/main.css">
 </head>
 <body>
  <header>	  	
@@ -36,28 +37,40 @@
 </header>
 
 <div class="main">
-	<span id = "title" class="title"></span>
-	<div class = "syuzo">"${msg}"</div>
-	<div class = "weather">
-		<div id = "today"></div>
-		<div id = "today_weather"></div>
-		<div id = "today_temp"></div>
-		<div id = "nextday"></div>
-		<div id = "nextday_weather"></div>
-		<div id = "nextday_temp"></div>
-		
+	<div class="title-box">
+		<span id = "title" class="title"></span>
 	</div>
-
-	<form action="https://maps.google.com/">
-		<input class="normal"type="submit" value="MAP">
-	</form>
-
-
- 	<form method="POST" action="/KSHMY/GourmetEditServlet">
-
-		<input class="normal" type="submit"  name="SUBMIT" value="編集">
-
-	</form>
+	<div class = flex>
+		<div class = "syuzo">
+			今日の激励メッセージ<button id = "tr1" class = "triangle" type="button" onclick="msg()">▲</button><br>		
+			<div id = "msg" class = "open">${msg}</div>
+		</div>
+		<div class = "allSchedule">
+			<c:forEach var="e" items="${todayList}" >
+				<div class = "schedule">
+					${e.time}<br>
+					${e.branch}<br>
+					${e.memo}<br>
+					
+					<form action="https://maps.google.com/"><input class="normal"type="submit" value="MAP"></form>
+					<form method="POST" action="/KSHMY/GourmetEditServlet">
+						<input class="normal" type="submit"  name="SUBMIT" value="編集">
+					</form>					
+				</div>
+			</c:forEach>
+		</div>
+		<div class = "weather">
+			<div class = "today-box">
+				<div id = "today"></div>
+				<div id = "today_weather"></div>
+			</div>
+			<div class = "nextday-box">
+				<div id = "nextday"></div>
+				<div id = "nextday_weather"></div>
+			</div>
+			
+		</div>
+	</div>
 	</div>
 	<input type = "hidden" id="ido" value="${prefecture.ido}">
 	<input type = "hidden" id="keido" value="${prefecture.keido}">
