@@ -32,9 +32,10 @@
 			<label for="date">終了日時：</label>
 			<input type="datetime-local"  id="date" name="end_date" value="${calendar.end_date}" />
 			<br>
-			色：<label><input type="radio" name="color" value="e49aab" > 赤</label>
-			<label><input type="radio" name="color" value="9ae3ae"> 緑</label>
-			<label><input type="radio" name="color" value="9ad0e3"> 青</label><br>
+			色：
+			<input type="radio" name="color" value="e49aab"  id="colorimage1"><label for="colorimage1"></label>
+			<input type="radio" name="color" value="9ae3ae" id="colorimage2"><label for="colorimage2"></label>
+			<input type="radio" name="color" value="9ad0e3" id="colorimage3"><label for="colorimage3"></label><br>
 
 			メモ：<textarea name = "memo">${calendar.memo}</textarea><br>
 

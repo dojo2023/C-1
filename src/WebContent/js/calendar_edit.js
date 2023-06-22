@@ -41,15 +41,15 @@ window.onload = onLoad;
 /* 営業所のプラスマイナスボタン */
  let str = "";
 
-const pulldown = document.getElementById("select_workspace");
+const pulldown = document.getElementById("branch");
 
 function workspaceAdd() {
 		if(add.textContent === '+'){
 
 			str = "-";
 			pulldown.setAttribute("disabled", true);
-			pulldown.setAttribute("name", "none");
-			document.getElementById('new').setAttribute("name", "branch");
+			pulldown.setAttribute("name", "branch");
+			document.getElementById('new').setAttribute("name", "none");
 
 
 		}else{
