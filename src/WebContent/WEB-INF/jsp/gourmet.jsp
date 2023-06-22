@@ -35,9 +35,12 @@
     </ul>
 </nav>
 </header>
+<div class = "title2">
 	<span class="title">Gourumet List</span>
+	</div>
+		<div class = "table">
 	<table>
-		<tr>
+		<tr class = "tr">
 			<th>お気に入り</th>
 			<th>ジャンル</th>
 			<th>店名</th>
@@ -46,6 +49,7 @@
 			<th>個人評価</th>
 			<th>メモ</th>
 		</tr>
+		</div>
 		<c:forEach var="e" items="${gourmetList}">
 			<form id="edit-form" method="GET" action="/KSHMY/GourmetEditServlet">
 			<tr>
