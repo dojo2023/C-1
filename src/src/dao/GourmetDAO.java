@@ -159,13 +159,13 @@ public class GourmetDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT store.number, users_number,  favorite, name, genre, branch, avg_reputation, reputation, memo "
+			String sql = "SELECT store.number, users_number,  IsNull(favorite, '0') as favorite, name, genre, branch, avg_reputation, IsNull(reputation, '0') as reputation, IsNull(memo, 'ーーーー') as memo "
 					+ "from store "
-					+ "INNER JOIN reputation "
+					+ "LEFT OUTER JOIN reputation "
 					+ "on store.number = reputation.number "
+					+ "AND reputation.users_number = ? "
 					+ "JOIN (SELECT number, cast(avg(cast(reputation as decimal)) as decimal(10,1)) as avg_reputation from reputation group by number) as avg_table "
 					+ "on store.number = avg_table.number "
-					+ "where users_number = ? "
 					+ "group by store.number "
 					+ "order by genre ";
 
@@ -242,7 +242,6 @@ public class GourmetDAO {
 					+ "INNER JOIN reputation "
 					+ "on store.number = reputation.number "
 					+ "where users_number = ? and store.number = ? "
-					+ "group by store.number "
 					+ "order by genre ";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -257,19 +256,28 @@ public class GourmetDAO {
 
 
 			// 結果表をコレクションにコピーする
-			while (rs.next()) {
-				Gourmet card = new Gourmet(
-						rs.getInt("number"),
-						rs.getInt("users_number"),
-						rs.getString("name"),
-						rs.getString("branch"),
-						rs.getInt("favorite"),
-						rs.getString("genre"),
-						rs.getInt("reputation"),
-						rs.getString("memo")
-						);
-			}
+//				Gourmet  = new Gourmet(
+//						rs.getInt("number"),
+//						rs.getInt("users_number"),
+//						rs.getString("name"),
+//						rs.getString("branch"),
+//						rs.getInt("favorite"),
+//						rs.getString("genre"),
+//						rs.getInt("reputation"),
+//						rs.getString("memo")
+//						);
+			rs.next();
+			GourmetRecord.setStore_number(rs.getInt("number"));
+			GourmetRecord.setUsers_number(rs.getInt("users_number"));
+			GourmetRecord.setName(rs.getString("name"));
+			GourmetRecord.setBranch(rs.getString("branch"));
+			GourmetRecord.setFavorite(rs.getInt("favorite"));
+			GourmetRecord.setGenre(rs.getString("genre"));
+			GourmetRecord.setReputation(rs.getInt("reputation"));
+			GourmetRecord.setMemo(rs.getString("memo"));
+
 		}
+
 
 		catch (SQLException e) {
 			e.printStackTrace();
