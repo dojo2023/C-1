@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Calendar;
-import model.CalendarDate;
 import model.LoginUser;
 
 public class CalendarDAO {
@@ -87,7 +86,7 @@ public class CalendarDAO {
 	}
 
 	// 日付とログインユーザーの番号からその日の予定を取得する
-	public List<Calendar> dayselect(LoginUser user, CalendarDate date) { //userselectメソッド(ログインユーザーの番号, 選択された日付を引数に）
+	public List<Calendar> dayselect(LoginUser user, String start,String end) { //userselectメソッド(ログインユーザーの番号, 選択された日付を引数に）
 		Connection conn = null;
 		List<Calendar> cardList = new ArrayList<Calendar>();
 
@@ -99,20 +98,14 @@ public class CalendarDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select * from Calendar "
-					+ "WHERE users_number = ? "
-					+ "and start_date = ?"
-					+ "and end_date = ?";
+			String sql = "SELECT * FROM CALENDAR WHERE users_number = ? AND START_DATE BETWEEN ? AND ?" ;
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 
 			// SQL文を完成させる
-
 			pStmt.setInt(1, user.getNumber());
-
-			pStmt.setTimestamp(2, date.getStart_date());
-
-			pStmt.setTimestamp(3, date.getEnd_date());
+			pStmt.setString(2, start);
+			pStmt.setString(3, end);
 
 
 			// SQL文を実行し、検索結果を保持
@@ -126,8 +119,11 @@ public class CalendarDAO {
 						rs.getTimestamp("END_DATE"),
 						rs.getString("COLOR"),
 						rs.getString("MEMO"),
-						rs.getString("BRANCH")
+						rs.getString("BRANCH"),
+						rs.getString("START_DATE").substring(11, 16) + " ～ " + rs.getString("END_DATE").substring(11, 16)
 						);
+				
+				System.out.println("tes:"+rs.getString("START_DATE").substring(11, 16) + " ～ " + rs.getString("END_DATE").substring(11, 16));
 
 						cardList.add(list);
 			}
