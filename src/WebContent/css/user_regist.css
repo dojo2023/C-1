@@ -6,15 +6,21 @@
 .newOpen{
 	/*display.noneにかき消されるため"!important"追加で重要度を上げてる*/
 	display:block !important;
-	
+
 }
 
 .regist{
-	display: block;
-    margin: 0 auto;
+	display: inline-block;
+    margin: 15px 0 15px 525px;
     width: 80px;
     height: 40px;
     font-size: 18px;
+    border-radius: 10px;
+}
+
+#add{
+	border-radius: 10px;
+	width: 20px;
 }
 
 .item{
@@ -22,12 +28,31 @@
 }
 
 .attention{
-	margin: 0 auto;
+	margin-left: 390px;
+	padding : 35px 0 0 0 ;
+	color:red;
+}
+
+#error_message{
+	margin-left: 300px;
 	color:red;
 }
 
 table{
-	width: 100%;
+	margin-left: 230px;
+	margin-top: 5px;
+    width: 800px;
+    line-height: 45px;
+    font-size: 16px;
+}
+
+input[type="text"]{
+	width: 200px;
+	height: 30px;
+}
+input[type="password"]{
+	width: 200px;
+	height: 30px;
 }
 
 .title-box{
