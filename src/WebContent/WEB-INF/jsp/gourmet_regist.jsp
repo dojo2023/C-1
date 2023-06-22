@@ -14,7 +14,7 @@
 		<nav>
 			<ul class="gnav_wrap">
 				<li class="main_menu"><a href="/KSHMY/MainServlet"><img
-						src="/KSHMY/img/KMlogo.jpeg" width="150" height="100" alt="KSHMY"></a>
+						src="/KSHMY/img/KMlogo.jpeg" width="100" height="100" alt="KSHMY"></a>
 				</li>
 				<li class="main_menu"><a href="/KSHMY/MainServlet">メイン</a></li>
 				<li class="main_menu"><a href="/KSHMY/CalendarServlet">カレンダー</a>
