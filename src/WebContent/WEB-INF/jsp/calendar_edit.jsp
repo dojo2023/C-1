@@ -25,6 +25,7 @@
 	    <button id="add" type="button" onclick="workspaceAdd()">+</button>
 		<div id = "new"><input type="text" name="branch" value="" placeholder="営業所">
 		</div>
+
 			<br>
 			<label for="date">開始日時：</label>
 			<input type="datetime-local"  id="date" name="start_date" value="${calendar.start_date}" />

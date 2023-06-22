@@ -1,39 +1,41 @@
 /* カレンダー編集ページのJavaScript */
 
 /* ラジオボタン */
+var elements = document.getElementsByName('color');
 const color =  document.getElementById('color_box').value;
 
-let elements = document.getElementsByName('color');
-let len = elements.length;
-let checkValue = '';
+/* 営業所のプルダウン*/
+var branchEl = document.getElementById( "branch" ) ;
+const calendarbranch_box = document.getElementById('branch_box').value;
 
-window.onload = function(){
+
+window.onload = onLoad;
+	function onLoad(){
+	console.log("実行");
+
+	for (var i = 0; i < elements.length; i++){
+	    if (color === elements.item(i). value) {
+	  	  elements.item(i).checked = true;
+	  	 break;
+	    }
+	}
+
+	for(var i=0; i<branchEl.length; i++){
+		if(calendarbranch_box ==  branchEl.options[i].value ) {
+	        branchEl.options[i].setAttribute("selected", "selected");
+			break;
+	    }
+    }
+}
+
+/*
 	for (let i = 0; i < len; i++){
 	    if (color === elements.item(i). value) {
 	  	  elements.item(i).checked = true;
 	  	 return;
 	    }
 	}
-}
-
-
-/* 営業所のプルダウン
-const branch =  document.getElementById('branch_box').value;
-
-let elements = document.getElementsByName('branch');
-let len = elements.length;
-let checkValue = '';
-
-window.onload = function(){
-	for (let i = 0; i < len; i++){
-	    if (color === elements.item(i). value) {
-	  	  elements.item(i).checked = true;
-	  	 return;
-	    }
-	}
-}
 */
-
 
 
 /* 営業所のプラスマイナスボタン */
