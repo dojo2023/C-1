@@ -41,33 +41,18 @@ public class GourmetDAOTest {
 //			System.out.println("zzz");
 //		}
 		// insert_reputation()のテスト
-//		System.out.println("---------- reputation_store()のテスト ----------");
-//		//
-//		int autoIncrementKey = dao.insert_store(insRecStore);
-//
-//		Gourmet insRecReputation = new Gourmet(autoIncrementKey, 3, 5, 1, "おいしくなかった。");
-//
-//
-//		if (dao.insert_reputation(insRecReputation) ) {
-//			System.out.println("登録成功！");
-//		}
-//		else {
-//			System.out.println("zzz");
-//		}
+		System.out.println("---------- reputation_store()のテスト ----------");
+		//
+		int autoIncrementKey = dao.insert_store(insRecStore);
 
-		System.out.println("---------- select_record()のテスト ----------");
-		Gourmet record = new Gourmet();
-		int store_number = 10;
-		int users_number = 2;
-		record.setStore_number(store_number);
-		record.setUsers_number(users_number);
+		Gourmet insRecReputation = new Gourmet(autoIncrementKey, 3, 5, 1, "おいしくなかった。");
 
-		Gourmet GourmetRecord = dao.select_record(record);
 
-		if (GourmetRecord!=null) {
-			System.out.println(record);
-		}else{
-			System.out.println("残念");
+		if (dao.insert_reputation(insRecReputation) ) {
+			System.out.println("登録成功！");
+		}
+		else {
+			System.out.println("zzz");
 		}
 		//
 		//			List<Gourmet> GourmetList3 = dao.select(keyWord, favorite, checkedGenre);

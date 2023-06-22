@@ -57,7 +57,7 @@
 	<c:forEach var="e" items="${gourmetList}">
 		<form id="edit-form" method="GET" action="/KSHMY/GourmetEditServlet">
 		<tr><td style="display: none"><input type="hidden" name="number"
-					value="${e.store_number}"></td>
+					value="${e.number}"></td>
 
 				<td>${e.favorite}</td>
 
