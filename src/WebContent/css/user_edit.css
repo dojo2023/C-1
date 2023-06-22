@@ -8,3 +8,64 @@
 	display:block !important;
 
 }
+
+.edit{
+	display: inline-block;
+    margin: 15px 0 15px 525px;
+    width: 80px;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+#add{
+	border-radius: 10px;
+	width: 20px;
+}
+
+.item{
+	display:flex;
+}
+
+.attention{
+	margin-left: 320px;
+	padding : 35px 0 0 0 ;
+	color:red;
+}
+
+#error_message{
+	margin-left: 300px;
+	color:red;
+}
+
+table{
+	margin-left: 230px;
+	margin-top: 5px;
+    width: 800px;
+    line-height: 45px;
+    font-size: 16px;
+}
+
+input[type="text"]{
+	width: 200px;
+	height: 30px;
+}
+input[type="password"]{
+	width: 200px;
+	height: 30px;
+}
+
+#title-box-ue{
+	text-align: center;
+	margin-top:10px;
+}
+
+.conteinar{
+	max-width: 1100px;
+	margin:0 auto;
+}
+
+input[name="user_id"], [type=password]{
+	background-color: #CCCCCC
+	}
+
