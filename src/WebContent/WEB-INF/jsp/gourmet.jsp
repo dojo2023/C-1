@@ -8,8 +8,33 @@
 <meta charset="UTF-8">
 <title>グルメ一覧/検索ページ</title>
 <link rel="stylesheet" href="/KSHMY/css/common.css">
+<link rel="stylesheet" href="/KSHMY/css/gourmet.css">
 </head>
 <body>
+ <header>
+<nav>
+    <ul class="gnav_wrap">
+    	 <li class="main_menu">
+    	 	<a href ="/KSHMY/MainServlet" ><img src = "/KSHMY/img/KMlogo.jpeg" width="100" height="100" alt="KSHMY"></a>
+    	</li>
+        <li class="main_menu">
+            <a href="/KSHMY/MainServlet">メイン</a>
+        </li>
+        <li class="main_menu">
+            <a href="/KSHMY/CalendarServlet">カレンダー</a>
+        </li>
+        <li class="main_menu">
+            グルメ
+            <ul class="sub_menu">
+			 		<a href="/KSHMY/GourmetServlet"><li>一覧/検索</li></a>
+			 		<a href="/KSHMY/GourmetRegistServlet"><li>登録</li></a>
+            </ul>
+        </li>
+        <li class="main_menu"><a href="/KSHMY/LogoutServlet">ログアウト</a></li>
+		<li class="main_menu"><a href ="/KSHMY/UserEditServlet" >ユーザー</a></li>
+    </ul>
+</nav>
+</header>
 	<span class="title">Gourumet List</span>
 	<table>
 		<tr>
@@ -22,7 +47,7 @@
 			<th>メモ</th>
 		</tr>
 		<c:forEach var="e" items="${gourmetList}">
-			<form id="edit-form" method="POST" action="/KSHMY/GourmetEditServlet">
+			<form id="edit-form" method="GET" action="/KSHMY/GourmetEditServlet">
 			<tr>
 				<td style="display: none"><input type="hidden" name="number"
 					value="${e.number}"></td>
@@ -47,4 +72,5 @@
 		</c:forEach>
 	</table>
 </body>
+<script src='/KSHMY/js/common.js'></script>
 </html>

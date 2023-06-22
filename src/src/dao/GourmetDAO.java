@@ -223,6 +223,80 @@ public class GourmetDAO {
 
 	}
 
+	//引数recordで編集するデータを選択
+	public Gourmet select_record(Gourmet record) {
+		Connection conn = null;
+		Gourmet GourmetRecord = new Gourmet();
+
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
+
+			// SQL文を準備する
+			String sql ="SELECT store.number, users_number, name, branch, favorite, genre,  reputation, memo "
+					+ "from store "
+					+ "INNER JOIN reputation "
+					+ "on store.number = reputation.number "
+					+ "where users_number = ? and store.number = ? "
+					+ "group by store.number "
+					+ "order by genre ";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setInt(1,  record.getUsers_number());
+			pStmt.setInt(2,  record.getStore_number());
+
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {
+				Gourmet card = new Gourmet(
+						rs.getInt("number"),
+						rs.getInt("users_number"),
+						rs.getString("name"),
+						rs.getString("branch"),
+						rs.getInt("favorite"),
+						rs.getString("genre"),
+						rs.getInt("reputation"),
+						rs.getString("memo")
+						);
+			}
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+			GourmetRecord = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			GourmetRecord = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					GourmetRecord = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return GourmetRecord;
+
+	}
+
 	// 登録済み営業所（DISTINCT被りなし）をリターンする
 	public List<String> select_branch() {
 		Connection conn = null;

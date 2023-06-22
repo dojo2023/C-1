@@ -10,6 +10,26 @@
 <link rel="stylesheet" href="/KSHMY/css/user_regist.css">
 </head>
 <body>
+	<header>
+		<nav>
+			<ul class="gnav_wrap">
+				<li class="main_menu"><a href="/KSHMY/MainServlet"><img
+						src="/KSHMY/img/KMlogo.jpeg" width="100" height="100" alt="KSHMY"></a>
+				</li>
+				<li class="main_menu"><a href="/KSHMY/MainServlet">メイン</a></li>
+				<li class="main_menu"><a href="/KSHMY/CalendarServlet">カレンダー</a>
+				</li>
+				<li class="main_menu">グルメ
+					<ul class="sub_menu">
+						<a href="/KSHMY/GourmetServlet"><li>一覧/検索</li></a>
+						<a href="/KSHMY/GourmetRegistServlet"><li>登録</li></a>
+					</ul>
+				</li>
+				<li class="main_menu"><a href="/KSHMY/LogoutServlet">ログアウト</a></li>
+				<li class="main_menu"><a href="/KSHMY/UserEditServlet">ユーザー</a></li>
+			</ul>
+		</nav>
+	</header>
 	<span class="title">Gourmet Registration</span>
 	<form id="regist-form" method="POST"
 		action="/KSHMY/GourmetRegistServlet">
@@ -21,7 +41,7 @@
 							<option value="${e}">${e}</option>
 						</c:forEach>
 				</select>
-					</td>
+				</td>
 			</tr>
 			<tr>
 				<td><input id="new" type="text" name="workspace" value=""
@@ -32,7 +52,7 @@
 						<option value=0>〇</option>
 						<option value=1>×</option>
 				</select></td>
-				<td>ジャンル<select name = "genre">
+				<td>ジャンル<select name="genre">
 						<option value="和食">和食</option>
 						<option value="洋食">洋食</option>
 						<option value="中華">中華</option>
@@ -60,5 +80,6 @@
 			value="登録">
 	</form>
 </body>
+<script src='/KSHMY/js/common.js'></script>
 <script src='/KSHMY/js/gourmet_regist.js'></script>
 </html>
