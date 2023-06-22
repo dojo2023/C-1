@@ -42,6 +42,7 @@ public class CalendarDAO {
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {  //nextメソッドを使用し取得した表のカラム名にカーソルがあっているのをネクストでデータの行にカーソルを変更する
 				Calendar list = new Calendar(
+						rs.getInt("NUMBER"),
 						rs.getInt("USERS_NUMBER"),
 						rs.getTimestamp("START_DATE"),
 						rs.getTimestamp("END_DATE"),
@@ -122,7 +123,7 @@ public class CalendarDAO {
 						rs.getString("BRANCH"),
 						rs.getString("START_DATE").substring(11, 16) + " ～ " + rs.getString("END_DATE").substring(11, 16)
 						);
-				
+
 				System.out.println("tes:"+rs.getString("START_DATE").substring(11, 16) + " ～ " + rs.getString("END_DATE").substring(11, 16));
 
 						cardList.add(list);
