@@ -13,6 +13,7 @@ public class Calendar implements Serializable {
 	private String color;
 	private String memo;
 	private String branch;
+	private String time;
 
 
 	//引数ありのコンストラクタ
@@ -34,6 +35,17 @@ public class Calendar implements Serializable {
 		this.memo = memo;
 		this.branch = branch;
 	}
+	
+	public Calendar(int users_number,Timestamp start_date, Timestamp end_date, String color, String memo, String branch, String time) {
+		this.users_number = users_number;
+		this.start_date= start_date;
+		this.end_date = end_date;
+		this.color = color;
+		this.memo = memo;
+		this.branch = branch;
+		this.time = time;
+		System.out.println("コンストラクタ:"+time);
+	}
 
 
 
@@ -49,6 +61,14 @@ public class Calendar implements Serializable {
 
 	}
 
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+	
 	public int getNumber() {
 		return number;
 	}
