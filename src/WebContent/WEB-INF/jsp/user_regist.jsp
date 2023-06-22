@@ -10,7 +10,7 @@
 <link rel = "stylesheet" href = "/KSHMY/css/user_regist.css">
 </head>
 <body>
-	<h1><img src="/KSHMY/img/KMlogo.jpeg" width="150" height="100" alt="KM"></h1>
+	<h1><img src="/KSHMY/img/KMlogo.jpeg" width="100" height="100" alt="KM"></h1>
 
 <div class = "conteinar">
 <hr size="3" color="#404040">
