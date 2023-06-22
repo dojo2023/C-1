@@ -39,17 +39,24 @@ SELECT store.number, name, branch, genre, reputation, favorite, memo
 from store INNER JOIN reputation on store.number = reputation.number 
 GROUP BY store.number
 
-/*グルメ一覧のテーブルを表示(ジャンル順)*/
-SELECT store.number, users_number,  favorite, name, genre, branch, avg_reputation, reputation, memo  
+/*登録内容を編集するために用いるselect文（グルメ編集ページを開くと既に登録してある内容が記入済みで表示、それを書き換える）*/
+SELECT store.number, users_number, name, branch, favorite, genre,  reputation, memo  
 from store 
 INNER JOIN reputation
 on store.number = reputation.number
-JOIN (SELECT number, cast(avg(cast(reputation as decimal)) as decimal(10,1)) as avg_reputation from reputation group by number) as avg_table
-on store.number = avg_table.number
-where users_number = 3
-group by store.number 
+where users_number = 3 and store.number = 5
 order by genre
 
+/*グルメ一覧のテーブルを表示(ジャンル順), ユーザが登録していない内容（お気に入り、個人評価、メモ）はデフォルト値としてそれぞれ（0,0,ーーーー）と表示する。*/
+SELECT store.number, users_number,  IsNull(favorite, '0') as favorite, name, genre, branch, avg_reputation, IsNull(reputation, '0') as reputation, IsNull(memo, 'ーーーー') as memo  
+from store 
+LEFT OUTER JOIN reputation
+on store.number = reputation.number
+AND reputation.users_number = 3 
+JOIN (SELECT number, cast(avg(cast(reputation as decimal)) as decimal(10,1)) as avg_reputation from reputation group by number) as avg_table
+on store.number = avg_table.number
+group by store.number 
+order by genre
 SELECT * FROM STORE where branch='A営業所' AND (genre='中華' OR genre='和食')
 
 チェックリスト：ジャンル（中華、和食、洋食、その他）

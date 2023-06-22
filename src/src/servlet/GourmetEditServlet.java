@@ -21,13 +21,13 @@ import model.LoginUser;
 public class GourmetEditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GourmetEditServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public GourmetEditServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,13 +41,29 @@ public class GourmetEditServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		LoginUser user = (LoginUser)session.getAttribute("number");
 		int users_number = user.getNumber();
+		String store_number_str =  request.getParameter("number");
+		int store_number = Integer.valueOf(store_number_str);
+
 
 		//編集したいレコードを選択・表示
 		GourmetDAO GDAO= new GourmetDAO();
 		Gourmet gourmet = new Gourmet();
+		//store.numberを持ってこないと実行できない
+		gourmet.setStore_number(store_number);
 		gourmet.setUsers_number(users_number);
+
+		System.out.println(store_number);
+		System.out.println(users_number);
+
 		Gourmet gourmetRecord= GDAO.select_record(gourmet);
+		if (gourmetRecord!=null) {
+			System.out.println("成功");
+		}else{
+			System.out.println("残念");
+		}
+
 		request.setAttribute("gourmetRecord", gourmetRecord);
+
 
 		// グルメ編集ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/gourmet_edit.jsp");

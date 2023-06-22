@@ -31,35 +31,41 @@
 		</nav>
 	</header>
 	<span class="title">Gourumet editing</span>
-	<c:forEach var="e" items="${gourmetRecord}">
-		<form id="edit-form" method="POST" action="/KSHMY/GourmetEditServlet">
-			<table>
-				<tr>
-					<td style="display: none"><input type="hidden" name="number"
-						value="${e.number}"></td>
-					<td>${e.branch}<input class="name" type="text" name="number"
-						value=${e.number}></td>
-					<td><input class="branch" type="text" name="branch"
-						value=${e.branch}></td>
-				</tr>
-				<tr>
-					<td><input class="favorite" type="text" name="favorite"
-						value="お気に入り"></td>
-					<td><input class="genre" type="text" name="genre" value="ジャンル"></td>
-				</tr>
-				<tr>
-					<td><input class="reputation" type="text" name="reputation"
-						value="評価"></td>
-				</tr>
-				<tr>
-					<td><input class="memo" type="text" name="memo" value="メモ"></td>
-				</tr>
-			</table>
 
-			<input class="update" id="update" name="update" type="submit"
-				value="更新">
-		</form>
-	</c:forEach>
+	<form id="edit-form" method="POST" action="/KSHMY/GourmetEditServlet">
+		<table>
+			<tr>
+				<td style="display: none">
+				<input type="hidden" name="number"  value="${gourmetRecord.number}"></td>
+				<td>
+				店名
+				<input class="name" type="text" name="number" value="${gourmetRecord.name}" readonly></td>
+				<td>
+				営業所
+				<input class="branch" type="text" name="branch" value="${gourmetRecord.branch}" readonly></td>
+			</tr>
+			<tr>
+				<td>お気に入り<input class="favorite" type="text" name="favorite" value="${gourmetRecord.favorite}"></td>
+				<td>
+				ジャンル
+				<select name="genre" value ="${gourmetRecord.genre}">
+						<option value="和食">和食</option>
+						<option value="洋食">洋食</option>
+						<option value="中華">中華</option>
+				</select>
+				</td>
+			</tr>
+			<tr>
+				<td>評価<input class="reputation" type="text" name="reputation" value="${gourmetRecord.reputation}" readonly></td>
+			</tr>
+			<tr>
+				<td><input class="memo" type="text" name="memo" value="${gourmetRecord.memo}"></td>
+			</tr>
+		</table>
+
+		<input class="update" id="update" name="update" type="submit"
+			value="更新">
+	</form>
 
 </body>
 <script src='/KSHMY/js/common.js'></script>
