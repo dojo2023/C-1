@@ -303,6 +303,7 @@ public class CalendarDAO {
 			String sql = "update Calendar set START_DATE=?, END_DATE=?,  COLOR=?, MEMO=?, BRANCH=?  where NUMBER=? ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
+
 			// SQL文を完成させる
 			pStmt.setTimestamp(1, schedule.getStart_date());
 
@@ -318,7 +319,7 @@ public class CalendarDAO {
 			}
 
 			pStmt.setString(5, schedule.getBranch());
-			pStmt.setInt(5, schedule.getNumber());
+			pStmt.setInt(6, schedule.getNumber());
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

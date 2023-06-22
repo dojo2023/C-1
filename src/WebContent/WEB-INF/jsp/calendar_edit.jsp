@@ -15,15 +15,14 @@
 
 	<form  id=editform method="POST"  action="/KSHMY/CalendarEditServlet">
 
-
 			<br>
-			営業所：<select id="branch" name="none">
+			営業所：<select id="branch" name="branch">
 			<c:forEach var="e" items="${branch}" >
 				<option value="${e}">${e}</option>
 	        </c:forEach>
 	    </select>
 	    <button id="add" type="button" onclick="workspaceAdd()">+</button>
-		<div id = "new"><input type="text" name="branch" value="" placeholder="営業所">
+		<div id = "new"><input type="text" name="none" value="" placeholder="営業所">
 		</div>
 
 			<br>
@@ -46,6 +45,7 @@
 	</form>
 		<input type="hidden"  id = "branch_box"  value="${calendar.branch}">
 		<input type="hidden"  id = "color_box"  value="${calendar.color}">
+
 
 </body>
 <script src='/KSHMY/js/calendar_edit.js'></script>
