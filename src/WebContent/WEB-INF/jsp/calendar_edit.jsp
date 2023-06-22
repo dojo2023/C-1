@@ -11,11 +11,14 @@
 <link rel = "stylesheet" href = "/KSHMY/css/calendar_edit.css">
 </head>
 <body>
+	<div id=waku>
+
+	<div id=title1>
 	<span class="title">Schedule editing</span>
+	</div>
 
 	<form  id=editform method="POST"  action="/KSHMY/CalendarEditServlet">
 
-			<br>
 			営業所：<select id="branch" name="branch">
 			<c:forEach var="e" items="${branch}" >
 				<option value="${e}">${e}</option>
@@ -37,17 +40,20 @@
 			<input type="radio" name="color" value="9ae3ae" id="colorimage2"><label for="colorimage2"></label>
 			<input type="radio" name="color" value="9ad0e3" id="colorimage3"><label for="colorimage3"></label><br>
 
-			メモ：<textarea name = "memo">${calendar.memo}</textarea><br>
+			メモ：<textarea class="textarean" name = "memo">${calendar.memo}</textarea><br>
 
-				<input class="normal" type="submit" name="SUBMIT" value="更新">
-				<input class="reversal" type="submit" name="SUBMIT" value="削除">
+				<table>
+				<tr>
+				<td><input class="normal" type="submit" name="SUBMIT" value="更新"></td>
+				<td><input class="reversal" type="submit" name="SUBMIT" value="削除"></td>
+				</tr>
+				</table>
 
+			</form>
+				<input type="hidden"  id = "branch_box"  value="${calendar.branch}">
+				<input type="hidden"  id = "color_box"  value="${calendar.color}">
 
-	</form>
-		<input type="hidden"  id = "branch_box"  value="${calendar.branch}">
-		<input type="hidden"  id = "color_box"  value="${calendar.color}">
-
-
+	</div>
 </body>
 <script src='/KSHMY/js/calendar_edit.js'></script>
 </html>
