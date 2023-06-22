@@ -14,12 +14,34 @@
 <title>カレンダーページ</title>
 </head>
 <body>
-	<span class="title">カレンダーページ</span>
+ <header>
+<nav>
+    <ul class="gnav_wrap">
+    	 <li class="main_menu">
+    	 	<a href ="/KSHMY/MainServlet" ><img src = "/KSHMY/img/KMlogo.jpeg" width="100" height="100" alt="KSHMY"></a>
+    	</li>
+        <li class="main_menu">
+            <a href="/KSHMY/MainServlet">メイン</a>
+        </li>
+        <li class="main_menu">
+            <a href="/KSHMY/CalendarServlet">カレンダー</a>
+        </li>
+        <li class="main_menu">
+            グルメ
+            <ul class="sub_menu">
+			 		<a href="/KSHMY/GourmetServlet"><li>一覧/検索</li></a>
+			 		<a href="/KSHMY/GourmetRegistServlet"><li>登録</li></a>
+            </ul>
+        </li>
+        <li class="main_menu"><a href="/KSHMY/LogoutServlet">ログアウト</a></li>
+		<li class="main_menu"><a href ="/KSHMY/UserEditServlet" >ユーザー</a></li>
+    </ul>
+</nav>
+</header>
 	<br>
 
 	<c:forEach var="c" items="${cardlist}">
 	${c.number}
-
 	</c:forEach>
 	<%-- <c:forEach var="c" items="${cardlist}">
 
@@ -61,7 +83,6 @@
 ]; */
 
 
-
     let event = [
 
 	<c:forEach var="c" items="${cardlist}">
@@ -84,4 +105,5 @@
 
 
 </script>
+<script src='/KSHMY/js/common.js'></script>
 </html>
