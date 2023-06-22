@@ -35,7 +35,7 @@
 		action="/KSHMY/GourmetRegistServlet">
 		<table>
 			<tr>
-				<td><input type="text" name="name" value="" placeholder="店名"></td>
+				<td>店名<input type="text" name="name" value=""></td>
 				<td>営業所<select id="select_branch" name="branch">
 						<c:forEach var="e" items="${branch}">
 							<option value="${e}">${e}</option>
@@ -43,10 +43,7 @@
 				</select>
 				</td>
 			</tr>
-			<tr>
-				<td><input id="new" type="text" name="workspace" value=""
-					placeholder="所属地"></td>
-			</tr>
+
 			<tr>
 				<td>お気に入り<select name="favorite">
 						<option value=0>〇</option>
