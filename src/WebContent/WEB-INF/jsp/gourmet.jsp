@@ -15,7 +15,7 @@
 <nav>
     <ul class="gnav_wrap">
     	 <li class="main_menu">
-    	 	<a href ="/KSHMY/MainServlet" ><img src = "/KSHMY/img/KMlogo.jpeg" width="100" height="100" alt="KSHMY"></a>
+    	 	<a href ="/KSHMY/MainServlet" ><img src = "/KSHMY/img/KMlogo.jpeg" width="150" height="100" alt="KSHMY"></a>
     	</li>
         <li class="main_menu">
             <a href="/KSHMY/MainServlet">メイン</a>
@@ -35,10 +35,14 @@
     </ul>
 </nav>
 </header>
-<div class = "title2">
-	<span class="title">Gourumet List</span>
+
+<div class = "conteinar">
+<hr size="3" color="#404040">
+
+	<div class = "title2">
+		<span class="title">Gourumet List</span>
 	</div>
-		<div class = "table">
+
 	<table>
 		<tr class = "tr">
 			<th>お気に入り</th>
@@ -49,11 +53,10 @@
 			<th>個人評価</th>
 			<th>メモ</th>
 		</tr>
-		</div>
-		<c:forEach var="e" items="${gourmetList}">
-			<form id="edit-form" method="GET" action="/KSHMY/GourmetEditServlet">
-			<tr>
-				<td style="display: none"><input type="hidden" name="number"
+
+	<c:forEach var="e" items="${gourmetList}">
+		<form id="edit-form" method="GET" action="/KSHMY/GourmetEditServlet">
+		<tr><td style="display: none"><input type="hidden" name="number"
 					value="${e.number}"></td>
 
 				<td>${e.favorite}</td>
@@ -69,12 +72,18 @@
 				<td>${e.reputation}</td>
 
 				<td>${e.memo}</td>
-				<td><input class="update" id="update" name="update"
-					type="submit" value="編集"></td>
-			</tr>
-			</form>
-		</c:forEach>
+				<td><input class="update" id="update" name="update" type="submit" value="編集"></td></tr>
+		</form>
+	</c:forEach>
 	</table>
+
+</div>
+
+<hr>
+ <div id="footer">
+    <p>&copy;Copyright KSHMY. All rights reserved.</p>
+ </div>
+
 </body>
 <script src='/KSHMY/js/common.js'></script>
 </html>
