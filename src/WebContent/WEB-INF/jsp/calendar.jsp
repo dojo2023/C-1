@@ -18,13 +18,18 @@
 	<br>
 
 	<c:forEach var="c" items="${cardlist}">
+	${c.number}
+
+	</c:forEach>
+	<%-- <c:forEach var="c" items="${cardlist}">
+
 		<input type = "hidden" id = "start_date" value="${c.start_date}">
 		<input type = "hidden" id = "end_date" value="${c.end_date}">
 		<input type = "hidden" id = "color" value="${c.color}">
 		<input type = "hidden" id = "memo" value="${c.memo}">
 		<input type = "hidden" id = "branch" value="${c.branch}">
 
-	</c:forEach>
+	</c:forEach> --%>
 	<br>
 
 	<!--カレンダー表示場所-->
@@ -36,5 +41,47 @@
 <script src='/KSHMY/fullcalendar-5.11.5/lib/main.js'></script>
 
 <script src='/KSHMY/js/calendar.js'></script>
+<script type="text/javascript">
 
+/* let event = [
+{
+    title: 'サインポスト',			//時間+営業所名
+    start: '2023-06-03',				//開始日
+    //color: "rgb(83, 187, 195)",			//イベントの色
+    //description: '場所:会議室',  	//メモ
+
+  },
+{
+      title: '13:00 B営業所',
+      start: '2023-06-26',
+      end: '2023-06-31',
+      color: "rgb(187, 83, 195)",
+      description: '場所：第五会議室',
+  }
+]; */
+
+
+
+    let event = [
+
+	<c:forEach var="c" items="${cardlist}">
+	{
+		id: ${c.number},
+	   	title: '${c.branch}',
+		start: '${c.start_date}',
+		end: '${c.end_date}',
+		color: "#"+"${c.color}",
+		description: '${c.memo}',
+
+	},
+	</c:forEach>
+
+
+	];
+
+
+
+
+
+</script>
 </html>
