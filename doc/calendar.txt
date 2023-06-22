@@ -40,9 +40,17 @@ INSERT INTO CALENDAR(users_number, start_date, end_date, color, memo, branch)val
 ('4','2023-06-28 14:00:00','2023-06-28 14:00:00' , '9ae3ae', '手土産持っていく', 'サインポスト');
 
 
+INSERT INTO CALENDAR(users_number, start_date, end_date, color, memo, branch)values
+('2','2023-06-15 14:00:00','2023-06-15 14:00:00' , '9ae3ae', '手土産持っていく', 'アーチ');
 
 INSERT INTO CALENDAR(users_number, start_date, end_date, color, memo, branch)values
-('2','2022-12-01 12:01:00','2022-12-01 12:01:00' , 'FF0000', '手土産持っていく', 'アーチ');
+('3','2023-06-26 14:00:00','2023-06-26 14:00:00' , '9ae3ae', '手土産持っていく', 'サインポスト');
+
 
 INSERT INTO CALENDAR(users_number, start_date, end_date, color, memo, branch)values
-('3','2022-12-01 12:01:00','2022-12-01 12:01:00' , 'FF0000', '手土産持っていく', 'サインポスト');
+('1','2023-06-12 10:00:00','2023-06-14 15:00:00' , '9ad0e3', '出張', 'サインポスト');
+
+INSERT INTO CALENDAR(users_number, start_date, end_date, color, memo, branch)values
+('2','2023-06-12 10:00:00','2023-06-14 15:00:00' , '9ad0e3', '出張', 'アーチ');
+
+
