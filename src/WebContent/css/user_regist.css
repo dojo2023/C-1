@@ -9,15 +9,16 @@
 
 }
 
+/*登録ボタン*/
 .regist{
 	display: inline-block;
     margin: 15px 0 15px 525px;
     width: 80px;
     height: 40px;
     font-size: 18px;
-    border-radius: 10px;
 }
 
+/*+ボタン*/
 #add{
 	border-radius: 10px;
 	width: 20px;
@@ -27,23 +28,37 @@
 	display:flex;
 }
 
+/*項目はすべて入力してください*/
 .attention{
 	margin-left: 390px;
 	padding : 35px 0 0 0 ;
 	color:red;
 }
 
+/*ジャンル被りエラーメッセージ*/
 #error_message{
 	margin-left: 300px;
 	color:red;
 }
 
-table{
+/*テーブル氏名、所属地、都道府県、ID、パスワード*/
+#table{
 	margin-left: 230px;
 	margin-top: 5px;
     width: 800px;
-    line-height: 45px;
+    line-height: 42px;
     font-size: 16px;
+    font-weight: bold;
+}
+
+/*テーブルジャンル*/
+#genretable{
+	margin-left: 230px;
+	margin-top: 20px;
+	width: 800px;
+	line-height: 35px;
+	font-size: 16px;
+    font-weight: bold;
 }
 
 input[type="text"]{
@@ -55,10 +70,13 @@ input[type="password"]{
 	height: 30px;
 }
 
+/*見出し*/
 .title-box{
 	text-align: center;
 	margin: 10px 0;
 }
+
+/*画面コンテンツ横幅*/
 .conteinar{
 	max-width: 1100px;
 	margin:0 auto;

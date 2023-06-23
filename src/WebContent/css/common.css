@@ -45,6 +45,11 @@ li{
 	z-index:-5;
 }
 
+/*画面コンテンツ横幅*/
+.conteinar{
+	max-width: 1100px;
+	margin:0 auto;
+}
 
 /*上部メニューの文字について*/
 .main_menu a{
@@ -105,6 +110,7 @@ input[type=submit]{
 	color:#404040;
 	background:#F2F2F2;
 	border: 1.5px solid #7F7F7F;
+	border-radius: 5px;
 }
 
 /*色反転のボタン*/
@@ -112,6 +118,20 @@ input[type=submit]{
 	color:#F2F2F2;
 	background:#7F7F7F;
 	border: 1.5px solid #7F7F7F;
+	border-radius: 5px;
+}
+
+/*+-ボタン*/
+#add{
+	border-radius: 10px;
+	width: 17px;
+	border: solid 1px
+}
+
+#waku {
+    background: #FFF;
+    border: solid 3px #9d9d9f;/*線*/
+    border-radius: 10px;/*角の丸み*/
 }
 
 /*フッター*/

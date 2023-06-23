@@ -24,7 +24,7 @@
 	</div>
 
 	<form id="regist-form" method="POST" action="/KSHMY/UserRegistServlet">
-	<table>
+	<table id="table">
 
 	<tr><td colspan="3"><input type="text" name="name" value="" placeholder="氏名" required></td></tr>
 		<tr><td colspan="3">所属地
@@ -43,7 +43,7 @@
 	    <tr><td colspan="3"><input id = "new" type="text" name="none" value="" placeholder="所属地" ></td></tr>
 	<tr><td colspan="3"><input type="text" name="user_id" value="" placeholder="ID" required></td><td><input type="text" name="user_pw" value="" placeholder="パスワード" required></td></tr>
 		</table>
-		<table>
+		<table id="genretable">
 		<tr><td colspan="2">好きなジャンル</td></tr>
 			<tr><td colspan="2">第1位<select name="first">
 				<option value="和食">和食</option>
@@ -68,8 +68,9 @@
     </form>
     </div>
 
-<hr>
+
  <div id="footer">
+ <hr>
     <p>&copy;Copyright KSHMY. All rights reserved.</p>
  </div>
 
