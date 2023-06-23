@@ -99,7 +99,11 @@ public class CalendarDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT * FROM CALENDAR WHERE users_number = ? AND START_DATE BETWEEN ? AND ?" ;
+			String sql = "SELECT * FROM CALENDAR WHERE users_number = ? "
+					+ "AND (? < START_DATE AND END_DATE< ? )"	//今日始まって今日終わる予定
+					+ "OR (START_DATE BETWEEN ?  AND ? )"		//今日から始まって翌日以降終わる可能性有りの予定
+					+ "OR (END_DATE BETWEEN ?  AND ? ) "		//前日以前に始まって今日終わる予定
+					+ "ORDER BY START_DATE" ;
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 
@@ -107,6 +111,10 @@ public class CalendarDAO {
 			pStmt.setInt(1, user.getNumber());
 			pStmt.setString(2, start);
 			pStmt.setString(3, end);
+			pStmt.setString(4, start);
+			pStmt.setString(5, end);
+			pStmt.setString(6, start);
+			pStmt.setString(7, end);
 
 
 			// SQL文を実行し、検索結果を保持
@@ -121,11 +129,8 @@ public class CalendarDAO {
 						rs.getString("COLOR"),
 						rs.getString("MEMO"),
 						rs.getString("BRANCH"),
-						rs.getString("START_DATE").substring(11, 16) + " ～ " + rs.getString("END_DATE").substring(11, 16)
+						rs.getString("START_DATE").replace("-", "/").substring(5, 16) + " ～ " + rs.getString("END_DATE").replace("-", "/").substring(5, 16)
 						);
-
-				System.out.println("tes:"+rs.getString("START_DATE").substring(11, 16) + " ～ " + rs.getString("END_DATE").substring(11, 16));
-
 						cardList.add(list);
 			}
 		}
