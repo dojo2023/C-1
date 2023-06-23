@@ -81,31 +81,44 @@ public class GourmetServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		HttpSession session = request.getSession();
-//
-//		// リクエストパラメータを取得する
-//		request.setCharacterEncoding("UTF-8");
-//		String keyword = request.getParameter("keyword");
-//
-//
-//		request.setCharacterEncoding("UTF-8");
-//		String number_str = request.getParameter("number");
-//		int number = Integer.valueOf(number_str);
-//		String users_number_str = request.getParameter("users_number");
-//		int users_number = Integer.valueOf(users_number_str);
-//		String name = request.getParameter("name");
-//		String branch = request.getParameter("branch");
-//		String genre = request.getParameter("genre");
-//		String favorite_str = request.getParameter("favorite");
-//		int favorite = Integer.valueOf(favorite_str);
-//		String reputation_str = request.getParameter("reputation");
-//		int reputation = Integer.valueOf(reputation_str);
-//		String memo = request.getParameter("memo");
-//
-		// グルメ一覧/検索ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/gourmet.jsp");
-		dispatcher.forward(request, response);
+//		リクエストパラメータを取得する
+			request.setCharacterEncoding("UTF-8");
+
+			// セッションスコープにユーザのNumberを格納する
+			HttpSession session = request.getSession();
+			LoginUser user = (LoginUser)session.getAttribute("number");
+			int users_number = user.getNumber();
+			String name = request.getParameter("name");
+			String branch = request.getParameter("branch");
+			String genre = request.getParameter("genre");
+			String reputation_str =  request.getParameter("reputation");
+			int reputation = Integer.valueOf(reputation_str);
+			String favorite_str =  request.getParameter("favorite");
+			int favorite = Integer.valueOf(favorite_str);
+			String memo = request.getParameter("memo");
+			
+			//更新処理を行う（storeテーブルに登録）
+			Gourmet list1 = new Gourmet(name, branch, genre);
+			GourmetDAO gDao = new GourmetDAO();
+			int autoIncrementKey = gDao.insert_store(list1);
+
+
+			//更新処理を行う（reputationテーブルに登録）
+			Gourmet list2 = new Gourmet(autoIncrementKey, users_number, reputation, favorite, memo);
+
+			gDao.insert_reputation(list2);
+
+
+			//グルメリストの表示を行う
+			GourmetDAO GDAO= new GourmetDAO();
+			Gourmet gourmet = new Gourmet();
+			gourmet.setUsers_number(users_number);
+			List<Gourmet> gourmetList= GDAO.select_GourmetList(gourmet);
+			request.setAttribute("gourmetList", gourmetList);
+
+			// 一覧ページにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/gourmet.jsp");
+			dispatcher.forward(request, response);
 		}
 
 }

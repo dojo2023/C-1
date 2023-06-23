@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>グルメ編集</title>
 <link rel="stylesheet" href="/KSHMY/css/common.css">
+<link rel="stylesheet" href="/KSHMY/css/gourmet_edit.css">
 </head>
 <body>
 	<header>
@@ -30,7 +31,13 @@
 			</ul>
 		</nav>
 	</header>
-	<span class="title">Gourumet editing</span>
+	
+		<hr size="3" color="#404040">
+	<div class = "conteinar">
+	<div id="waku">
+	<div class="title-box" id="title-box">
+		<span class="title">Gourumet editing</span>
+	</div>
 
 	<form id="edit-form" method="POST" action="/KSHMY/GourmetEditServlet">
 		<table>
@@ -40,33 +47,66 @@
 				<td>
 				店名
 				<input class="name" type="text" name="number" value="${gourmetRecord.name}" readonly></td>
-				<td>
-				営業所
-				<input class="branch" type="text" name="branch" value="${gourmetRecord.branch}" readonly></td>
-			</tr>
-			<tr>
-				<td>お気に入り<input class="favorite" type="text" name="favorite" value="${gourmetRecord.favorite}"></td>
-				<td>
-				ジャンル
-				<select name="genre" value ="${gourmetRecord.genre}">
-						<option value="和食">和食</option>
-						<option value="洋食">洋食</option>
-						<option value="中華">中華</option>
-				</select>
+				<th>営業所：</th>
+				<td> <select id="select_branch" name="branch">
+							<option value="${gourmetRecord.branch}" >${gourmetRecord.branch}</option>						
+					</select>
 				</td>
 			</tr>
 			<tr>
-				<td>評価<input class="reputation" type="text" name="reputation" value="${gourmetRecord.reputation}" readonly></td>
+				<td>お気に入り<input id="favorite" type="hidden" name="favorite" value="${gourmetRecord.favorite}">
+				<button id = "favorite" class = "star" type="button" onclick="favorite_function()">☆</button></td>
+				<th>ジャンル：</th>
+				<td> <select name="genre">
+						<option value="${gourmetRecord.genre}">${gourmetRecord.genre}</option>
+						<option value="${gourmetRecord.genre}">その他</option>
+				</select></td>
 			</tr>
 			<tr>
-				<td><input class="memo" type="text" name="memo" value="${gourmetRecord.memo}"></td>
+			<td>評価：
+				 <select id="reputation" name="reputation">
+						<option value=0>行ったことない</option>
+						<option value=5>5 最高</option>
+						<option value=4>4 うまい</option>
+						<option value=3>3 普通</option>
+						<option value=2>2 食べられる</option>
+						<option value=1>1 もう行かない</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>メモ：</td>
+			</tr>
+			<tr>
+					<td colspan="3"><textarea class="textarean" name="memo"></textarea></td>
 			</tr>
 		</table>
 
-		<input class="update" id="update" name="update" type="submit"
+		<input class="regist" id="update" name="update" type="submit"
 			value="更新">
 	</form>
+	</div>
+	</div>
+<hr>
+ <div id="footer">
+    <p>&copy;Copyright KSHMY. All rights reserved.</p>
+ </div>
 
 </body>
+<script type="text/javascript">
+var branchEl = document.getElementById( "reputation" ) ;
+const calendarbranch_box = ${gourmetRecord.reputation};
+
+window.onload = function(){	　
+	//自分の評価が既に選択されてる状態にする
+	for(var i=0; i<branchEl.length; i++){
+		if(calendarbranch_box ==  branchEl.options[i].value ) {
+	        branchEl.options[i].setAttribute("selected", "selected");
+			break;
+	    }
+    }
+	
+}
+</script>
 <script src='/KSHMY/js/common.js'></script>
+<script src='/KSHMY/js/gourmet_edit.js'></script>
 </html>

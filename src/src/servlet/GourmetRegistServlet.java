@@ -66,7 +66,7 @@ public class GourmetRegistServlet extends HttpServlet {
 		String favorite_str =  request.getParameter("favorite");
 		int favorite = Integer.valueOf(favorite_str);
 		String memo = request.getParameter("memo");
-
+		
 		//登録処理を行う（storeテーブルに登録）
 		Gourmet list1 = new Gourmet(name, branch, genre);
 		GourmetDAO gDao = new GourmetDAO();
