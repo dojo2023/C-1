@@ -11,12 +11,12 @@
                 right: 'next'		//上部右に次月へボタン
             },
           　//休日を表示するか(true:土日の枠内が灰色になる)
-            businessHours: true,
+            businessHours: true, events: event,
 
             //イベント情報の配列
-            events: [
+/*          events: [
             	{
-                    title: '13:00　サインポスト',			//時間+営業所名
+                    title: サインポスト',			//時間+営業所名
                     start: '2023-06-03',				//開始日
                     color: "rgb(83, 187, 195)",			//イベントの色
                     description: '場所:会議室',  	//メモ
@@ -30,8 +30,7 @@
                       description: '場所：第五会議室',
                     }
               ],
-
-
+*/
               //枠内クリックでクリックされた日付表示
               dateClick: function (jsEvent) {
             	  //jsEvent.dateStr:日付
