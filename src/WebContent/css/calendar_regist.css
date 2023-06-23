@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+/* textとプルダウン */
+#new{
+	display:none
+}
+.newOpen{
+	/*display.noneにかき消されるため"!important"追加で重要度を上げてる*/
+	display:block !important;
+}
+
+/* タイトル */
+#title1 {
+ text-align:  center;
+}
+
+/* フォーム*/
+#editform {
+  width: 80%;
+  margin: 0 auto;
+  max-width: 300px;
+  margin-top: 2%;
+}
+
+
+#waku {
+    padding: 30px 5px 40px 5px;
+    margin: 0 auto;
+    margin-top: 3%;
+    max-width: 700px;
+    font-weight: bold;
+    background: #FFF;
+    border: solid 3px #9d9d9f;/*線*/
+    border-radius: 10px;/*角の丸み*/
+    line-height:35px;/*行*/
+}
+
+
+
+/* ラジオボタン */
+input[type=radio]+label:before{
+    content: "";
+    display: inline-block;
+    background-size: contain;
+    width: 40px;
+    height: 30px;
+}
+
+input[type=radio][value="e49aab"]+label:before{
+	background-image: url(/KSHMY/img/e49aab.png);
+}
+input[type=radio][value="9ae3ae"]+label:before{
+	background-image: url(/KSHMY/img/9ae3ae.png);
+}
+input[type=radio][value="9ad0e3"]+label:before{
+	background-image: url(/KSHMY/img/9ad0e3.png);
+}
+input[type=radio]:checked+label::before{
+    border: 2px solid #3c3c3c;
+    box-sizing: border-box;
+}
+
+
+/* +-ボタン */
+#add{
+	border-radius: 10px;
+	width: 20px;
+	border: solid 1px
+}
+
+/* ボタン */
+input[type=submit] {
+    border-radius: 5px;
+    display: block;
+    width: 150px;
+    padding: 15px;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-align: center;
+}
+
+/* テキストエリア */
+.textarean {
+	display: block;
+    margin-bottom: 5px;
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #969da3;
+    border-radius: 2px;
+    line-height: 15px;
+}
+
+/* プルダウン */
+#branch {
+	position: relative;
+}
+
+#branch::before,
+#branch::after {
+    position: absolute;
+    content: '';
+    pointer-events: none;
+}
+
+#branch::before {
+    display: inline-block;
+    right: 0;
+    width: 2.8em;
+    height: 2.8em;
+    border-radius: 0 3px 3px 0;
+    background-color: #bababa;
+}
+#branch::after {
+    position: absolute;
+    top: 50%;
+    right: 1.4em;
+    transform: translate(50%, -50%) rotate(45deg);
+    width: 6px;
+    height: 6px;
+    border-bottom: 3px solid #fff;
+    border-right: 3px solid #fff;
+}
+#branch select {
+    appearance: none;
+    min-width: 230px;
+    height: 2.8em;
+    padding: .4em 3.6em .4em .8em;
+    border: none;
+    border-radius: 3px;
+    background-color: #fafafa;
+    color: #333;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#branch select:focus {
+    outline: 2px solid #bababa;
+}
+

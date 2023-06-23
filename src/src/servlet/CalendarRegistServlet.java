@@ -54,12 +54,13 @@ public class CalendarRegistServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// カレンダーの日付に対する予定をDBに登録する
 
-		// リクエストパラメータを取得する クライアント側のフォームから送られてきたデータを取得する
+		// セッションスコープに格納してあるユーザー番号を取得する
 				request.setCharacterEncoding("UTF-8");
 				HttpSession session = request.getSession();
-
 				LoginUser user = (LoginUser)session.getAttribute("number");
 				int users_number = user.getNumber();
+		// リクエストパラメータを取得する　クライアントがjspで入力した情報を取得
+				request.setCharacterEncoding("UTF-8");
 				String sDate = request.getParameter("start_date");		//YYYY-MM-DDThh:mm
 				sDate = sDate.replace("T", " ");											//Tを消している
 				sDate = sDate + ":00";
@@ -75,13 +76,15 @@ public class CalendarRegistServlet extends HttpServlet {
 
 				//Calendarテーブルに登録
 				Calendar schedule = new Calendar(users_number,start_date,end_date,color,memo,branch);
-				CalendarDAO dao = new CalendarDAO();
-				dao.insert(schedule);
+				CalendarDAO cdao = new CalendarDAO();
+				cdao.insert(schedule);
 
+				// カレンダーサーブレットにリダイレクトする
+				response.sendRedirect("/KSHMY/CalendarServlet");
 
-		// カレンダーページに フォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/calendar.jsp");
-		dispatcher.forward(request, response);
+				/*// カレンダーページに フォワードする
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/calendar.jsp");
+				dispatcher.forward(request, response);*/
 
 	}
 

@@ -39,7 +39,8 @@
 </nav>
 </header>
 	<br>
-
+<div class = "conteinar">
+	<hr size="3" color="#404040">
 	<c:forEach var="c" items="${cardlist}">
 	${c.number}
 	</c:forEach>
@@ -56,6 +57,7 @@
 
 	<!--カレンダー表示場所-->
 	<div id='calendar'></div>
+</div>
 </body>
 <!--fullcalendarとtippyを使えるようにする(popperはtippyで必要)-->
 <script src="https://unpkg.com/@popperjs/core@2"></script>
