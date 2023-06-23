@@ -51,7 +51,7 @@
 
 				//カレンダー編集ページが新しく開くプログラムを書く
 				                 window.open(
-                 'CalendarEditServlet');
+                 'CalendarEditServlet?number='+ jsEvent.event.id);
 
              },
 

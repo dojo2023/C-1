@@ -41,12 +41,11 @@ public class CalendarEditServlet extends HttpServlet {
 		List <String>  branch = cDAO.select_branch();
 		request.setAttribute("branch",branch);
 
-		// calendareテーブルからユーザーの予定を全部持ってくる
-		int number = 1 ; //未完成
+		// calendareテーブルから指定した日付の予定を持ってくる
+		int number = Integer.parseInt(request.getParameter("number"));
 		Calendar calendar = new Calendar();
 		calendar =cDAO.editselect(number);
 		request.setAttribute("calendar",calendar);
-
 
 
 		// 登録する内容
@@ -87,7 +86,9 @@ public class CalendarEditServlet extends HttpServlet {
 			System.out.println(request.getParameter("end_date"));
 			System.out.println(eDate);
 
-			int number = 1 ; //未完成
+			String number_str = request.getParameter("number");
+			System.out.println("number:"+number_str);
+			int number = Integer.valueOf(number_str);
 			Timestamp start_date = Timestamp.valueOf(sDate);
 			Timestamp end_date =Timestamp.valueOf(eDate);
 			String color = request.getParameter("color");

@@ -59,7 +59,10 @@
 		<tr><td style="display: none"><input type="hidden" name="number"
 					value="${e.store_number}"></td>
 
-				<td>${e.favorite}</td>
+				<td><button type ="button" name="test"  value = "${e.favorite}" id = "${e.store_number}" onclick = "fav_change()">
+					<c:if test="${e.favorite == 1}">★</c:if>
+					<c:if test="${e.favorite == 0}">☆</c:if>
+				</button></td>
 
 				<td>${e.genre}</td>
 
@@ -85,5 +88,19 @@
  </div>
 
 </body>
+
+ <script type="text/javascript">
+	let str = "";
+	function fav_change() {
+		if(test.value === '0'){
+			str =  "★";
+		document.getElementsByName('test').value = "1";
+		}else{
+			str =  "☆";
+		document.getElementsByName('test').value = "0";
+		}
+		document.getElementsByName('test').innerHTML = str;
+	}
+</script>
 <script src='/KSHMY/js/common.js'></script>
 </html>
