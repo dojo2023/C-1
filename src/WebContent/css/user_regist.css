@@ -9,6 +9,11 @@
 
 }
 
+/*ロゴの位置*/
+h1{
+	margin-left: 50px;
+}
+
 /*登録ボタン*/
 .regist{
 	display: inline-block;
@@ -24,7 +29,7 @@
 
 /*項目はすべて入力してください*/
 .attention{
-	margin-left: 390px;
+	margin-left: 410px;
 	padding : 35px 0 0 0 ;
 	color:red;
 }
@@ -37,7 +42,7 @@
 
 /*テーブル氏名、所属地、都道府県、ID、パスワード*/
 #table{
-	margin-left: 230px;
+	margin-left: 250px;
 	margin-top: 5px;
     width: 800px;
     line-height: 42px;
@@ -47,7 +52,7 @@
 
 /*テーブルジャンル*/
 #genretable{
-	margin-left: 230px;
+	margin-left: 250px;
 	margin-top: 20px;
 	width: 800px;
 	line-height: 35px;

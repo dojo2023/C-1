@@ -11,7 +11,7 @@
 <link rel = "stylesheet" href = "/KSHMY/css/main.css">
 </head>
 <body>
- <header>	  	
+ <header>
 <nav>
     <ul class="gnav_wrap">
     	 <li class="main_menu">
@@ -36,30 +36,36 @@
 </nav>
 </header>
 
+<div class = "conteinar">
+<hr size="3" color="#404040">
+</div>
+
 <div class="main">
 	<div class="title-box">
 		<span id = "title" class="title"></span>
 	</div>
 	<div class = flex>
 		<div class = "syuzo">
-			今日の激励メッセージ<button id = "tr1" class = "triangle" type="button" onclick="msg()">▲</button><br>		
+			<p class="text-background">今日の激励メッセージ</p><button id = "tr1" class = "triangle" type="button" onclick="msg()">▲</button><br>
 			<div id = "msg" class = "open">${msg}</div>
 		</div>
-		<div class = "allSchedule">
+		<div class = "allSchedule" id="waku">
 			<c:forEach var="e" items="${todayList}" >
 				<div class = "schedule">
 					${e.time}<br>
 					${e.branch}<br>
 					${e.memo}<br>
-					
+
 					<form action="https://maps.google.com/"><input class="normal"type="submit" value="MAP"></form>
 					<form method="POST" action="/KSHMY/GourmetEditServlet">
 						<input class="normal" type="submit"  name="SUBMIT" value="編集">
-					</form>					
+					</form>
 				</div>
+				<hr>
 			</c:forEach>
 		</div>
-		<div class = "weather">
+
+		<div class = "weather" id="waku2">
 			<div class = "today-box">
 				<div id = "today"></div>
 				<div id = "today_weather"></div>
@@ -68,12 +74,14 @@
 				<div id = "nextday"></div>
 				<div id = "nextday_weather"></div>
 			</div>
-			
 		</div>
+
 	</div>
 	</div>
 	<input type = "hidden" id="ido" value="${prefecture.ido}">
 	<input type = "hidden" id="keido" value="${prefecture.keido}">
+
+
 </body>
 <script src='/KSHMY/js/common.js'></script>
 <script src='/KSHMY/js/main.js'></script>
