@@ -75,7 +75,7 @@ public class UserEditServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		LoginUser user = (LoginUser)session.getAttribute("number");
 
-		if (request.getParameter("submit").equals("保存")) {
+		if (request.getParameter("save").equals("保存")) {
 			if (udao.update (new Users(name,workspace,prefecture_number,user_id,address,first,second,third), user));
 		}
 

@@ -16,14 +16,34 @@
 	text-align: center;
 }
 .allSchedule{
-	width: 50%;
-}
-.weather{
-	width: 25%;
+	width: 35%;
+	margin-left: auto;
+    margin-right: auto;
 }
 
+/*MAP、編集ボタン*/
+.normal{
+	width: 50px;
+    height: 25px;
+    font-size: 12px;
+}
+
+.weather{
+	padding-bottom: 0.5em;
+	width: 10%;
+}
+
+/*見出し*/
 .title-box{
 	text-align: center;
+	margin-top: 20px;
+}
+
+/*激励メッセージ背景色*/
+.text-background{
+	display: inline-block;
+	font-weight: bold;
+	background:rgba(255,255,255,0.6);
 }
 
 #msg{
@@ -43,9 +63,21 @@
 }
 
 .schedule{
-	margin: 0 0 20px 0;
+	margin: 10px 0 10px 0;
 }
 
 .today, .nextday-box{
 	margin:10px 0;
+}
+
+/*角が丸い四角で囲んだ範囲*/
+#waku {
+	padding: 0.5em 3em;
+	margin: 2em 2em;
+}
+
+#waku2 {
+	padding: 0.5em 2em ;
+	margin: 2em 3em;
+	background: white;
 }
