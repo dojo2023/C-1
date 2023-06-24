@@ -46,7 +46,6 @@
              eventClick: function (jsEvent) {
             	//jsEvent.event.titler:クリックされたイベント
             	//jsEvent.event.startStr:クリックされたイベントの開始日
-                // alert(jsEvent.event.title+'がクリックされました。\n' + jsEvent.event.startStr);
 
 
 				//カレンダー編集ページが新しく開くプログラムを書く
