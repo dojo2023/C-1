@@ -31,7 +31,7 @@
 			</ul>
 		</nav>
 	</header>
-	
+
 		<hr size="3" color="#404040">
 	<div class = "conteinar">
 	<div id="waku">
@@ -49,7 +49,7 @@
 				<input class="name" type="text" name="number" value="${gourmetRecord.name}" readonly></td>
 				<th>営業所：</th>
 				<td> <select id="select_branch" name="branch">
-							<option value="${gourmetRecord.branch}" >${gourmetRecord.branch}</option>						
+							<option value="${gourmetRecord.branch}" >${gourmetRecord.branch}</option>
 					</select>
 				</td>
 			</tr>
@@ -104,7 +104,7 @@ window.onload = function(){	　
 			break;
 	    }
     }
-	
+
 }
 </script>
 <script src='/KSHMY/js/common.js'></script>
