@@ -79,9 +79,8 @@ public class UserEditServlet extends HttpServlet {
 			if (udao.update (new Users(name,workspace,prefecture_number,user_id,address,first,second,third), user));
 		}
 
-		// メインページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
-		dispatcher.forward(request, response);
+		// メインページにリダイレクトする
+		response.sendRedirect("/KSHMY/MainServlet");
 	}
 
 }
