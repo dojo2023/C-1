@@ -30,7 +30,7 @@
 			</ul>
 		</nav>
 	</header>
-	
+
 <div class = "conteinar">
 <hr size="3" color="#404040">
 <div id="waku">
@@ -38,12 +38,12 @@
 		<span class="title">Gourmet Registration</span>
 	</div>
 
-	
+
 	<form id="regist-form" method="POST"
 		action="/KSHMY/GourmetRegistServlet">
 		<table>
 			<tr>
-				<td><input type="text" name="name" placeholder="店名" value=""></td>
+				<td>店名：<input type="text" name="name"  value=""></td>
 				<th>営業所：</th>
 				<td> <select id="select_branch" name="branch">
 						<c:forEach var="e" items="${branch}">
