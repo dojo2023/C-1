@@ -30,8 +30,9 @@
 			</ul>
 		</nav>
 	</header>
-	<hr size="3" color="#404040">
+	
 <div class = "conteinar">
+<hr size="3" color="#404040">
 <div id="waku">
 	<div class="title-box" id="title-box">
 		<span class="title">Gourmet Registration</span>
@@ -54,7 +55,7 @@
 
 			<tr>
 				<td>お気に入り： <input type = "hidden" id = "favorite" name="favorite"  value=0>
-						<button id = "favorite" class = "star" type="button" onclick="favorite_function()">☆</button></td>
+						<button id = "fav" class = "star" type="button" onclick="favorite_change()">☆</button></td>
 				<th>ジャンル：</th>
 				<td> <select name="genre">
 						<option value="和食">和食</option>

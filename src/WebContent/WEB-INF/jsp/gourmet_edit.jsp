@@ -32,8 +32,9 @@
 		</nav>
 	</header>
 
-		<hr size="3" color="#404040">
+		
 	<div class = "conteinar">
+	<hr size="3" color="#404040">
 	<div id="waku">
 	<div class="title-box" id="title-box">
 		<span class="title">Gourumet editing</span>
@@ -45,7 +46,7 @@
 				<td style="display: none">
 				<input type="hidden" name="number"  value="${gourmetRecord.number}"></td>
 				<td>
-				店名
+				店名：
 				<input class="name" type="text" name="number" value="${gourmetRecord.name}" readonly></td>
 				<th>営業所：</th>
 				<td> <select id="select_branch" name="branch">
@@ -54,8 +55,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td>お気に入り<input id="favorite" type="hidden" name="favorite" value="${gourmetRecord.favorite}">
-				<button id = "favorite" class = "star" type="button" onclick="favorite_function()">☆</button></td>
+				<td>お気に入り：<input id="favorite" type="hidden" name="favorite" value="${gourmetRecord.favorite}">
+				<button id = "fav" class = "star" type="button" onclick="favorite_change()">☆</button></td>
 				<th>ジャンル：</th>
 				<td> <select name="genre">
 						<option value="${gourmetRecord.genre}">${gourmetRecord.genre}</option>
@@ -77,7 +78,7 @@
 				<td>メモ：</td>
 			</tr>
 			<tr>
-					<td colspan="3"><textarea class="textarean" name="memo"></textarea></td>
+					<td colspan="3"><textarea class="textarean" name="memo">${gourmetRecord.memo}</textarea></td>
 			</tr>
 		</table>
 
