@@ -48,11 +48,11 @@
 				<td><input class="reversal" type="submit" name="SUBMIT" value="削除"></td>
 				</tr>
 				</table>
+				<input type="hidden" name ="number" value="${calendar.number}">
 
 			</form>
 				<input type="hidden"  id = "branch_box"  value="${calendar.branch}">
 				<input type="hidden"  id = "color_box"  value="${calendar.color}">
-				<input type="hidden"  name = "number" value="${calendar.number}">
 
 	</div>
 </body>

@@ -85,9 +85,8 @@ public class CalendarEditServlet extends HttpServlet {
 			eDate = eDate + ":00";														//YYYY-MM-DD hh:mm:00
 			System.out.println(request.getParameter("end_date"));
 			System.out.println(eDate);
-
+			
 			String number_str = request.getParameter("number");
-			System.out.println("number:"+number_str);
 			int number = Integer.valueOf(number_str);
 			Timestamp start_date = Timestamp.valueOf(sDate);
 			Timestamp end_date =Timestamp.valueOf(eDate);

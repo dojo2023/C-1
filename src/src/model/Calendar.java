@@ -44,7 +44,6 @@ public class Calendar implements Serializable {
 		this.memo = memo;
 		this.branch = branch;
 		this.time = time;
-		System.out.println("コンストラクタ:"+time);
 	}
 
 

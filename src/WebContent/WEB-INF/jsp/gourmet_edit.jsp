@@ -45,7 +45,7 @@
 			<tr>
 				<td style="display: none">
 				<input type="hidden" name="number"  value="${gourmetRecord.number}"></td>
-				<td>
+				<td class="left">
 				店名：
 				<input class="name" type="text" name="number" value="${gourmetRecord.name}" readonly></td>
 				<th>営業所：</th>
