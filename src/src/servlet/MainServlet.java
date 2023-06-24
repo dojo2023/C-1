@@ -76,6 +76,7 @@ public class MainServlet extends HttpServlet {
 				"反省はしろ！後悔はするな！",
 				"ネクストタイム！",
 				"三日坊主OK！",
+				"大丈夫！君は太陽だから！！",
 				"これは終わりではなく、新しい修造の始まり。"};
 		Random rnd = new Random();
 		String msg = allMsg[rnd.nextInt(allMsg.length)];

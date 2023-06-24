@@ -1,6 +1,7 @@
 @charset "UTF-8";
 .main{
 	width: 100%;
+	z-index:20;
 }
 
 .flex{
@@ -80,5 +81,14 @@
 	padding: 0.5em 2em ;
 	margin: 2em 3em;
 	background: white;
+
+}
+
+#today_weather_image{
+	opacity: 0.4;
+	z-index: 10;
+	text-align:center;
+	zoom: 1.7;
+
 
 }
