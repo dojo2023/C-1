@@ -52,6 +52,7 @@
 			</form>
 				<input type="hidden"  id = "branch_box"  value="${calendar.branch}">
 				<input type="hidden"  id = "color_box"  value="${calendar.color}">
+				<input type="hidden"  name = "number" value="${calendar.number}">
 
 	</div>
 </body>
