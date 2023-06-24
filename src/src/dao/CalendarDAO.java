@@ -185,6 +185,7 @@ public class CalendarDAO {
 				// 結果表をコレクションにコピーする
 				 rs.next() ;  //nextメソッドを使用し取得した表のカラム名にカーソルがあっているのをネクストでデータの行にカーソルを変更する
 					schedule = new Calendar(
+							rs.getInt("NUMBER"),
 							rs.getInt("USERS_NUMBER"),
 							rs.getTimestamp("START_DATE"),
 							rs.getTimestamp("END_DATE"),

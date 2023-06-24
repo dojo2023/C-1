@@ -45,10 +45,10 @@ li{
 	z-index:-5;
 }
 
-/*画面コンテンツ横幅*/
+/*画面コンテンツ横幅と配置*/
 .conteinar{
-	max-width: 1100px;
-	margin:0 auto;
+	width: 90%;
+	margin: auto;
 }
 
 /*上部メニューの文字について*/
@@ -128,10 +128,12 @@ input[type=submit]{
 	border: solid 1px
 }
 
-#waku {
+#waku, #waku2{
     background: #FFF;
     border: solid 3px #9d9d9f;/*線*/
     border-radius: 10px;/*角の丸み*/
+    font-weight: bold;
 }
+
 
 /*フッター*/
