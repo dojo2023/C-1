@@ -41,7 +41,7 @@
 <hr size="3" color="#404040">
 </div>
 
-<div class="main">
+<div class="main cloud">
 	<div class="title-box">
 		<span id = "title" class="title"></span>
 	</div>
@@ -50,24 +50,61 @@
 			<p class="text-background">今日の激励メッセージ</p><button id = "tr1" class = "triangle" type="button" onclick="msg()">▲</button><br>
 			<div id = "msg" class = "open">${msg}</div>
 		</div>
-		<div class = "allSchedule" id="waku">
+		<div class = "allSchedule">
+		<div id="waku">
 			<c:forEach var="e" items="${todayList}" >
 				<div class = "schedule">
 					${e.time}<br>
 					${e.branch}<br>
 					${e.memo}<br>
-					後で消して
 
 					<form action="https://maps.google.com/"><input class="normal"type="submit" value="MAP"></form>
-					<form method="POST" action="/KSHMY/GourmetEditServlet">
-						<input class="normal" type="submit"  name="SUBMIT" value="編集">
-					</form>
+				グルメリスト<button id = "tr2" class = "triangle" type="button" onclick="glist()">▼</button><br>
+					<div id = "glist" class = "close">
+				<table>
+		<tr class = "tr">
+			<th>お気に入り</th>
+			<th>ジャンル</th>
+			<th>店名</th>
+			<th>営業所</th>
+			<th>総合評価</th>
+			<th>個人評価</th>
+			<th>メモ</th>
+		</tr>
+
+	<c:forEach var="e" items="${gourmetList}">
+		<form id="edit-form" method="GET" action="/KSHMY/GourmetEditServlet">
+		<tr><td style="display: none"><input type="hidden" name="number"
+					value="${e.store_number}"></td>
+
+				<td><button type ="button" name="test"  value = "${e.favorite}" id = "${e.store_number}" onclick = "fav_change()">
+					<c:if test="${e.favorite == 1}">★</c:if>
+					<c:if test="${e.favorite == 0}">☆</c:if>
+				</button></td>
+
+				<td>${e.genre}</td>
+
+				<td>${e.name}</td>
+
+				<td>${e.branch}</td>
+
+				<td>${e.avg_reputation}</td>
+
+				<td>${e.reputation}</td>
+
+				<td>${e.memo}</td>
+				<td><input class="update" id="update" name="update" type="submit" value="編集"></td></tr>
+		</form>
+	</c:forEach>
+	</table>
+	</div>
 				</div>
 				<hr>
 			</c:forEach>
 		</div>
-
-		<div class = "weather" id="waku2">
+		</div>
+		<div class = "weather">
+		<div id="waku2">
 			<div class = "today-box">
 				<div id = "today"></div>
 				<div id = "today_weather"></div>
@@ -77,7 +114,7 @@
 				<div id = "nextday_weather"></div>
 			</div>
 		</div>
-
+		</div>
 	</div>
 </div>
 

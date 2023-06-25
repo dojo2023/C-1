@@ -15,11 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CalendarDAO;
+import dao.GourmetDAO;
 import dao.PrefectureDAO;
 import dao.UsersDAO;
 import model.Calendar;
+import model.Gourmet;
 import model.LoginUser;
 import model.Prefecture;
+import model.Users;
 
 /**
  * Servlet implementation class MainServlet
@@ -81,6 +84,19 @@ public class MainServlet extends HttpServlet {
 		Random rnd = new Random();
 		String msg = allMsg[rnd.nextInt(allMsg.length)];
 		request.setAttribute("msg",msg);
+
+		int users_number = user.getNumber();
+
+		Users card = uDAO.select_User(user);
+
+		String branch = "A営業所";
+
+		//グルメリストの表示を行う
+		GourmetDAO GDAO= new GourmetDAO();
+		Gourmet gourmet = new Gourmet();
+		gourmet.setUsers_number(users_number);
+		List<Gourmet> gourmetList= GDAO.select_mainGourmetList(gourmet, card, branch);
+		request.setAttribute("gourmetList", gourmetList);
 
 		// メインページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Gourmet;
+import model.Users;
 
 public class GourmetDAO {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
@@ -146,7 +147,7 @@ public class GourmetDAO {
 	}
 
 	// 引数listで検索項目を指定し、storeのリストを返す(reputationテーブルと結合)
-	public List<Gourmet> select_GourmetList(Gourmet gourmet) {
+	public List<Gourmet> select_GourmetList(Gourmet gourmet,Users user) {
 		Connection conn = null;
 		List<Gourmet> GourmetList = new ArrayList<Gourmet>();
 
@@ -167,12 +168,100 @@ public class GourmetDAO {
 					+ "JOIN (SELECT number, cast(avg(cast(reputation as decimal)) as decimal(10,1)) as avg_reputation from reputation group by number) as avg_table "
 					+ "on store.number = avg_table.number "
 					+ "group by store.number "
-					+ "order by genre ";
+					+ "order by genre   = ? desc , genre = ? desc , genre = ? desc ";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
 			pStmt.setInt(1,  gourmet.getUsers_number());
+			pStmt.setString(2,  user.getFirst());
+			pStmt.setString(3,  user.getSecond());
+			pStmt.setString(4,  user.getThird());
+
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {
+				Gourmet card = new Gourmet(
+						rs.getInt("number"),
+						rs.getInt("users_number"),
+						rs.getInt("favorite"),
+						rs.getString("genre"),
+						rs.getString("name"),
+						rs.getString("branch"),
+						rs.getDouble("avg_reputation"),
+						rs.getInt("reputation"),
+						rs.getString("memo")
+
+						);
+				GourmetList.add(card);
+			}
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+			GourmetList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			GourmetList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					GourmetList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return GourmetList;
+
+	}
+
+	//main.jspで表示するbranchに関連するグルメリストの表示
+	public List<Gourmet> select_mainGourmetList(Gourmet gourmet,Users user, String branch) {
+		Connection conn = null;
+		List<Gourmet> GourmetList = new ArrayList<Gourmet>();
+
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
+
+			// SQL文を準備する
+			String sql = "SELECT store.number, users_number,  favorite, name, genre, branch, avg_reputation, reputation, memo  "
+					+"from store "
+					+"INNER JOIN reputation "
+					+"on store.number = reputation.number "
+					+"JOIN (SELECT number, cast(avg(cast(reputation as decimal)) as decimal(10,1)) as avg_reputation from reputation group by number) as avg_table "
+					+"on store.number = avg_table.number "
+					+"where users_number = ? and branch = ? "
+					+"group by store.number "
+					+"order by genre   = ? desc , genre = ? desc , genre = ? desc ";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			System.out.println(gourmet.getUsers_number());
+			System.out.println(branch);
+			// SQL文を完成させる
+			pStmt.setInt(1,  gourmet.getUsers_number());
+			pStmt.setString(2,  branch);
+			pStmt.setString(3,  user.getFirst());
+			pStmt.setString(4,  user.getSecond());
+			pStmt.setString(5,  user.getThird());
+
 
 
 			// SQL文を実行し、結果表を取得する

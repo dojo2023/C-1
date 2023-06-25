@@ -2,6 +2,7 @@
 .main{
 	width: 100%;
 	z-index:20;
+	background-image
 }
 
 .flex{
@@ -13,14 +14,14 @@
 }
 
 .syuzo{
-	width: 25%;
-	text-align: center;
+	width: 20%;
+	text-align: start;
+	margin-top : 2em;
 }
 .allSchedule{
-	width: 35%;
-	margin-left: auto;
-    margin-right: auto;
-}
+	 width:60%;
+
+	 }
 
 /*MAP、編集ボタン*/
 .normal{
@@ -31,7 +32,7 @@
 
 .weather{
 	padding-bottom: 0.5em;
-	width: 10%;
+	width: 20%;
 }
 
 /*見出し*/
@@ -45,6 +46,7 @@
 	display: inline-block;
 	font-weight: bold;
 	background:rgba(255,255,255,0.6);
+	 margin-left: 48px;
 }
 
 #msg{
@@ -53,10 +55,22 @@
 	writing-mode: vertical-rl;
 	-ms-writing-mode: tb-rl;
 	text-orientation: upright;
+	font-family : "HG行書体";
+	font-size: 40px;
+	word-break : keep-all;
+ 	height: 500px;
 }
 .open{
 	/*display.noneにかき消されるため"!important"追加で重要度を上げてる*/
 	display:block !important;
+}
+
+.close{
+	display:none !important;
+}
+
+#glist {
+		display:block;
 }
 
 .triangle{
@@ -76,12 +90,12 @@
 /*角が丸い四角で囲んだ範囲*/
 #waku {
 	padding: 0.5em 3em;
-	margin: 2em 2em;
+	margin-top: 20px;
 }
 
 #waku2 {
-	padding: 0.5em 2em ;
-	margin: 2em 3em;
+	padding: 0.5em 1em;
+	margin-top : 20px;
 	background: white;
 
 }
@@ -90,7 +104,8 @@
 	opacity: 0.4;
 	z-index: 10;
 	text-align:center;
-	zoom: 1.7;
+	zoom: 3;
 
 
 }
+

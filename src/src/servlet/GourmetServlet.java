@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.GourmetDAO;
+import dao.UsersDAO;
 import model.Gourmet;
 import model.LoginUser;
+import model.Users;
 
 /**
  * Servlet implementation class GourmetServlet
@@ -39,12 +41,14 @@ public class GourmetServlet extends HttpServlet {
 
 		LoginUser user = (LoginUser)session.getAttribute("number");
 		int users_number = user.getNumber();
+		UsersDAO uDAO = new UsersDAO();
+		Users card = uDAO.select_User(user);
 
 		//グルメリストの表示を行う
 		GourmetDAO GDAO= new GourmetDAO();
 		Gourmet gourmet = new Gourmet();
 		gourmet.setUsers_number(users_number);
-		List<Gourmet> gourmetList= GDAO.select_GourmetList(gourmet);
+		List<Gourmet> gourmetList= GDAO.select_GourmetList(gourmet,card);
 		request.setAttribute("gourmetList", gourmetList);
 
 		// グルメ一覧/検索ページにフォワードする
@@ -96,7 +100,7 @@ public class GourmetServlet extends HttpServlet {
 			String favorite_str =  request.getParameter("favorite");
 			int favorite = Integer.valueOf(favorite_str);
 			String memo = request.getParameter("memo");
-			
+
 			//更新処理を行う（storeテーブルに登録）
 			Gourmet list1 = new Gourmet(name, branch, genre);
 			GourmetDAO gDao = new GourmetDAO();
@@ -109,11 +113,13 @@ public class GourmetServlet extends HttpServlet {
 			gDao.insert_reputation(list2);
 
 
+			UsersDAO uDAO = new UsersDAO();
+			Users card = uDAO.select_User(user);
 			//グルメリストの表示を行う
 			GourmetDAO GDAO= new GourmetDAO();
 			Gourmet gourmet = new Gourmet();
 			gourmet.setUsers_number(users_number);
-			List<Gourmet> gourmetList= GDAO.select_GourmetList(gourmet);
+			List<Gourmet> gourmetList= GDAO.select_GourmetList(gourmet,card);
 			request.setAttribute("gourmetList", gourmetList);
 
 			// 一覧ページにフォワードする
