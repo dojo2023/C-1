@@ -43,6 +43,7 @@
 		<span class="title">Gourumet List</span>
 	</div>
 
+<div id=waku>
 	<table>
 		<tr class = "tr">
 			<th>お気に入り</th>
@@ -86,7 +87,7 @@
  <div id="footer">
     <p>&copy;Copyright KSHMY. All rights reserved.</p>
  </div>
-
+</div>
 </body>
 
  <script type="text/javascript">
