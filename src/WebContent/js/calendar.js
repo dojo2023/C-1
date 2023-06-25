@@ -34,11 +34,10 @@
               //枠内クリックでクリックされた日付表示
               dateClick: function (jsEvent) {
             	  //jsEvent.dateStr:日付
-                 // alert('日付がクリックされました。\n' + jsEvent.dateStr);
 
 				　//カレンダー登録ページが新しく開くプログラムを書く
                  window.open(
-                 'CalendarRegistServlet');
+                 'CalendarRegistServlet?date='+ jsEvent.dateStr+ "T09:00");
 
              },
 

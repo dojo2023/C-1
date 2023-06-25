@@ -28,22 +28,21 @@
 					<option value="${e}">${e}</option>
 				</c:forEach>
 			</select>
-			<button id="add" type="button" onclick="workspaceAdd()">+</button>
-			<div id="new">
-				<input type="text" name="none" value="" placeholder="営業所">
+			<button id="add" type="button" onclick="workspaceAdd()">+</button><br>
+			<div id="text-box">
+				<input id="new" type="text" name="none" value="" placeholder="営業所">
 			</div>
-
-			<br>
+			
 			<label for="date">開始日時：</label>
-				<input type="datetime-local" id="date" name="start_date" value="" /> <br>
+				<input type="datetime-local" id="date" name="start_date" value="${date}" /> <br>
 			<label for="date">終了日時：</label>
 
-				<input type="datetime-local" id="date" name="end_date" value="" /> <br>
+				<input type="datetime-local" id="date" name="end_date" value="${date}" /> <br>
 
 			 色：
-			<input type="radio" name="color" value="e49aab"  id="colorimage1"><label for="colorimage1"></label>
-			<input type="radio" name="color" value="9ae3ae" id="colorimage2"><label for="colorimage2"></label>
-			<input type="radio" name="color" value="9ad0e3" id="colorimage3"><label for="colorimage3"></label><br>
+			<input type="radio" name="color" id="colorimage1" value="e49aab" checked><label for="colorimage1"></label>
+			<input type="radio" name="color" id="colorimage2" value="9ae3ae"><label for="colorimage2"></label>
+			<input type="radio" name="color" id="colorimage3" value="9ad0e3"><label for="colorimage3"></label><br>
 
 			メモ：
 			<textarea class="textarean"  name="memo"></textarea>

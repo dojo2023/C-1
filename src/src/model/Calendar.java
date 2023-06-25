@@ -10,6 +10,10 @@ public class Calendar implements Serializable {
 	private int users_number;
 	private Timestamp start_date;
 	private Timestamp end_date;
+	private String calendar_startD; //フルカレンダー用String（日付部分）
+	private String calendar_endD;	//フルカレンダー用String（日付部分）
+	private String calendar_startT; //フルカレンダー用String（時間部分）
+	private String calendar_endT;	//フルカレンダー用String（時間部分）
 	private String color;
 	private String memo;
 	private String branch;
@@ -36,6 +40,37 @@ public class Calendar implements Serializable {
 		this.branch = branch;
 	}
 	
+	public String getCalendar_startT() {
+		return calendar_startT;
+	}
+
+	public void setCalendar_startT(String calendar_startT) {
+		this.calendar_startT = calendar_startT;
+	}
+
+	public String getCalendar_endT() {
+		return calendar_endT;
+	}
+
+	public void setCalendar_endT(String calendar_endT) {
+		this.calendar_endT = calendar_endT;
+	}
+
+	//fullCalendar用
+	public Calendar(int number,int users_number,String calendar_startD, String calendar_endD, String calendar_startT, String calendar_endT, String color, String memo, String branch) {
+		this.number = number;
+		this.users_number = users_number;
+		this.calendar_startD= calendar_startD;
+		this.calendar_endD = calendar_endD;
+		this.calendar_startT= calendar_startT;
+		this.calendar_endT = calendar_endT;
+		this.color = color;
+		this.memo = memo;
+		this.branch = branch;
+		System.out.println("time"+calendar_startT);
+		System.out.println(calendar_endT);
+	}
+	
 	public Calendar(int users_number,Timestamp start_date, Timestamp end_date, String color, String memo, String branch, String time) {
 		this.users_number = users_number;
 		this.start_date= start_date;
@@ -54,6 +89,10 @@ public class Calendar implements Serializable {
 		this.users_number = 0;
 		this.start_date = null;
 		this.end_date = null ;
+		this.calendar_startD = "";
+		this.calendar_endD = "" ;
+		this.calendar_startT = "";
+		this.calendar_endT = "" ;
 		this.color = "";
 		this.memo = "";
 		this.branch = "";
@@ -141,6 +180,22 @@ public class Calendar implements Serializable {
 
 	public String getBranch() {
 		return branch;
+	}
+	
+	public String getCalendar_startD() {
+		return calendar_startD;
+	}
+
+	public void setCalendar_startD(String calendar_startD) {
+		this.calendar_startD = calendar_startD;
+	}
+
+	public String getCalendar_endD() {
+		return calendar_endD;
+	}
+
+	public void setCalendar_endD(String calendar_endD) {
+		this.calendar_endD = calendar_endD;
 	}
 
 

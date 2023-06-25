@@ -98,12 +98,19 @@ public class CalendarEditServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			LoginUser user = (LoginUser)session.getAttribute("number");
 			int users_number = user.getNumber();
-
-		// リクエストスコープに格納してスケジュールを編集（更新）
+			
+			//リクエストスコープに格納してスケジュールを編集（更新）
 			Calendar calendar = new Calendar(number,users_number, start_date, end_date, color, memo,branch);
 			CalendarDAO schedule = new CalendarDAO();
-			schedule.update(calendar);
-
+			//schedule.update(calendar);
+			
+			if (request.getParameter("SUBMIT").equals("更新")) {
+				//スケジュールを編集（更新）
+				schedule.update(calendar);
+			}else {
+				//スケジュール削除
+				schedule.delete(number);
+			}
 
 
 		// カレンダーページに フォワードする

@@ -90,11 +90,12 @@
 	<c:forEach var="c" items="${cardlist}">
 	{
 		id: ${c.number},
-	   	title: '${c.branch}',
-		start: '${c.start_date}',
-		end: '${c.end_date}',
+	   	title: '${c.calendar_startT}'+' '+'${c.branch}',
+		start: '${c.calendar_startD}',
+		end: '${c.calendar_endD}',
 		color: "#"+"${c.color}",
-		description: '${c.memo}',
+		description: '${c.memo}'+
+		' ('+'${c.calendar_startD}'.substring(8,10)+'日'+'${c.calendar_startT}'+'～'+'${c.calendar_endD}'.substring(8,10)+'日'+'${c.calendar_endT}'+')' ,
 
 	},
 	</c:forEach>

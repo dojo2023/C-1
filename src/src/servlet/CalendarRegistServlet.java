@@ -40,7 +40,10 @@ public class CalendarRegistServlet extends HttpServlet {
 		CalendarDAO cDAO = new CalendarDAO();
 		List<String> branch = cDAO.select_branch();
 		request.setAttribute("branch",branch);
-
+		//クリックした日付取得
+		String date = request.getParameter("date");
+		request.setAttribute("date",date);
+		System.out.println("date"+date);
 
 
 		// カレンダー登録ページにフォワードする
@@ -78,12 +81,12 @@ public class CalendarRegistServlet extends HttpServlet {
 				Calendar schedule = new Calendar(users_number,start_date,end_date,color,memo,branch);
 				CalendarDAO cdao = new CalendarDAO();
 				cdao.insert(schedule);
-
+				
 				// カレンダーサーブレットにリダイレクトする
 				response.sendRedirect("/KSHMY/CalendarServlet");
-
-				/*// カレンダーページに フォワードする
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/calendar.jsp");
+					
+				/*//カレンダーページに フォワードする
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/calendar_regist.jsp");
 				dispatcher.forward(request, response);*/
 
 	}

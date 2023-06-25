@@ -44,8 +44,10 @@ public class CalendarDAO {
 				Calendar list = new Calendar(
 						rs.getInt("NUMBER"),
 						rs.getInt("USERS_NUMBER"),
-						rs.getTimestamp("START_DATE"),
-						rs.getTimestamp("END_DATE"),
+						rs.getString("START_DATE").substring(0,10), 	//fullcalendar用に成型
+						rs.getString("END_DATE").substring(0,10),		//fullcalendar用に成型
+						rs.getString("START_DATE").substring(11,16), 	//fullcalendar用に成型
+						rs.getString("END_DATE").substring(11,16),		//fullcalendar用に成型
 						rs.getString("COLOR"),
 						rs.getString("MEMO"),
 						rs.getString("BRANCH")

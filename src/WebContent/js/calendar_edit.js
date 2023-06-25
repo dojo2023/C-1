@@ -48,8 +48,8 @@ function workspaceAdd() {
 
 			str = "-";
 			pulldown.setAttribute("disabled", true);
-			pulldown.setAttribute("name", "branch");
-			document.getElementById('new').setAttribute("name", "none");
+			pulldown.setAttribute("name", "none");
+			document.getElementById('new').setAttribute("name", "branch");
 
 
 		}else{

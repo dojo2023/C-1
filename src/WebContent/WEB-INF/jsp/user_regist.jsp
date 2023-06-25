@@ -32,7 +32,6 @@
 			<c:forEach var="e" items="${workspace}" >
 				<option value="${e}">${e}</option>
 	        </c:forEach>
-			<option id="new_select" value="新規">新規</option>
 	    </select><button id="add" type="button" onclick="workspaceAdd()">+</button></td>
 	    <td colspan="3">所属地の都道府県
 	    	<select name="prefecture_number">
