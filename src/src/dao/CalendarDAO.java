@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +43,16 @@ public class CalendarDAO {
 
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {  //nextメソッドを使用し取得した表のカラム名にカーソルがあっているのをネクストでデータの行にカーソルを変更する
+				//fullcalendarでは日付跨ぎが2回無いと2日に渡ったイベントにならないため、end_dateに一日加算した値も用意する
+				int yy = Integer.valueOf(rs.getString("END_DATE").substring(0,4));	 	//YYYY
+				int mm = Integer.valueOf(rs.getString("END_DATE").substring(5,7));		//MM
+				int dd = Integer.valueOf(rs.getString("END_DATE").substring(8,10));	//dd
+				
+				LocalDateTime datetime3 = LocalDateTime.of(yy, mm, dd, 00, 00);
+				LocalDateTime date3 = datetime3.plusDays(1);		//endの翌日を格納
+				DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				String nextD = date3.format(dateTimeFormatter);		//endの翌日のString型に
+				
 				Calendar list = new Calendar(
 						rs.getInt("NUMBER"),
 						rs.getInt("USERS_NUMBER"),
@@ -48,6 +60,7 @@ public class CalendarDAO {
 						rs.getString("END_DATE").substring(0,10),		//fullcalendar用に成型
 						rs.getString("START_DATE").substring(11,16), 	//fullcalendar用に成型
 						rs.getString("END_DATE").substring(11,16),		//fullcalendar用に成型
+						nextD,
 						rs.getString("COLOR"),
 						rs.getString("MEMO"),
 						rs.getString("BRANCH")

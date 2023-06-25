@@ -10,10 +10,11 @@ public class Calendar implements Serializable {
 	private int users_number;
 	private Timestamp start_date;
 	private Timestamp end_date;
-	private String calendar_startD; //フルカレンダー用String（日付部分）
-	private String calendar_endD;	//フルカレンダー用String（日付部分）
-	private String calendar_startT; //フルカレンダー用String（時間部分）
-	private String calendar_endT;	//フルカレンダー用String（時間部分）
+	private String calendar_startD; 	//フルカレンダー用String（日付部分）
+	private String calendar_endD;		//フルカレンダー用String（日付部分）
+	private String calendar_startT; 	//フルカレンダー用String（時間部分）
+	private String calendar_endT;		//フルカレンダー用String（時間部分）
+	private String nextD;				//フルカレンダー用String（endに１日プラスしないと日付をまたいでイベント表示しない、endの翌日）
 	private String color;
 	private String memo;
 	private String branch;
@@ -40,35 +41,20 @@ public class Calendar implements Serializable {
 		this.branch = branch;
 	}
 	
-	public String getCalendar_startT() {
-		return calendar_startT;
-	}
-
-	public void setCalendar_startT(String calendar_startT) {
-		this.calendar_startT = calendar_startT;
-	}
-
-	public String getCalendar_endT() {
-		return calendar_endT;
-	}
-
-	public void setCalendar_endT(String calendar_endT) {
-		this.calendar_endT = calendar_endT;
-	}
 
 	//fullCalendar用
-	public Calendar(int number,int users_number,String calendar_startD, String calendar_endD, String calendar_startT, String calendar_endT, String color, String memo, String branch) {
+	public Calendar(int number,int users_number,String calendar_startD, String calendar_endD, String calendar_startT, String calendar_endT,String nextD, String color, String memo, String branch) {
 		this.number = number;
 		this.users_number = users_number;
 		this.calendar_startD= calendar_startD;
 		this.calendar_endD = calendar_endD;
 		this.calendar_startT= calendar_startT;
 		this.calendar_endT = calendar_endT;
+		this.nextD = nextD;
 		this.color = color;
 		this.memo = memo;
 		this.branch = branch;
-		System.out.println("time"+calendar_startT);
-		System.out.println(calendar_endT);
+		System.out.println("next"+nextD);
 	}
 	
 	public Calendar(int users_number,Timestamp start_date, Timestamp end_date, String color, String memo, String branch, String time) {
@@ -202,6 +188,29 @@ public class Calendar implements Serializable {
 
 	public void setBranch(String branch) {
 		this.branch = branch;
+	}
+
+	public String getNextD() {
+		return nextD;
+	}
+
+	public void setNextD(String nextD) {
+		this.nextD = nextD;
+	}
+	public String getCalendar_startT() {
+		return calendar_startT;
+	}
+
+	public void setCalendar_startT(String calendar_startT) {
+		this.calendar_startT = calendar_startT;
+	}
+
+	public String getCalendar_endT() {
+		return calendar_endT;
+	}
+
+	public void setCalendar_endT(String calendar_endT) {
+		this.calendar_endT = calendar_endT;
 	}
 
 }

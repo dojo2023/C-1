@@ -92,7 +92,7 @@
 		id: ${c.number},
 	   	title: '${c.calendar_startT}'+' '+'${c.branch}',
 		start: '${c.calendar_startD}',
-		end: '${c.calendar_endD}',
+		end: '${c.nextD}',	//calendar_endDの翌日
 		color: "#"+"${c.color}",
 		description: '${c.memo}'+
 		' ('+'${c.calendar_startD}'.substring(8,10)+'日'+'${c.calendar_startT}'+'～'+'${c.calendar_endD}'.substring(8,10)+'日'+'${c.calendar_endT}'+')' ,
