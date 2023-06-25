@@ -51,6 +51,8 @@
 	display:none;
 	margin: 10px auto;
 	writing-mode: vertical-rl;
+	-ms-writing-mode: tb-rl;
+	text-orientation: upright;
 }
 .open{
 	/*display.noneにかき消されるため"!important"追加で重要度を上げてる*/
