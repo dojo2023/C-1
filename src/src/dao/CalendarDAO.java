@@ -100,7 +100,7 @@ public class CalendarDAO {
 
 			// SQL文を準備する
 			String sql = "SELECT * FROM CALENDAR WHERE users_number = ? "
-					+ "AND (? < START_DATE AND END_DATE< ? )"	//今日始まって今日終わる予定
+					+ "	AND ( ? > START_DATE AND END_DATE > ?)"	//前日以前に開始して翌日以降に終了する予定
 					+ "OR (START_DATE BETWEEN ?  AND ? )"		//今日から始まって翌日以降終わる可能性有りの予定
 					+ "OR (END_DATE BETWEEN ?  AND ? ) "		//前日以前に始まって今日終わる予定
 					+ "ORDER BY START_DATE" ;
