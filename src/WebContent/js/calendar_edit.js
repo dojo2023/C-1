@@ -64,3 +64,20 @@ function workspaceAdd() {
 		document.getElementById('new').classList.toggle('newOpen');
 }
 
+
+
+/* 確認ダイアログボックス */
+function confirmTest() {
+        var res = confirm("この内容で更新しますか？");
+   if(!res) alert("更新をキャンセルしました");
+   return res;
+ }
+
+
+function confirmTest2() {
+   var res = confirm("予定を削除しますか？");
+   if(!res) alert("削除をキャンセルしました");
+   return res;
+ }
+
+

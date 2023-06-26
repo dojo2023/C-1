@@ -41,12 +41,14 @@
 
 			メモ：<textarea class="textarean" name = "memo">${calendar.memo}</textarea><br>
 
+
 				<table>
 				<tr>
-				<td><input class="normal" type="submit" name="SUBMIT" value="更新"></td>
-				<td><input class="reversal" type="submit" name="SUBMIT" value="削除"></td>
+				<td><input class="normal" type="submit" onclick="return confirmTest()"  name="SUBMIT" value="更新"></td>
+				<td><input class="reversal" type="submit"  onclick="return confirmTest2()" name="SUBMIT" value="削除"></td>
 				</tr>
 				</table>
+
 				<input type="hidden" name ="number" value="${calendar.number}">
 
 			</form>
