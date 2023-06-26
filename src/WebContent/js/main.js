@@ -96,16 +96,16 @@
 
 //天気画像背景
 	function weather_select_image(json,day){
-		if(json.daily.weathercode[day] == 0){ return  "&#x2600"; }
-	    else if(json.daily.weathercode[day] == 1){ return "&#x2600"; }
-	    else if(json.daily.weathercode[day] == 2){ return   "&#x1f324"; }
+		if(json.daily.weathercode[day] == 0){ return  '<img src = "/KSHMY/img/seiten.jpg">'; }
+	    else if(json.daily.weathercode[day] == 1){ return  '<img src = "/KSHMY/img/seiten.jpg">'; }
+	    else if(json.daily.weathercode[day] == 2){ return   '<img src = "/KSHMY/img/itibukumori.jpg">'; }
 	    else if(json.daily.weathercode[day] == 3){ return  '<img src = "/KSHMY/img/kumori.jpg">'; }
 	    else if(json.daily.weathercode[day] <= 49 && json.daily.weathercode[day] >=4){ return '<img src = "/KSHMY/img/kirisame.jpg">'; }
 	    else if(json.daily.weathercode[day] <= 59 && json.daily.weathercode[day] >=50){ return '<img src = "/KSHMY/img/kirisame.jpg">'; }
-	    else if(json.daily.weathercode[day] <= 69 && json.daily.weathercode[day] >=60){ return "&#x2614"; }
-	    else if(json.daily.weathercode[day] <= 79 && json.daily.weathercode[day] >=70){ return  "&#x26c4"; }
-	    else if(json.daily.weathercode[day] <= 84 && json.daily.weathercode[day] >=80){ return  "&#x1f302"; }
-	    else if(json.daily.weathercode[day] <= 94 && json.daily.weathercode[day] >=85 ){ return "&#x2603"; }
+	    else if(json.daily.weathercode[day] <= 69 && json.daily.weathercode[day] >=60){ return  '<img src = "/KSHMY/img/ame.jpg">'; }
+	    else if(json.daily.weathercode[day] <= 79 && json.daily.weathercode[day] >=70){ return   '<img src = "/KSHMY/img/yuki.jpg">'; }
+	    else if(json.daily.weathercode[day] <= 84 && json.daily.weathercode[day] >=80){ return   '<img src = "/KSHMY/img/niwakaame.jpg">'; }
+	    else if(json.daily.weathercode[day] <= 94 && json.daily.weathercode[day] >=85 ){ return  '<img src = "/KSHMY/img/yuki.jpg">'; }
 	    else{ return "&#x26a1"; }
 	}
 
