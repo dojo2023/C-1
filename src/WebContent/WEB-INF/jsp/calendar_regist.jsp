@@ -20,7 +20,7 @@
 		</div>
 
 	<!-- jspでクライアントが入力した情報をregistservletにpostする -->
-		<form id=editform method="POST" action="/KSHMY/CalendarRegistServlet">
+		<form name = "click" id=editform method="POST" action="/KSHMY/CalendarRegistServlet">
 
 			<br> 営業所：
 			<select id="branch" name="branch">
@@ -32,7 +32,7 @@
 			<div id="text-box">
 				<input id="new" type="text" name="none" value="" placeholder="営業所">
 			</div>
-			
+
 			<label for="date">開始日時：</label>
 				<input type="datetime-local" id="date" name="start_date" value="${date}" /> <br>
 			<label for="date">終了日時：</label>
@@ -46,7 +46,7 @@
 
 			メモ：
 			<textarea class="textarean"  name="memo"></textarea>
-			<br> <input class="normal" type="submit" name="SUBMIT" value="登録">
+			<br> <input name ="btn" class="normal" type="submit" name="SUBMIT" value="登録" >
 
 		</form>
 	</div>

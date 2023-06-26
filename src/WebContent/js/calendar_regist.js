@@ -43,3 +43,15 @@ function workspaceAdd() {
 		document.getElementById('new').classList.toggle('newOpen');
 }
 
+ /* 登録ボタンが押された際にアラート*/
+ document.click.btn.addEventListener('click', function(e) {
+    var result = window.confirm('この内容で登録しますか？');
+
+    if( result === false ) {
+
+		e.preventDefault();
+
+    }
+
+})
+

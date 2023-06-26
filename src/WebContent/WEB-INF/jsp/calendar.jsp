@@ -41,9 +41,9 @@
 
 <div class = "conteinar">
 	<hr size="3" color="#404040">
-	<c:forEach var="c" items="${cardlist}">
+	<%-- <c:forEach var="c" items="${cardlist}">
 	${c.number}
-	</c:forEach>
+	</c:forEach> --%>
 	<%-- <c:forEach var="c" items="${cardlist}">
 
 		<input type = "hidden" id = "start_date" value="${c.start_date}">
