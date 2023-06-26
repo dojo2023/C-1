@@ -89,6 +89,7 @@ body{
 .title{
 	border-bottom: double 4px #404040;
 	font-size: 30px;
+	font-weight: bold;
 }
 
 /*テキストボックス(type=textとpasswordのみ)*/
