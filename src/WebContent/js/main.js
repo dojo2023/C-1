@@ -96,8 +96,8 @@
 
 //天気画像背景
 	function weather_select_image(json,day){
-		if(json.daily.weathercode[day] == 0){ return  '<img src = "/KSHMY/img/seiten.jpg">'; }
-	    else if(json.daily.weathercode[day] == 1){ return  '<img src = "/KSHMY/img/seiten.jpg">'; }
+		if(json.daily.weathercode[day] == 0){ return  '<img src = "/KSHMY/img/hare.jpg">'; }
+	    else if(json.daily.weathercode[day] == 1){ return  '<img src = "/KSHMY/img/hare.jpg">'; }
 	    else if(json.daily.weathercode[day] == 2){ return   '<img src = "/KSHMY/img/itibukumori.jpg">'; }
 	    else if(json.daily.weathercode[day] == 3){ return  '<img src = "/KSHMY/img/kumori.jpg">'; }
 	    else if(json.daily.weathercode[day] <= 49 && json.daily.weathercode[day] >=4){ return '<img src = "/KSHMY/img/kirisame.jpg">'; }
