@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.GourmetDAO;
+import dao.UsersDAO;
 import model.Gourmet;
 import model.LoginUser;
+import model.Users;
 
 /**
  * Servlet implementation class GourmetRegistServlet
@@ -71,6 +73,8 @@ public class GourmetRegistServlet extends HttpServlet {
 		Gourmet list1 = new Gourmet(name, branch, genre);
 		GourmetDAO gDao = new GourmetDAO();
 		int autoIncrementKey = gDao.insert_store(list1);
+		UsersDAO uDAO = new UsersDAO();
+		Users card = uDAO.select_User(user);
 
 
 		//登録処理を行う（reputationテーブルに登録）
@@ -83,7 +87,7 @@ public class GourmetRegistServlet extends HttpServlet {
 		GourmetDAO GDAO= new GourmetDAO();
 		Gourmet gourmet = new Gourmet();
 		gourmet.setUsers_number(users_number);
-		List<Gourmet> gourmetList= GDAO.select_GourmetList(gourmet);
+		List<Gourmet> gourmetList= GDAO.select_GourmetList(gourmet,card);
 		request.setAttribute("gourmetList", gourmetList);
 
 		// 一覧ページにフォワードする
