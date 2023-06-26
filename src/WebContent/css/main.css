@@ -2,11 +2,12 @@
 .main{
 	width: 100%;
 	z-index:20;
-	background-image
+
 }
 
 .flex{
 	display: flex;
+
 }
 
 .syuzo, .allSchedule, .weather{
