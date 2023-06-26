@@ -47,23 +47,21 @@
 				<input type="hidden" name="number"  value="${gourmetRecord.number}"></td>
 				<td class="left">
 				店名：
-				<input class="name" type="text" name="number" value="${gourmetRecord.name}" readonly></td>
+				<input class="name" type="text" name="name" value="${gourmetRecord.name}" readonly></td>
 				<th>営業所：</th>
-				<td> <select id="select_branch" name="branch">
-							<option value="${gourmetRecord.branch}" >${gourmetRecord.branch}</option>
-					</select>
+				<td> <input type ="text"  id="select_branch" name="branch" value="${gourmetRecord.branch}"  readonly>
 				</td>
 			</tr>
 			<tr>
-				<td>お気に入り：<button type ="button" name="test"  class = "star" value = "${gourmetRecord.favorite}" id = "${gourmetRecord.store_number}" onclick = "favorite_change()">
+				<td>お気に入り：<button type ="button"   class = "star" id = "favorite_btn"  onclick = "favorite_change()">
 					<c:if test="${gourmetRecord.favorite == 1}">★</c:if>
 					<c:if test="${gourmetRecord.favorite == 0}">☆</c:if>
-				</button></td>
+				</button>
+					<input type = "hidden" name ="favorite" id = "favorite"  value = "${gourmetRecord.favorite}">
+				</td>
 				<th>ジャンル：</th>
-				<td> <select name="genre">
-						<option value="${gourmetRecord.genre}">${gourmetRecord.genre}</option>
-						<option value="${gourmetRecord.genre}">その他</option>
-				</select></td>
+				<td> <input type = "text" value="${gourmetRecord.genre}" readonly>
+				</td>
 			</tr>
 			<tr>
 			<td>評価：
@@ -114,14 +112,14 @@ window.onload = function(){
 
 function favorite_change() {
 	let str = "";
-	if('${gourmetRecord.favorite}' === '1'){
+	if(favorite.value === '1'){
 		str =  "☆";
-	document.getElementById('${gourmetRecord.store_number}').value = "0";
+	document.getElementById('favorite').value = "0";
 	}else{
 		str =  "★";
-	document.getElementById('${gourmetRecord.store_number}').value = "1";
+	document.getElementById('favorite').value = "1";
 	}
-	document.getElementById('${gourmetRecord.store_number}').innerHTML = str;
+	document.getElementById('favorite_btn').innerHTML = str;
 }
 </script>
 <script src='/KSHMY/js/common.js'></script>

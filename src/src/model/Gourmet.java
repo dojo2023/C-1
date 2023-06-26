@@ -44,6 +44,13 @@ public class Gourmet implements Serializable {
 		this.memo = memo;
 	}
 
+	public Gourmet(int reputation, int favorite, String memo) {
+
+		this.reputation = reputation;
+		this.favorite = favorite;
+		this.memo = memo;
+	}
+
 	//引数アリのコンストラクタ(グルメ一覧ページ１)
 //	public Gourmet(int store_number, String name, String branch, String genre, int avg_reputation) {
 //
