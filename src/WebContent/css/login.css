@@ -3,28 +3,43 @@
 /* ログインページに適用*/
 
 /* フォーム部分を角が丸い四角で囲う*/
-.form {
-	padding: 0.5em 1em;
+#waku{
+	padding: 1em 1em;
 	margin: 2em 0;
-	font-weight: bold;
-	color: #000000; /*文字色*/
-	background: #FFF;
-	border: solid 3px #000000; /*線*/
-	border-radius: 10px; /*角の丸み*/
+	text-align: center;
 }
+
 /* 画像とフォームを横並びにしたい*/
 .flex {
 	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 100px;
 }
 
-.flex.logo {
-	margin: 0;
+.logo {
+	margin-right: 80px;
 	padding: 0;
 	overflow: hidden;
 	position: relative;
 }
 
-.flex.title {
-	margin: 0 0 0 20px;
-	padding: 0;
+/*タイトル*/
+.logintitle {
+	border-bottom: double 4px #404040;
+	font-size: 40px;
+}
+
+.loginbox{
+	font-size: 25px;
+	line-height: 60px;
+}
+
+/*LOGINボタン*/
+input[type=submit] {
+    width: 80px;
+    height: 40px;
+    margin: 15px;
+    box-sizing: border-box;
+    font-size: 18px;
 }

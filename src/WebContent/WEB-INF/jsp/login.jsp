@@ -13,28 +13,28 @@
 		<div class=flex>
 			<h1 class="logo">
 				<a href="/KSHMY/LoginServlet"> <img src="/KSHMY/img/KMlogo.jpeg"
-					width="300" height="200" alt="Business Card"></a>
+					width="400" height="300" alt="Business Card"></a>
 			</h1>
-			<div class=form>
-				<span class="title">Login</span>
+			<div id="waku">
+				<span class="logintitle">Login</span>
 				<section>
 					<form id="login_form" method="POST" action="/KSHMY/LoginServlet">
 						<!--フォームタグ-->
 						<table>
 							<tr>
 								<td>
-									<!-- ID入力フォーム --> <input type="text" name="user_id"
+									<!-- ID入力フォーム --> <input type="text" class="loginbox" name="user_id"
 									placeholder="username">
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<!-- PW入力フォーム --> <input type="password" name="user_pw"
+									<!-- PW入力フォーム --> <input type="password" class="loginbox" name="user_pw"
 									placeholder="password">
 								</td>
 							</tr>
 							<tr>
-								<td><input type="submit" name="LOGIN" value="LOGIN">
+								<td><input type="submit" class="normal" name="LOGIN" value="LOGIN">
 									<!--ログイン--></td>
 							</tr>
 							<tr>
