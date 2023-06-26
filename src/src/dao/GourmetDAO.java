@@ -147,18 +147,164 @@ public class GourmetDAO {
 	}
 
 	// 引数listで検索項目を指定し、storeのリストを返す(reputationテーブルと結合)
+	//検索、並び替えver
+		public List<Gourmet> select_GourmetList(Gourmet gourmet,Users user,String kind, String order,String[] checkedGenre, int favorite,String keyword) {
+			Connection conn = null;
+			List<Gourmet> GourmetList = new ArrayList<Gourmet>();
+
+
+			try {
+				// JDBCドライバを読み込む
+				Class.forName("org.h2.Driver");
+
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
+
+				// SQL文を準備する
+				String sql = "SELECT store.number, users_number,  IsNull(favorite, '0') as favorite, name, genre, branch, avg_reputation, IsNull(reputation, '0') as reputation, IsNull(memo, 'ーーーー') as memo "
+						+ "from store "
+						+ "LEFT OUTER JOIN reputation "
+						+ "on store.number = reputation.number "
+						+ "AND reputation.users_number = ? "
+						+ "JOIN (SELECT number, cast(avg(cast(reputation as decimal)) as decimal(10,1)) as avg_reputation from reputation group by number) as avg_table "
+						+ "on store.number = avg_table.number "
+						+ "where (store.branch LIKE ? OR store.name LIKE ? OR reputation.memo LIKE ?)";
+				
+				//genreチェックボックス 要検証！
+				int count = 0;
+				for (String genres : checkedGenre) {
+					if (count == 0) {
+						sql += " AND ( ";
+					}
+					sql += "genre = '"+ genres+"' ";
+					count++;
+					if ( count != checkedGenre.length) {
+						sql += " OR ";
+					}
+					if (count == checkedGenre.length) {
+						sql += ")";
+					}
+				}
+
+				//お気に入り絞り込み
+				if(favorite != 2) {
+					sql +=" AND favorite = ? ";
+				}
+				
+				sql += " group by store.number ";
+				
+				
+				if(kind.equals("ジャンル") && order.equals("降順")) {
+					sql += " order by genre   = ? desc , genre = ? desc , genre = ? desc "; 
+				}else if(kind.equals("ジャンル") && order.equals("昇順")) {
+					sql += " order by genre   = ? asc , genre = ? asc , genre = ? asc "; 
+				}else if(kind.equals("店名")) {
+					sql += " order by store.name ";
+				}else if(kind.equals("営業所")) {
+					sql += " order by store.branch ";
+				}else if(kind.equals("総合評価")) {
+					sql += " order by AVG_REPUTATION ";
+				}else {
+					sql += " order by REPUTATION  ";
+				}
+				
+				if(!kind.equals("ジャンル")) {
+					if(order.equals("降順")) {
+						sql += " desc ";
+					}else {
+						sql += " asc ";
+					}
+				}
+				
+				System.out.println();
+				System.out.println("sql");
+				System.out.println(sql);
+				System.out.println();
+				
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				// SQL文を完成させる
+				pStmt.setInt(1,  gourmet.getUsers_number());
+				pStmt.setString(2,"%"+keyword+"%");
+				pStmt.setString(3,"%"+keyword+"%");
+				pStmt.setString(4,"%"+keyword+"%");
+				
+				int count2 = 5; //?の挿入場所
+				if(favorite != 2) {
+					pStmt.setInt(count2,  favorite );
+					count2++;
+				}
+				
+				if(kind.equals("ジャンル")) {
+					pStmt.setString(count2,  user.getFirst());
+					count2++;
+					pStmt.setString(count2,  user.getSecond());
+					count2++;
+					pStmt.setString(count2,  user.getThird());
+				}
+
+
+				// SQL文を実行し、結果表を取得する
+				ResultSet rs = pStmt.executeQuery();
+
+
+				// 結果表をコレクションにコピーする
+				while (rs.next()) {
+					Gourmet card = new Gourmet(
+							rs.getInt("number"),
+							rs.getInt("users_number"),
+							rs.getInt("favorite"),
+							rs.getString("genre"),
+							rs.getString("name"),
+							rs.getString("branch"),
+							rs.getDouble("avg_reputation"),
+							rs.getInt("reputation"),
+							rs.getString("memo")
+
+							);
+					GourmetList.add(card);
+				}
+			}
+
+			catch (SQLException e) {
+				e.printStackTrace();
+				GourmetList = null;
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				GourmetList = null;
+			}
+			finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+						GourmetList = null;
+					}
+				}
+			}
+
+			// 結果を返す
+			return GourmetList;
+
+		}
+	
+	// 引数listで検索項目を指定し、storeのリストを返す(reputationテーブルと結合)
 	public List<Gourmet> select_GourmetList(Gourmet gourmet,Users user) {
 		Connection conn = null;
 		List<Gourmet> GourmetList = new ArrayList<Gourmet>();
-
-
+	
+	
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
-
+	
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
-
+	
 			// SQL文を準備する
 			String sql = "SELECT store.number, users_number,  IsNull(favorite, '0') as favorite, name, genre, branch, avg_reputation, IsNull(reputation, '0') as reputation, IsNull(memo, 'ーーーー') as memo "
 					+ "from store "
@@ -169,20 +315,20 @@ public class GourmetDAO {
 					+ "on store.number = avg_table.number "
 					+ "group by store.number "
 					+ "order by genre   = ? desc , genre = ? desc , genre = ? desc ";
-
+	
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-
+	
 			// SQL文を完成させる
 			pStmt.setInt(1,  gourmet.getUsers_number());
 			pStmt.setString(2,  user.getFirst());
 			pStmt.setString(3,  user.getSecond());
 			pStmt.setString(4,  user.getThird());
-
-
+	
+	
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
-
-
+	
+	
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 				Gourmet card = new Gourmet(
@@ -195,12 +341,12 @@ public class GourmetDAO {
 						rs.getDouble("avg_reputation"),
 						rs.getInt("reputation"),
 						rs.getString("memo")
-
+	
 						);
 				GourmetList.add(card);
 			}
 		}
-
+	
 		catch (SQLException e) {
 			e.printStackTrace();
 			GourmetList = null;
@@ -221,10 +367,10 @@ public class GourmetDAO {
 				}
 			}
 		}
-
+	
 		// 結果を返す
 		return GourmetList;
-
+	
 	}
 
 	//main.jspで表示するbranchに関連するグルメリストの表示

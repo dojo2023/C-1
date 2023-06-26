@@ -1,11 +1,15 @@
 @charset "UTF-8";
 
 /*gourmet.jspに適用*/
+.serch{
+	margin: 10px auto 20px auto;
+}
 
 table {
 	 border-radius: 30px;
 	border-collapse: collapse;
 	margin: 0 auto;
+	width: 100%;
 }
 
 .tr {
@@ -14,9 +18,9 @@ table {
 
 td {
 	font-weight: 100;
-    padding: 5px 25px 0px 25px;
     border-bottom: 1px solid #555;
     text-align: center;
+    padding: 10px 0 0 0;
 }
 
 
@@ -25,7 +29,7 @@ td {
 	padding: 10px;
     margin: 20px auto;
     margin-top: 3%;
-    max-width: 850px;
+    max-width: 900px;
     font-weight: bold;
     background: #FFF;
     border: solid 3px #9d9d9f;
@@ -46,4 +50,7 @@ td {
     vertical-align: middle;
     font-size: 16px;
 
+}
+.fav{
+	width:5%;
 }

@@ -37,47 +37,34 @@ public class GourmetServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-
-
 		LoginUser user = (LoginUser)session.getAttribute("number");
 		int users_number = user.getNumber();
 		UsersDAO uDAO = new UsersDAO();
 		Users card = uDAO.select_User(user);
+		
+		//デフォルト
+		String kind = "ジャンル";
+		String order = "降順";
+		String genre[] = {"和食","洋食","中華","その他"};
+		int favorite = 2;
+		String keyword = "";
+		
+		request.setAttribute("kind", kind);
+		request.setAttribute("order", order);
+		request.setAttribute("genre", genre);
+		request.setAttribute("favorite", favorite);
+		request.setAttribute("keyword", keyword);
 
 		//グルメリストの表示を行う
 		GourmetDAO GDAO= new GourmetDAO();
 		Gourmet gourmet = new Gourmet();
 		gourmet.setUsers_number(users_number);
-		List<Gourmet> gourmetList= GDAO.select_GourmetList(gourmet,card);
+		List<Gourmet> gourmetList= GDAO.select_GourmetList(gourmet,card,kind,order,genre,favorite,keyword);
 		request.setAttribute("gourmetList", gourmetList);
 
 		// グルメ一覧/検索ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/gourmet.jsp");
 		dispatcher.forward(request, response);
-		//		// リクエストパラメータを取得する
-		//		request.setCharacterEncoding("UTF-8");
-		//		String keyWord = request.getParameter("keyWord");
-		//		int favorite = 0;
-		//		String[] checkedGenre = null;
-		//
-		//		//登録する内容を記述
-		////		String name  = "とんこつ";
-		////		String branch = "株式会社A";
-		////		String genre = "中華";
-		////		int reputation = 4;
-		////		int favorite  = 1;
-		////		String memo = "おいしかった。";
-		//
-		//		// 登録処理を行う
-		//			GourmetDAO gDAO = new GourmetDAO();
-		//
-		//		//Gourmet gourmet = new Gourmet(0,0,name,branch,genre,reputation,favorite,memo);
-		//
-		//		List<Gourmet> gourmetList = gDAO.select(keyWord,favorite,checkedGenre);
-		//		request.setAttribute("cardList", gourmetList);
-		//
-		//		// 登録内容をリクエストスコープに格納する
-		//		request.setAttribute("GOURMETLIST", gourmetList);
 
 	}
 
@@ -85,42 +72,33 @@ public class GourmetServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		リクエストパラメータを取得する
-			request.setCharacterEncoding("UTF-8");
-
-			// セッションスコープにユーザのNumberを格納する
 			HttpSession session = request.getSession();
 			LoginUser user = (LoginUser)session.getAttribute("number");
 			int users_number = user.getNumber();
-			String name = request.getParameter("name");
-			String branch = request.getParameter("branch");
-			String genre = request.getParameter("genre");
-			String reputation_str =  request.getParameter("reputation");
-			int reputation = Integer.valueOf(reputation_str);
-			String favorite_str =  request.getParameter("favorite");
-			int favorite = Integer.valueOf(favorite_str);
-			String memo = request.getParameter("memo");
-
-			//更新処理を行う（storeテーブルに登録）
-			Gourmet list1 = new Gourmet(name, branch, genre);
-			GourmetDAO gDao = new GourmetDAO();
-			int autoIncrementKey = gDao.insert_store(list1);
-
-
-			//更新処理を行う（reputationテーブルに登録）
-			Gourmet list2 = new Gourmet(autoIncrementKey, users_number, reputation, favorite, memo);
-
-			gDao.insert_reputation(list2);
-
-
 			UsersDAO uDAO = new UsersDAO();
 			Users card = uDAO.select_User(user);
+		
+			//リクエストパラメータを取得する
+			request.setCharacterEncoding("UTF-8");
+			String kind = request.getParameter("kind");
+			String order = request.getParameter("order");
+			String[] genre = request.getParameterValues("genre");
+			int favorite = Integer.valueOf(request.getParameter("favorite"));
+			String keyword = request.getParameter("keyword");
+
+			request.setAttribute("kind", kind);
+			request.setAttribute("order", order);
+			request.setAttribute("genre", genre);
+			request.setAttribute("favorite", favorite);
+			request.setAttribute("keyword", keyword);
+			
 			//グルメリストの表示を行う
 			GourmetDAO GDAO= new GourmetDAO();
 			Gourmet gourmet = new Gourmet();
 			gourmet.setUsers_number(users_number);
-			List<Gourmet> gourmetList= GDAO.select_GourmetList(gourmet,card);
+			List<Gourmet> gourmetList= GDAO.select_GourmetList(gourmet,card,kind,order,genre,favorite,keyword);
 			request.setAttribute("gourmetList", gourmetList);
+			
 
 			// 一覧ページにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/gourmet.jsp");
