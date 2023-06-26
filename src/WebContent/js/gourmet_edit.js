@@ -1,17 +1,18 @@
 /**
- * 
+ *
  */
 
 /*お気に入り（★）クリックによるの画像の遷移*/
 let str = "";
 
+/*
 function favorite_change() {
-		if(fav.textContent === '☆'){
+		if("${gourmetRecord.store_number}".textContent === '☆'){
 			str =  "★";
-		document.getElementById('favorite').value = "1";
+		document.getElementById('${gourmetRecord.store_number}').value = "1";
 		}else{
 			str =  "☆";
-		document.getElementById('favorite').value = "0";
+			document.getElementById('${gourmetRecord.store_number}').value = "0";
 		}
-		fav.innerHTML = str;
-}
+		document.getElementById('${gourmetRecord.store_number}').innerHTML = str;
+}*/

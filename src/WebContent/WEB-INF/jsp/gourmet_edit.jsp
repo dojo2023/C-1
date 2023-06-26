@@ -32,7 +32,7 @@
 		</nav>
 	</header>
 
-		
+
 	<div class = "conteinar">
 	<hr size="3" color="#404040">
 	<div id="waku">
@@ -55,8 +55,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td>お気に入り：<input id="favorite" type="hidden" name="favorite" value="${gourmetRecord.favorite}">
-				<button id = "fav" class = "star" type="button" onclick="favorite_change()">☆</button></td>
+				<td>お気に入り：<button type ="button" name="test"  class = "star" value = "${gourmetRecord.favorite}" id = "${gourmetRecord.store_number}" onclick = "favorite_change()">
+					<c:if test="${gourmetRecord.favorite == 1}">★</c:if>
+					<c:if test="${gourmetRecord.favorite == 0}">☆</c:if>
+				</button></td>
 				<th>ジャンル：</th>
 				<td> <select name="genre">
 						<option value="${gourmetRecord.genre}">${gourmetRecord.genre}</option>
@@ -97,7 +99,7 @@
 var branchEl = document.getElementById( "reputation" ) ;
 const calendarbranch_box = ${gourmetRecord.reputation};
 
-window.onload = function(){	　
+window.onload = function(){
 	//自分の評価が既に選択されてる状態にする
 	for(var i=0; i<branchEl.length; i++){
 		if(calendarbranch_box ==  branchEl.options[i].value ) {
@@ -106,6 +108,20 @@ window.onload = function(){	　
 	    }
     }
 
+}
+
+
+
+function favorite_change() {
+	let str = "";
+	if('${gourmetRecord.favorite}' === '1'){
+		str =  "☆";
+	document.getElementById('${gourmetRecord.store_number}').value = "0";
+	}else{
+		str =  "★";
+	document.getElementById('${gourmetRecord.store_number}').value = "1";
+	}
+	document.getElementById('${gourmetRecord.store_number}').innerHTML = str;
 }
 </script>
 <script src='/KSHMY/js/common.js'></script>

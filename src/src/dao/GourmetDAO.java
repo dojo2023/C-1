@@ -241,15 +241,16 @@ public class GourmetDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT store.number, users_number,  favorite, name, genre, branch, avg_reputation, reputation, memo  "
-					+"from store "
-					+"INNER JOIN reputation "
-					+"on store.number = reputation.number "
-					+"JOIN (SELECT number, cast(avg(cast(reputation as decimal)) as decimal(10,1)) as avg_reputation from reputation group by number) as avg_table "
-					+"on store.number = avg_table.number "
-					+"where users_number = ? and branch = ? "
-					+"group by store.number "
-					+"order by genre   = ? desc , genre = ? desc , genre = ? desc ";
+			String sql = "SELECT store.number, users_number,  IsNull(favorite, '0') as favorite, name, genre, branch, avg_reputation, IsNull(reputation, '0') as reputation, IsNull(memo, 'ーーーー') as memo "
+					+ "from store "
+					+ "LEFT OUTER JOIN reputation "
+					+ "on store.number = reputation.number "
+					+ "AND reputation.users_number = ? "
+					+ "JOIN (SELECT number, cast(avg(cast(reputation as decimal)) as decimal(10,1)) as avg_reputation from reputation group by number) as avg_table "
+					+ "on store.number = avg_table.number "
+					+ "where branch = ? "
+					+ "group by store.number "
+					+ "order by genre   = ? desc , genre = ? desc , genre = ? desc ";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
@@ -326,12 +327,16 @@ public class GourmetDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 			// SQL文を準備する
-			String sql ="SELECT store.number, users_number, name, branch, favorite, genre,  reputation, memo "
+			String sql ="SELECT store.number, users_number,  IsNull(favorite, '0') as favorite, name, genre, branch, avg_reputation, IsNull(reputation, '0') as reputation, IsNull(memo, 'ーーーー') as memo "
 					+ "from store "
-					+ "INNER JOIN reputation "
+					+ "LEFT OUTER JOIN reputation "
 					+ "on store.number = reputation.number "
-					+ "where users_number = ? and store.number = ? "
-					+ "order by genre ";
+					+ "AND reputation.users_number = ? "
+					+ "JOIN "
+					+ "(SELECT number, cast(avg(cast(reputation as decimal)) as decimal(10,1)) as avg_reputation from reputation group by number) as avg_table "
+					+ "on store.number = avg_table.number "
+					+ "where store.number = ? "
+					+ "group by store.number ";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
