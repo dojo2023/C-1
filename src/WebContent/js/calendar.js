@@ -36,8 +36,7 @@
             	  //jsEvent.dateStr:日付
 
 				　//カレンダー登録ページが新しく開くプログラムを書く
-                 window.open(
-                 'CalendarRegistServlet?date='+ jsEvent.dateStr+ "T09:00");
+                 window.location= 'CalendarRegistServlet?date='+ jsEvent.dateStr+ "T09:00";
 
              },
 
@@ -48,8 +47,8 @@
 
 
 				//カレンダー編集ページが新しく開くプログラムを書く
-				                 window.open(
-                 'CalendarEditServlet?number='+ jsEvent.event.id);
+				                 window.location=
+                 'CalendarEditServlet?number='+ jsEvent.event.id;
 
              },
 
