@@ -39,14 +39,13 @@
 <div class = "conteinar">
 <hr size="3" color="#404040">
 
-	<div class = "title2">
+<div id=waku>
+<div class = "title-box">
 		<span class="title">Gourumet List</span>
 	</div>
-
-<div id=waku>
 	<table>
 		<tr class = "tr">
-			<th>お気に入り</th>
+			<th></th>
 			<th>ジャンル</th>
 			<th>店名</th>
 			<th>営業所</th>
@@ -60,7 +59,7 @@
 		<tr><td style="display: none"><input type="hidden" name="number"
 					value="${e.store_number}"></td>
 
-				<td><button type ="button" name="test"  value = "${e.favorite}" id = "${e.store_number}" onclick = "fav_change()">
+				<td><button class = "star" type ="button" name="test"  value = "${e.favorite}" id = "${e.store_number}" onclick = "fav_change()">
 					<c:if test="${e.favorite == 1}">★</c:if>
 					<c:if test="${e.favorite == 0}">☆</c:if>
 				</button></td>
