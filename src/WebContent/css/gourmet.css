@@ -3,6 +3,7 @@
 /*gourmet.jspに適用*/
 .serch{
 	margin: 10px auto 20px auto;
+	font-weight: normal;
 }
 
 table {
@@ -51,6 +52,16 @@ td {
     font-size: 16px;
 
 }
+.checkbox{
+	accent-color: #222;
+}
+
 .fav{
 	width:5%;
+}
+.normal{
+	padding: 2px;
+}
+select{
+	height: 20px;
 }

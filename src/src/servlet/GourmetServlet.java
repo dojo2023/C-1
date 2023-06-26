@@ -62,6 +62,9 @@ public class GourmetServlet extends HttpServlet {
 		List<Gourmet> gourmetList= GDAO.select_GourmetList(gourmet,card,kind,order,genre,favorite,keyword);
 		request.setAttribute("gourmetList", gourmetList);
 
+		boolean[] genre_disp = {true, true, true, true};
+		request.setAttribute("genre", genre_disp);
+		
 		// グルメ一覧/検索ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/gourmet.jsp");
 		dispatcher.forward(request, response);
@@ -98,6 +101,21 @@ public class GourmetServlet extends HttpServlet {
 			gourmet.setUsers_number(users_number);
 			List<Gourmet> gourmetList= GDAO.select_GourmetList(gourmet,card,kind,order,genre,favorite,keyword);
 			request.setAttribute("gourmetList", gourmetList);
+			
+			//どのジャンルが選ばれているかのフラグ
+			boolean[] genre_disp = {false, false, false, false};
+			for (String item : genre) {//[9]
+	            if(item.equals("和食")) {
+	            	genre_disp[0] = true;
+	            }else if(item.equals("洋食")) {
+	            	genre_disp[1] = true;
+	            }else if(item.equals("中華")) {
+	            	genre_disp[2] = true;
+	            }else {
+	            	genre_disp[3] = true;
+	            }
+	        }
+			request.setAttribute("genre", genre_disp);
 			
 
 			// 一覧ページにフォワードする

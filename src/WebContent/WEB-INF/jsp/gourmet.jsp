@@ -53,24 +53,25 @@
 	                    <option value="営業所">営業所</option>
 	                    <option value="総合評価">総合評価</option>
 	                    <option value="個人評価">個人評価</option>
-	                </select>&emsp;
+	                </select>&ensp;
 	                <select id="order" name="order">
 	                    <option value="降順">降順</option>
 	                    <option value="昇順">昇順</option>
 	                </select>
+	                &emsp;
 <!-- 	             </div>
 	           	 <div class = "bottom"> -->
-	                <input type="checkbox" name="genre" value="和食" checked>和食 
-	                <input type="checkbox" name="genre" value="洋食" checked>洋食 
-	                <input type="checkbox" name="genre" value="中華" checked>中華 
-	                <input type="checkbox" name="genre" value="その他" checked>その他 
+	                <input class = "checkbox" type="checkbox" name="genre" value="和食" 	<c:if test="${genre[0]}">checked</c:if> >和食 
+	                <input class = "checkbox" type="checkbox" name="genre" value="洋食" 	<c:if test="${genre[1]}">checked</c:if> >洋食 
+	                <input class = "checkbox" type="checkbox" name="genre" value="中華" 	<c:if test="${genre[2]}">checked</c:if> >中華 
+	                <input class = "checkbox" type="checkbox" name="genre" value="その他" 	<c:if test="${genre[3]}">checked</c:if> >その他 
 	                &emsp;お気に入り
 	                <select id="favorite" name="favorite">
 						<option value=2>全て</option>
 						<option value=1>★</option>
 						<option value=0>☆</option>
 					</select>
-
+					&ensp;
 	                <input type="text" name="keyword" value="${keyword}" placeholder="単一キーワードを入力" >
 					<input class="sort-btn" name="sort" type="submit" value="検索">
 				</div>
@@ -153,21 +154,6 @@
  			break;
  	    }
      }
- 	
- 	for(var str in ${genre}){
-			console.log(str);
- 	 	    
- 	    } 
- 	
-/*   	//ジャンルのチェックボックス選択
- 	for (var i = 0; i < elements.length; i++){
- 		for(var str in ${genre}){
- 	 	    if (str === elements.item(i). value) {
-	 	  	  elements.item(i).checked = true;
-	 	  	 break;
-	 	    } 
- 		}
- 	}  */
  }
  
 	let str = "";
