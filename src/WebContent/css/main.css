@@ -39,7 +39,7 @@
 /*見出し*/
 .title-box{
 	text-align: center;
-	margin-top: 20px;
+	margin-bottom: 35px;
 }
 
 /*激励メッセージ背景色*/
@@ -90,7 +90,7 @@
 
 /*角が丸い四角で囲んだ範囲*/
 #waku {
-	padding: 0.5em 3em;
+	padding: 1.5em 3em;
 	margin-top: 20px;
 }
 
@@ -101,6 +101,7 @@
 
 }
 
+/*背景画像*/
 #today_weather_image{
 	opacity: 0.4;
 	z-index: 10;
