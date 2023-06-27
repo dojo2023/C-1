@@ -70,7 +70,14 @@
 	display:none !important;
 }
 
-#glist {
+table{
+	margin:auto;
+	width:100%;
+	}
+
+.glist {
+		display:block;
+		text-align: center;
 		display:block;
 }
 
