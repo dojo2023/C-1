@@ -16,7 +16,7 @@
 <nav>
     <ul class="gnav_wrap">
     	 <li class="main_menu">
-    	 	<a href ="/KSHMY/MainServlet" ><img src = "/KSHMY/img/KMlogo.jpeg" width="100" height="100" alt="KSHMY"></a>
+    	 	<a href ="/KSHMY/MainServlet" ><img src = "/KSHMY/img/KMlogo.jpeg" width="150" height="100" alt="KSHMY"></a>
     	</li>
         <li class="main_menu">
             <a href="/KSHMY/MainServlet">メイン</a>
@@ -46,7 +46,13 @@
 	<div class = flex>
 		<div class = "syuzo">
 			<p class="text-background">今日の激励メッセージ</p><button id = "tr1" class = "triangle" type="button" onclick="msg()">▲</button><br>
-			<div id = "msg" class = "open">${msg}</div>
+			<div id = "msg" class = "open">
+				<div class = "box">
+					<div id = "msg-top"></div>
+					<div id = "msg-middle">${msg}</div>
+					<div id = "msg-bottom"></div>
+				</div>
+			</div>
 		</div>
 		<div class = "allSchedule">
 		<div id="waku">

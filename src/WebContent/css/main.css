@@ -18,7 +18,24 @@
 	width: 20%;
 	text-align: start;
 	margin-top : 2em;
+}#msg-top{
+	min-width: 90px;
+    height: 20px;
+	background-image: url(/KSHMY/img/syuzo_top.png);
+	background-size: 90px;
 }
+#msg-middle{
+	background-image: url(/KSHMY/img/syuzo.png);
+	background-size: 90px;
+}
+#msg-bottom{
+	min-width: 90px;
+    height: 20px;
+	background-image: url(/KSHMY/img/syuzo_bottom.png);
+	background-size: 90px;
+}
+
+
 .allSchedule{
 	 width:60%;
 
