@@ -11,11 +11,12 @@
 <link rel = "stylesheet" href = "/KSHMY/css/user_edit.css">
 </head>
 <body>
+	<div class="haikei">
 	<h1><a href="/KSHMY/MainServlet"><img src="/KSHMY/img/KMlogo.jpeg" width="150" height="100" alt="KM"></a></h1>
+	</div>
 
-
+		<hr size="3" color="#404040">
 <div class = "conteinar">
-<hr size="3" color="#404040">
 	<div class="title-box" id="title-box">
 		<span class="title" id="uie">User information edition</span>
 	</div>

@@ -10,10 +10,12 @@
 <link rel = "stylesheet" href = "/KSHMY/css/user_regist.css">
 </head>
 <body>
+	<div class="haikei">
 	<h1><img src="/KSHMY/img/KMlogo.jpeg" width="150" height="100" alt="KM"></h1>
+	</div>
 
+		<hr size="3" color="#404040">
 <div class = "conteinar">
-<hr size="3" color="#404040">
 	<div class="title-box">
 		<span class="title">User registration</span>
 	</div>

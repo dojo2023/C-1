@@ -12,7 +12,7 @@
 </head>
 <body>
  <header>
-<nav>
+<nav class="haikei">
     <ul class="gnav_wrap">
     	 <li class="main_menu">
     	 	<a href ="/KSHMY/MainServlet" ><img src = "/KSHMY/img/KMlogo.jpeg" width="150" height="100" alt="KSHMY"></a>
@@ -34,10 +34,11 @@
 		<li class="main_menu"><a href ="/KSHMY/UserEditServlet" >ユーザー</a></li>
     </ul>
 </nav>
+		<hr size="3" color="#404040">
 </header>
 
 <div class = "conteinar">
-<hr size="3" color="#404040">
+
 
 <div id=waku>
 <div class = "title-box">
@@ -46,10 +47,10 @@
 	<form method="POST" action="/KSHMY/GourmetServlet">
 		<div class = "search">
 	           	 <div class = "top">
-	                <input class = "checkbox" type="checkbox" name="genre" value="和食" 	<c:if test="${genre[0]}">checked</c:if> >和食 
-	                <input class = "checkbox" type="checkbox" name="genre" value="洋食" 	<c:if test="${genre[1]}">checked</c:if> >洋食 
-	                <input class = "checkbox" type="checkbox" name="genre" value="中華" 	<c:if test="${genre[2]}">checked</c:if> >中華 
-	                <input class = "checkbox" type="checkbox" name="genre" value="その他" 	<c:if test="${genre[3]}">checked</c:if> >その他 
+	                <input class = "checkbox" type="checkbox" name="genre" value="和食" 	<c:if test="${genre[0]}">checked</c:if> >和食
+	                <input class = "checkbox" type="checkbox" name="genre" value="洋食" 	<c:if test="${genre[1]}">checked</c:if> >洋食
+	                <input class = "checkbox" type="checkbox" name="genre" value="中華" 	<c:if test="${genre[2]}">checked</c:if> >中華
+	                <input class = "checkbox" type="checkbox" name="genre" value="その他" 	<c:if test="${genre[3]}">checked</c:if> >その他
 	                &emsp;お気に入り
 	                <select id="favorite" name="favorite">
 						<option value=2>全て</option>
@@ -107,7 +108,7 @@
 				<td class = "ave_rep">${e.avg_reputation}</td>
 				<td class = "rep">${e.reputation}</td>
 				<td class = "memo">${e.memo}</td>
-				
+
 				<td><input class="update normal" id="update" name="update" type="submit" value="編集"></td></tr>
 		</form>
 	</c:forEach>
@@ -122,7 +123,7 @@
 </body>
 
  <script type="text/javascript">
- 
+
  /* チェックボックス */
  var elements = document.getElementsByName('genre');
 
@@ -134,7 +135,7 @@
 
  window.onload = onLoad;
  	function onLoad(){
- 		
+
 	//並び替え項目プルダウンの選択
  	for(var i=0; i<kindEl.length; i++){
  		if("${kind}" ==  kindEl.options[i].value ) {
@@ -157,7 +158,7 @@
  	    }
      }
  }
- 
+
 	let str = "";
 	function fav_change() {
 		if(test.value === '0'){
@@ -169,8 +170,8 @@
 		}
 		document.getElementsByName('test').innerHTML = str;
 	}
-	
-	
+
+
 </script>
 <script src='/KSHMY/js/common.js'></script>
 </html>

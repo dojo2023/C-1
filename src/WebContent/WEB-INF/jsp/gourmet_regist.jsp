@@ -11,7 +11,7 @@
 </head>
 <body>
 	<header>
-		<nav>
+		<nav class="haikei">
 			<ul class="gnav_wrap">
 				<li class="main_menu"><a href="/KSHMY/MainServlet"><img
 						src="/KSHMY/img/KMlogo.jpeg" width="150" height="100" alt="KSHMY"></a>
@@ -29,10 +29,11 @@
 				<li class="main_menu"><a href="/KSHMY/UserEditServlet">ユーザー</a></li>
 			</ul>
 		</nav>
+			<hr size="3" color="#404040">
 	</header>
 
 <div class = "conteinar">
-<hr size="3" color="#404040">
+
 <div id="waku">
 	<div class="title-box" id="title-box">
 		<span class="title">Gourmet Registration</span>
@@ -46,7 +47,7 @@
 				<td>店名：
 				<input type="text" name="name"  value=""></td>
 				<th>営業所：</th>
-				<td class="right"> 
+				<td class="right">
 						<select id="select_branch" name="branch">
 						<c:forEach var="e" items="${branch}">
 							<option value="${e}">${e}</option>

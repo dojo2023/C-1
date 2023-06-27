@@ -34,10 +34,8 @@
 			<li class="main_menu"><a href ="/KSHMY/UserEditServlet" >ユーザー</a></li>
 		</ul>
 		</nav>
-	</header>
-		<div class = "conteinar">
 			<hr size="3" color="#404040">
-		</div>
+	</header>
 
 	<div id=waku>
 		<div id=title1>
