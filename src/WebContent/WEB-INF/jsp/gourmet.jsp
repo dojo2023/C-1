@@ -44,8 +44,9 @@
 		<span class="title">Gourumet List</span>
 	</div>
 	<form method="POST" action="/KSHMY/GourmetServlet">
-		<div class = "serch">
+		<div class = "search">
 	            <div class="top">
+	            	<div class="search-left">
 	                並び替え
 	                <select id="kind" name="kind">
 	                    <option value="ジャンル">好きなジャンル</option>
@@ -58,9 +59,13 @@
 	                    <option value="降順">降順</option>
 	                    <option value="昇順">昇順</option>
 	                </select>
-	                &emsp;
-<!-- 	             </div>
-	           	 <div class = "bottom"> -->
+	                </div>
+					<div class="search-right">
+	                <input class="search"type="text" name="keyword" value="${keyword}" placeholder="単一キーワードを入力" >
+					<input class="search-btn" name="search-btn" type="submit" value="">
+	                </div>
+ 	             </div>
+	           	 <div class = "bottom">
 	                <input class = "checkbox" type="checkbox" name="genre" value="和食" 	<c:if test="${genre[0]}">checked</c:if> >和食 
 	                <input class = "checkbox" type="checkbox" name="genre" value="洋食" 	<c:if test="${genre[1]}">checked</c:if> >洋食 
 	                <input class = "checkbox" type="checkbox" name="genre" value="中華" 	<c:if test="${genre[2]}">checked</c:if> >中華 
@@ -71,9 +76,6 @@
 						<option value=1>★</option>
 						<option value=0>☆</option>
 					</select>
-					&ensp;
-	                <input type="text" name="keyword" value="${keyword}" placeholder="単一キーワードを入力" >
-					<input class="sort-btn" name="sort" type="submit" value="検索">
 				</div>
 			</div>
 	</form>
@@ -111,11 +113,10 @@
 	</table>
 
 </div>
-
+</div>
 <hr>
  <div id="footer">
     <p>&copy;Copyright KSHMY. All rights reserved.</p>
- </div>
 </div>
 </body>
 

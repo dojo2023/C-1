@@ -40,14 +40,31 @@ from store INNER JOIN reputation on store.number = reputation.number
 GROUP BY store.number
 
 /*グルメ一覧のテーブルを表示(ジャンル順)*/
-SELECT store.number, users_number,  IsNull(favorite, '0') as favorite, name, genre, branch, avg_reputation, IsNull(reputation, '0') as reputation, IsNull(memo, 'ーーーー') as memo 
-from store 
-LEFT OUTER JOIN reputation 
-on store.number = reputation.number
+SELECT store.number
+　　　, users_numbe
+　　　, favorite
+　　　, name
+　　　, genre
+　　　, branch
+　　　, avg_reputation
+　　　, reputation
+　　　, IsNull(memo, 'ーーーー') as memo 
+FROM store 
+LEFT JOIN reputation 
+ON store.number = reputation.number
 AND reputation.users_number = 3
-JOIN 
-(SELECT number, cast(avg(cast(reputation as decimal)) as decimal(10,1)) as avg_reputation from reputation group by number) as avg_table 
-on store.number = avg_table.number 
+INNER JOIN (
+	SELECT number
+　　　　　　　, cast(avg(cast(reputation as decimal)) as decimal(10,1))　as avg_reputation
+	FROM reputation
+	GROUP BY number
+	　　) as avg_table 
+ON store.number = avg_table.number 
+WHERE store.branch LIKE ? 
+OR store.name LIKE ? 
+OR reputation.memo LIKE ?;
+
+
 group by store.number 
 order by genre  = '中華' desc , genre = '和食' desc, genre = '洋食' desc /*第3位、第2位、第1位*/
 
@@ -56,7 +73,8 @@ SELECT store.number, users_number,  favorite, name, genre, branch, avg_reputatio
 from store 
 INNER JOIN reputation
 on store.number = reputation.number
-JOIN (SELECT number, cast(avg(cast(reputation as decimal)) as decimal(10,1)) as avg_reputation from reputation group by number) as avg_table
+JOIN 
+(SELECT number, cast(avg(cast(reputation as decimal)) as decimal(10,1)) as avg_reputation from reputation group by number) as avg_table
 on store.number = avg_table.number
 where users_number = 3 and branch = 'A営業所' 
 group by store.number 

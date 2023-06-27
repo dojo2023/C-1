@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.CalendarDAO;
 import dao.GourmetDAO;
 import dao.UsersDAO;
 import model.Gourmet;
@@ -38,8 +39,8 @@ public class GourmetRegistServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//Gourmetテーブルから今までに登録された所属地の一覧を持ってくる
-		GourmetDAO gourmetDAO = new GourmetDAO();
-		List<String> branch = gourmetDAO.select_branch();
+		CalendarDAO cDAO = new CalendarDAO();
+		List<String> branch = cDAO.select_branch();
 		request.setAttribute("branch", branch);
 
 		// グルメ登録ページにフォワードする
@@ -68,7 +69,7 @@ public class GourmetRegistServlet extends HttpServlet {
 		String favorite_str =  request.getParameter("favorite");
 		int favorite = Integer.valueOf(favorite_str);
 		String memo = request.getParameter("memo");
-		
+
 		//登録処理を行う（storeテーブルに登録）
 		Gourmet list1 = new Gourmet(name, branch, genre);
 		GourmetDAO gDao = new GourmetDAO();
@@ -80,7 +81,7 @@ public class GourmetRegistServlet extends HttpServlet {
 		//登録処理を行う（reputationテーブルに登録）
 		Gourmet list2 = new Gourmet(autoIncrementKey, users_number, reputation, favorite, memo);
 		gDao.insert_reputation(list2);
-		
+
 		//グルメリストに移動（リダイレクト）
 		response.sendRedirect("/KSHMY/GourmetServlet");
 	}

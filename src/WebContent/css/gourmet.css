@@ -1,9 +1,40 @@
 @charset "UTF-8";
 
 /*gourmet.jspに適用*/
-.serch{
-	margin: 10px auto 20px auto;
+.search{
+	margin: 10px auto 15px auto;
 	font-weight: normal;
+}
+.top{
+	text-align: center;
+	display:flex;
+	margin:0 auto;
+	justify-content: center;
+}
+
+.bottom{
+	transform: scale(0.9);
+	height: 20px;
+    margin-top: 5px;
+    text-align: center;
+}
+.search-right{
+	border-bottom: solid 1px #404040;
+	margin-left: 20px;
+}
+input[type=text]{
+	border:none;
+	margin: 0px;
+}
+
+.search-btn{
+	width:17px;
+	height:17px;
+	background: transparent;
+	 border: none;
+    background-image: url(/KSHMY/img/search.png);
+	background-size: 17px;
+    vertical-align: middle;
 }
 
 table {
@@ -35,7 +66,7 @@ td {
     background: #FFF;
     border: solid 3px #9d9d9f;
     border-radius: 10px;
-    height: 350px;
+    height: 380px;
     overflow: scroll;
     color: #3a3535;
 }

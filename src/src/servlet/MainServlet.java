@@ -86,17 +86,23 @@ public class MainServlet extends HttpServlet {
 		request.setAttribute("msg",msg);
 
 		int users_number = user.getNumber();
-
 		Users card = uDAO.select_User(user);
 
-		String branch = "A営業所";
-
-		//グルメリストの表示を行う
 		GourmetDAO GDAO= new GourmetDAO();
+		//		todayList
+//
+		for(Calendar i : todayList) {
+		String branch = i.getBranch();
+
 		Gourmet gourmet = new Gourmet();
 		gourmet.setUsers_number(users_number);
 		List<Gourmet> gourmetList= GDAO.select_mainGourmetList(gourmet, card, branch);
-		request.setAttribute("gourmetList", gourmetList);
+		i.setGourmetList (gourmetList);
+		}
+		//グルメリストの表示を行う
+//
+
+		request.setAttribute("todayList", todayList);
 
 		// メインページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");

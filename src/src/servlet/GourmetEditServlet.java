@@ -80,7 +80,7 @@ public class GourmetEditServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		LoginUser user = (LoginUser)session.getAttribute("number");
 		int users_number = user.getNumber();
-		String store_number_str =  request.getParameter("number");
+		String store_number_str =  request.getParameter("store_number");
 		int store_number = Integer.valueOf(store_number_str);
 		String reputation_str =  request.getParameter("reputation");
 		int reputation = Integer.valueOf(reputation_str);
@@ -94,21 +94,27 @@ public class GourmetEditServlet extends HttpServlet {
 
 		//更新処理を行う
 		GourmetDAO gDAO= new GourmetDAO();
+
 		Gourmet list = new Gourmet(reputation,favorite,memo);
 
 		//store.numberを持ってこないと実行できない
 		list.setStore_number(store_number);
 		list.setUsers_number(users_number);
+		list.setNumber(store_number);
 
 		System.out.println(store_number);
 		System.out.println(users_number);
 
+//		SELECT文を用意し編集したいレコードを持ってくる
+		Gourmet gourmetRecord= gDAO.select_record(list);
+		if (gourmetRecord.getUsers_number()!=0) {
+			gDAO.update_reputation(list);
+		}else{
+			 gDAO.insert_reputation(list);
+		}
 
-		gDAO.update_reputation(list);
 
-
-		request.setAttribute("list", list);
-
+		//グルメリストを表示
 		GourmetDAO GDAO= new GourmetDAO();
 		Gourmet gourmet = new Gourmet();
 		gourmet.setUsers_number(users_number);
