@@ -82,7 +82,7 @@
 							メモ：
 								<textarea class="textarean"  name="memo"></textarea>
 						<br>
-							<input id=tyuuou name ="btn" class="normal" type="submit" name="SUBMIT" value="登録" >
+							<input name ="btn" class="normal" type="submit" name="SUBMIT" value="登録" >
 
 		</form>
 	</div>
