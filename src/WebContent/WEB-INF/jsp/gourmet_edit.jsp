@@ -15,7 +15,7 @@
 		<nav>
 			<ul class="gnav_wrap">
 				<li class="main_menu"><a href="/KSHMY/MainServlet"><img
-						src="/KSHMY/img/KMlogo.jpeg" width="100" height="100" alt="KSHMY"></a>
+						src="/KSHMY/img/KMlogo.jpeg" width="150" height="100" alt="KSHMY"></a>
 				</li>
 				<li class="main_menu"><a href="/KSHMY/MainServlet">メイン</a></li>
 				<li class="main_menu"><a href="/KSHMY/CalendarServlet">カレンダー</a>
@@ -45,15 +45,17 @@
 			<tr>
 				<td style="display: none">
 				<input type="hidden" name="store_number"  value="${gourmetRecord.store_number}"></td>
-				<td class="left">
+				<td>
 				店名：
 				<input class="name" type="text" name="name" value="${gourmetRecord.name}" readonly></td>
 				<th>営業所：</th>
-				<td> <input type ="text"  id="select_branch" name="branch" value="${gourmetRecord.branch}"  readonly>
+				<td> 
+				<input type ="text"  id="select_branch" name="branch" value="${gourmetRecord.branch}"  readonly>
 				</td>
 			</tr>
 			<tr>
-				<td>お気に入り：<button type ="button"   class = "star" id = "favorite_btn"  onclick = "favorite_change()">
+				<td>お気に入り：
+				<button type ="button"   class = "star" id = "favorite_btn"  onclick = "favorite_change()">
 					<c:if test="${gourmetRecord.favorite == 1}">★</c:if>
 					<c:if test="${gourmetRecord.favorite == 0}">☆</c:if>
 				</button>
@@ -81,9 +83,10 @@
 					<td colspan="3"><textarea class="textarean" name="memo">${gourmetRecord.memo}</textarea></td>
 			</tr>
 		</table>
-
-		<input class="regist" id="update" name="update" type="submit"
+		<div class="button">
+		<input class="normal" id="update" name="update" type="submit"
 			value="更新">
+		</div>
 	</form>
 	</div>
 	</div>

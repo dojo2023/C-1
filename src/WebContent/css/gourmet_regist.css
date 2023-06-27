@@ -1,12 +1,20 @@
 @charset "UTF-8";
 
-.regist{
-	display: inline-block;
-    margin: 15px 0 15px 300px;
+.button{
+	text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.normal{
     width: 80px;
     height: 40px;
-    font-size: 18px;
-    border-radius: 10px;
+	font-size: 18px;
+	margin: 15px 0;
+}
+
+.right{
+	/*グルメ編集のテキストボックスとレイアウトを合わせる（強引）*/
+	width:203.26px;
 }
 
 table{
@@ -25,10 +33,6 @@ input[type="text"]{
 .title-box{
 	text-align: center;
 	margin: 10px 0;
-}
-.conteinar{
-	max-width: 1100px;
-	margin:0 auto;
 }
 
 form {

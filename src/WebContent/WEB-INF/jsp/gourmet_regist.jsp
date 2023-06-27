@@ -14,7 +14,7 @@
 		<nav>
 			<ul class="gnav_wrap">
 				<li class="main_menu"><a href="/KSHMY/MainServlet"><img
-						src="/KSHMY/img/KMlogo.jpeg" width="100" height="100" alt="KSHMY"></a>
+						src="/KSHMY/img/KMlogo.jpeg" width="150" height="100" alt="KSHMY"></a>
 				</li>
 				<li class="main_menu"><a href="/KSHMY/MainServlet">メイン</a></li>
 				<li class="main_menu"><a href="/KSHMY/CalendarServlet">カレンダー</a>
@@ -43,9 +43,11 @@
 		action="/KSHMY/GourmetRegistServlet">
 		<table>
 			<tr>
-				<td>店名：<input type="text" name="name"  value=""></td>
+				<td>店名：
+				<input type="text" name="name"  value=""></td>
 				<th>営業所：</th>
-				<td> <select id="select_branch" name="branch">
+				<td class="right"> 
+						<select id="select_branch" name="branch">
 						<c:forEach var="e" items="${branch}">
 							<option value="${e}">${e}</option>
 						</c:forEach>
@@ -57,7 +59,7 @@
 				<td>お気に入り： <input type = "hidden" id = "favorite" name="favorite"  value=0>
 						<button id = "fav" class = "star" type="button" onclick="favorite_change()">☆</button></td>
 				<th>ジャンル：</th>
-				<td> <select name="genre">
+				<td  class="right"> <select name="genre">
 						<option value="和食">和食</option>
 						<option value="洋食">洋食</option>
 						<option value="中華">中華</option>
@@ -75,19 +77,17 @@
 						<option value=1>1 もう行かない</option>
 				</select></td>
 			</tr>
-			<tr><!--
-				<td><input class="memo" type="text" name="memo" value=""
-					placeholder="メモ"></td>
-					-->
+			<tr>
 					<td>メモ：</td>
 			</tr>
 			<tr>
 					<td colspan="3"><textarea class="textarean" name="memo"></textarea></td>
 			</tr>
 		</table>
-
-		<input class="regist" id="regist" name="regist" type="submit"
+		<div class="button">
+		<input class="normal" id="regist" name="regist" type="submit"
 			value="登録">
+		</div>
 	</form>
 	</div>
 	</div>
