@@ -9,12 +9,19 @@
 li{
     list-style: none;
 }
+
+/* ヘッダー　nav*/
+.haikei {
+	background-color: #e3e3e3;
+}
+
 .gnav_wrap{
 	z-index:100;
     max-width:1000px;
     margin:0 auto;
     display: flex;
     justify-content: center;
+    background-color: #e3e3e3;
 }
 .main_menu {
     background: white;
@@ -25,6 +32,7 @@ li{
     vertical-align: middle;
     margin: auto 0;
     position: relative;
+    background-color: #e3e3e3;
 }
 .sub_menu{
     position: absolute;

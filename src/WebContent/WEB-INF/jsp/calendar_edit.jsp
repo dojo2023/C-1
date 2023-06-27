@@ -12,7 +12,7 @@
 </head>
 <body>
 	<header>
-		<nav>
+		<nav class="haikei">
 		<ul class="gnav_wrap">
 		<li class="main_menu">
 			<a href ="/KSHMY/MainServlet" ><img src = "/KSHMY/img/KMlogo.jpeg" width="150" height="100" alt="KSHMY"></a>
@@ -97,5 +97,12 @@
 
 	</div>
 </body>
+			<br>
+			<br>
+			<hr>
+			<div id="footer">
+				 <p>&copy;Copyright KSHMY. All rights reserved.</p>
+			</div>
+
 	<script src='/KSHMY/js/calendar_edit.js'></script>
 </html>

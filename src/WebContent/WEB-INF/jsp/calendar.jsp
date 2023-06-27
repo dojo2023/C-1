@@ -19,7 +19,7 @@
 </head>
 <body>
  <header>
-<nav>
+<nav class="haikei">
     <ul class="gnav_wrap">
     	 <li class="main_menu">
     	 	<a href ="/KSHMY/MainServlet" ><img src = "/KSHMY/img/KMlogo.jpeg" width="150" height="100" alt="KSHMY"></a>
@@ -43,10 +43,10 @@
     	</div>
     </ul>
 </nav>
+		<hr size="3" color="#404040">
 </header>
 
 <div class = "conteinar">
-	<hr size="3" color="#404040">
 	<%-- <c:forEach var="c" items="${cardlist}">
 	${c.number}
 	</c:forEach> --%>
@@ -65,6 +65,15 @@
 	<div id='calendar'></div>
 </div>
 </body>
+			<br>
+			<br>
+			<hr>
+			<div id="footer">
+				<p>&copy;Copyright KSHMY. All rights reserved.</p>
+			</div>
+
+
+
 <!--fullcalendarとtippyを使えるようにする(popperはtippyで必要)-->
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://unpkg.com/tippy.js@6"></script>
