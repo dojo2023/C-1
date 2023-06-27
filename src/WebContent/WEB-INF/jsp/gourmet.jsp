@@ -87,7 +87,8 @@
 			<th>営業所</th>
 			<th>総合評価</th>
 			<th>個人評価</th>
-			<th>メモ</th>
+			<th >メモ</th>
+			<th ></th>
 		</tr>
 
 	<c:forEach var="e" items="${gourmetList}">

@@ -55,6 +55,9 @@ td {
     text-align: center;
     padding: 10px 0 0 0;
 }
+th{
+	border-bottom: 1.5px solid #555;
+}
 
 
 /* 囲い枠線 */
