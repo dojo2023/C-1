@@ -11,7 +11,7 @@
 <link rel = "stylesheet" href = "/KSHMY/css/user_edit.css">
 </head>
 <body>
-	<h1><a href="/KSHMY/MainServlet"><img src="/KSHMY/img/KMlogo.jpeg" width="100" height="100" alt="KM"></a></h1>
+	<h1><a href="/KSHMY/MainServlet"><img src="/KSHMY/img/KMlogo.jpeg" width="150" height="100" alt="KM"></a></h1>
 
 
 <div class = "conteinar">
