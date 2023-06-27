@@ -17,7 +17,8 @@
 	const ido = document.getElementById('ido').value;
 	const keido = document.getElementById('keido').value;
 
-	const url = 'https://api.open-meteo.com/v1/jma?latitude='+ ido +'&longitude='+ keido +'&hourly=temperature_2m,weathercode&daily=weathercode&current_weather=true&past_days=3&timezone=Asia%2FTokyo';
+	//const url = 'https://api.open-meteo.com/v1/jma?latitude='+ ido +'&longitude='+ keido +'&hourly=temperature_2m,weathercode&daily=weathercode&current_weather=true&past_days=3&timezone=Asia%2FTokyo';
+	const url = 'https://api.open-meteo.com/v1/forecast?latitude='+ ido +'&longitude='+ keido +'&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo';
 	console.log(url);
 
 	fetch(url)	//天気情報取得
@@ -48,9 +49,13 @@
 		weather += weather_select(json,now); 	//下の方でweather_selectメソッドを定義してる
 	    document.getElementById('today_weather').innerHTML = weather;
 
-		//現在の気温
-		let tempreture = ("気温:"+json.current_weather.temperature);
-		//document.getElementById('today_temp').innerHTML = tempreture;
+		//本日の最高気温
+		let max_tempreture = ("最高気温:"+json.daily.temperature_2m_max[now]);
+		document.getElementById('today_temp_max').innerHTML = max_tempreture;
+
+		//本日の最低気温
+		let min_tempreture = ("最低気温:"+json.daily.temperature_2m_min[now]);
+		document.getElementById('today_temp_min').innerHTML = min_tempreture;
 
 		//翌日の分
 		let nextday =(json.daily.time[now+1]);
@@ -58,8 +63,17 @@
 	    let nextday_weather = "天気予報：";
 		nextday_weather += weather_select(json,now+1); 	//下の方でweather_selectメソッドを定義してる
 	    document.getElementById('nextday_weather').innerHTML = nextday_weather;
-		let nextday_temp = ("気温:"+json.current_weather.temperature);  //仮　翌日の気温は存在しない（同じ時間帯の次の日を選択する）
-		//document.getElementById('nextday_temp').innerHTML = nextday_temp;
+
+	    //翌日の最高気温
+		let nextday_max_temp = ("最高気温:"+json.daily.temperature_2m_max[now+1]);
+		document.getElementById('nextday_temp_max').innerHTML = nextday_max_temp;
+
+		//翌日の最低気温
+		let nextday_min_temp = ("最低気温:"+json.daily.temperature_2m_min[now+1]);
+		document.getElementById('nextday_temp_min').innerHTML = nextday_min_temp;
+
+		/*let nextday_min_temp = ("気温:"+json.current_weather.temperature); */ //仮　翌日の気温は存在しない（同じ時間帯の次の日を選択する）
+		//document.getElementById('nextday_temp').innerHTML = nextday_min_temp;
 
 
   //weatherコードに応じた天気(背景)
