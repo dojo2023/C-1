@@ -88,7 +88,9 @@
 .syuzo, .allSchedule, .weather{
 	margin: 10px;
 }
-
+.box{
+	display:flex;
+}
 .syuzo{
 	width: 20%;
 	text-align: start;
@@ -100,7 +102,7 @@
 	background-size: 90px;
 }
 #msg-middle{
-	background-image: url(/KSHMY/img/syuzo.png);
+	background-image: url(/KSHMY/img/syuzo_middle.png);
 	background-size: 90px;
 }
 #msg-bottom{
