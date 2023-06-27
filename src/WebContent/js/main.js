@@ -50,11 +50,11 @@
 	    document.getElementById('today_weather').innerHTML = weather;
 
 		//本日の最高気温
-		let max_tempreture = ("最高気温:"+json.daily.temperature_2m_max[now]);
+		let max_tempreture = ("最高気温："+json.daily.temperature_2m_max[now]);
 		document.getElementById('today_temp_max').innerHTML = max_tempreture;
 
 		//本日の最低気温
-		let min_tempreture = ("最低気温:"+json.daily.temperature_2m_min[now]);
+		let min_tempreture = ("最低気温："+json.daily.temperature_2m_min[now]);
 		document.getElementById('today_temp_min').innerHTML = min_tempreture;
 
 		//翌日の分
@@ -65,11 +65,11 @@
 	    document.getElementById('nextday_weather').innerHTML = nextday_weather;
 
 	    //翌日の最高気温
-		let nextday_max_temp = ("最高気温:"+json.daily.temperature_2m_max[now+1]);
+		let nextday_max_temp = ("最高気温："+json.daily.temperature_2m_max[now+1]);
 		document.getElementById('nextday_temp_max').innerHTML = nextday_max_temp;
 
 		//翌日の最低気温
-		let nextday_min_temp = ("最低気温:"+json.daily.temperature_2m_min[now+1]);
+		let nextday_min_temp = ("最低気温："+json.daily.temperature_2m_min[now+1]);
 		document.getElementById('nextday_temp_min').innerHTML = nextday_min_temp;
 
 		/*let nextday_min_temp = ("気温:"+json.current_weather.temperature); */ //仮　翌日の気温は存在しない（同じ時間帯の次の日を選択する）

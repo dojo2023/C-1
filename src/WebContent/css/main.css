@@ -141,7 +141,8 @@
 	display: inline-block;
 	font-weight: bold;
 	background:rgba(255,255,255,0.6);
-	 margin-left: 48px;
+	margin-left: 52px;
+	padding: 2px 5px;
 }
 
 #msg{
@@ -151,9 +152,14 @@
 	-ms-writing-mode: tb-rl;
 	text-orientation: upright;
 	font-family : "HG行書体";
-	font-size: 40px;
-	word-break : keep-all;
- 	height: 500px;
+	font-size: 35px;
+ 	height: 650px;
+}
+#msg-text{
+	margin-right: 28px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: black;
 }
 .open{
 	/*display.noneにかき消されるため"!important"追加で重要度を上げてる*/
@@ -163,11 +169,26 @@
 .close{
 	display:none !important;
 }
-
+.map{
+	display:flex;
+	justify-content: space-between;
+}
+.branch{
+	margin-top: 5px;
+}
+.memo{
+	margin-bottom:5px;
+}
+.text-normal{
+	font-weight: normal;
+}
 table{
 	margin:auto;
 	width:100%;
-	}
+}
+td{
+	font-weight:normal;
+}
 
 .glist {
 		display:block;
@@ -196,7 +217,7 @@ table{
 }
 
 #waku2 {
-	padding: 0.5em 1em;
+	padding: 1.5em 1em;
 	margin-top : 20px;
 	background: white;
 

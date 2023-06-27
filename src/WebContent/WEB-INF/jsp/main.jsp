@@ -49,12 +49,12 @@
 
 	<div class = flex>
 		<div class = "syuzo">
-			<p class="text-background">今日の激励メッセージ</p><button id = "tr1" class = "triangle" type="button" onclick="msg()">▲</button><br>
+			<p class="text-background">激励メッセージ<button id = "tr1" class = "triangle" type="button" onclick="msg()">▲</button><br>
 			<div id = "msg" class = "open">
 				<div class = "box">
 					<div id = "msg-top"> </div>
 					<div id = "msg-middle">
-						<div>
+						<div id = "msg-text">
 							${msg}
 						</div>
 					</div>
@@ -70,20 +70,19 @@
 
 			<c:forEach var="e" items="${todayList}" >
 			<div class = "schedule">
-				${e.time}<br>
-				${e.branch}<br>
-				${e.memo}<br>
-
-			<form action="https://maps.google.com/"><input class="normal"type="submit" value="MAP"></form>
-
+				<div class="map">
+					<div>${e.time}</div><form action="https://maps.google.com/">
+					<input class="normal"type="submit" value="MAP"></form>
+				</div>
+				<div class="branch">営業所：<span class="text-normal">${e.branch}</span></div>
+				<div class="memo">メモ　：<span class="text-normal">${e.memo}</span></div>
 			グルメリスト<button class = "tr2 triangle" type="button" onclick="glist(this)">▼</button><br>
 			<div class = "glist close">
 				<table>
 					<tr class = "tr">
-						<th>お気に入り</th>
+						<th></th>
 						<th>ジャンル</th>
 						<th>店名</th>
-						<th>営業所</th>
 						<th>総合評価</th>
 						<th>個人評価</th>
 						<th>メモ</th>
@@ -100,10 +99,8 @@
 					</td>
 
 					<td>${e.genre}</td>
-
+					
 					<td>${e.name}</td>
-
-					<td>${e.branch}</td>
 
 					<td>${e.avg_reputation}</td>
 
