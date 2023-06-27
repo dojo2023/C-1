@@ -11,13 +11,40 @@ CREATE TABLE reputation (
 
 【仮データを挿入する文】
 INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('1', '1', '5', '1', '餃子');
-INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('2', '2', '2', '0', '接客は良い');
-INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('3', '1', '3', '0', '');
-INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('4', '5', '3', '0', 'パスタおいしい');
-INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('5', '3', '4', '1', 'いつも混んでる');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('1', '2', '3', '0', '内装はきれい');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('2', '3', '4', '1', '雰囲気◎');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('2', '1', '5', '1', '安い');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('3', '1', '4', '1', 'ハンバーガーよりポテトがうまい');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('3', '3', '3', '1', 'カーネルサンダースが怖い');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('3', '2', '4', '1', 'ハンバーガーよりポテトがうまい');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('4', '3', '3', '0', 'アボカドバーガーがおいしい');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('4', '2', '4', '1', '');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('4', '1', '2', '0', '');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('5', '4', '1', '1', '');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('5', '3', '4', '0', 'いつも混んでる');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('6', '3', '0', '0', null);
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('6', '1', '1', '1', 'いつも混んでる');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('6', '4', '1', '1', 'いつも混んでる');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('7', '3', '4', '1', 'こってり最高！');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('7', '2', '5', '1', 'いつも混んでる');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('8', '2', '3', '1', 'いつも混んでる');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('9', '2', '4', '1', 'いつも混んでる');
 INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('10', '2', '2', '0', '店員の接客が悪い');
 INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('10', '3', '5', '1', '餃子おいしい');
-INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('10', '4', '4', '1', 'チャーハンおすすめ');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('10', '4', '1', '1', 'チャーハンおすすめ');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('11', '1', '4', '1', 'いつも混んでる');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('12', '4', '3', '1', 'いつも混んでる');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('13', '2', '4', '1', 'いつも混んでる');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('14', '2', '2', '1', 'いつも混んでる');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('15', '3', '4', '1', '天津飯がおいしい');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('16', '4', '1', '1', 'いつも混んでる');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('17', '4', '2', '1', 'いつも混んでる');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('18', '3', '4', '0', '店員さんの愛想よし');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('19', '1', '3', '1', 'いつも混んでる');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('20', '4', '1', '1', 'いつも混んでる');
+INSERT INTO reputation (number, users_number, reputation, favorite, memo) VALUES ('21', '2', '1', '1', 'いつも混んでる');
+
+
 
 【UPDATE文】
 UPDATE reputation SET number=?, user_number=?, reputation=?, favorite=?, memo=?

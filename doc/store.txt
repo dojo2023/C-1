@@ -9,16 +9,28 @@ CREATE TABLE STORE (
   
 
 [仮データを挿入する文]
-INSERT INTO STORE (name, branch,genre) VALUES ('A店', 'A営業所', '中華');
-INSERT INTO STORE (name, branch,genre) VALUES ('AB店', 'A営業所', 'その他');
-INSERT INTO STORE (name, branch,genre) VALUES ('B店', 'B営業所', '和食');
-INSERT INTO STORE (name, branch,genre) VALUES ('C店', 'C営業所', '洋食');
-INSERT INTO STORE (name, branch,genre) VALUES ('BB店', 'O営業所', '和食');
-INSERT INTO STORE (name, branch,genre) VALUES ('E店', 'A営業所', '中華');
-INSERT INTO STORE (name, branch,genre) VALUES ('D店', 'A営業所', 'その他');
-INSERT INTO STORE (name, branch,genre) VALUES ('F店', 'A営業所', '和食');
-INSERT INTO STORE (name, branch,genre) VALUES ('G店', 'A営業所', '洋食');
-INSERT INTO STORE (name, branch,genre) VALUES ('H店', 'A営業所', '和食');
+INSERT INTO STORE (name, branch,genre) VALUES ('マクドナルド　YSL前店', 'YSL', '洋食');
+INSERT INTO STORE (name, branch,genre) VALUES ('リンダ　YSL前店', 'YSL', '和食');
+INSERT INTO STORE (name, branch,genre) VALUES ('ケンタッキー　マネージビジネス前店', 'マネージ', '洋食');
+INSERT INTO STORE (name, branch,genre) VALUES ('モスバーガー　アーチ前店', 'アーチ', '洋食');
+INSERT INTO STORE (name, branch,genre) VALUES ('丸亀製麺　サインポスト前店', 'サインポスト', '和食');
+INSERT INTO STORE (name, branch,genre) VALUES ('GOGOカレー　YSL前店', 'YSL', '洋食');
+INSERT INTO STORE (name, branch,genre) VALUES ('極や　サインポスト前店', 'サインポスト', '中華');
+INSERT INTO STORE (name, branch,genre) VALUES ('池上食堂　マネージビズネス前店', 'マネージ', '和食');
+INSERT INTO STORE (name, branch,genre) VALUES ('伊菜屋TAKA　アーチ店', 'アーチ', '洋食');
+INSERT INTO STORE (name, branch,genre) VALUES ('海の幸　翔　サインポスト前店', 'サインポスト', '和食');
+INSERT INTO STORE (name, branch,genre) VALUES ('三善　サインポスト前店', 'サインポスト', '和食');
+INSERT INTO STORE (name, branch,genre) VALUES ('ラボ・キッチン　サインポスト前店', 'サインポスト', '洋食');
+INSERT INTO STORE (name, branch,genre) VALUES ('龍泉華　サインポスト前店', 'サインポスト', '中華');
+INSERT INTO STORE (name, branch,genre) VALUES ('にんぎょう町谷崎　アーチ前店', 'アーチ', '和食');
+INSERT INTO STORE (name, branch,genre) VALUES ('中華楼　アーチ前店', 'アーチ', '中華');
+INSERT INTO STORE (name, branch,genre) VALUES ('小花　アーチ前店', 'アーチ', '中華');
+INSERT INTO STORE (name, branch,genre) VALUES ('天然居　YSL前店', 'YSL', '中華');
+INSERT INTO STORE (name, branch,genre) VALUES ('うすけぼー　マネージビジネス前店', 'マネージ', '洋食');
+INSERT INTO STORE (name, branch,genre) VALUES ('八丁堀　YSL前店', 'YSL', '和食');
+INSERT INTO STORE (name, branch,genre) VALUES ('葡萄の木　マネージビジネス店', 'マネージ', '洋食');
+INSERT INTO STORE (name, branch,genre) VALUES ('拝龍　マネージビジネス前店', 'マネージ', '中華');
+
 
 INSERT INTO STORE (name, branch,genre) VALUES ('A店', 'A営業所', '中華');
 INSERT INTO STORE (name, branch,genre) VALUES ('A店', 'B営業所', '中華');
@@ -39,27 +51,7 @@ SELECT store.number, name, branch, genre, reputation, favorite, memo
 from store INNER JOIN reputation on store.number = reputation.number 
 GROUP BY store.number
 
-/*グルメ一覧のテーブルを表示(ジャンル順)*/
-SELECT store.number
-　　　, users_numbe
-　　　, favorite
-　　　, name
-　　　, genre
-　　　, branch
-　　　, avg_reputation
-　　　, reputation
-　　　, IsNull(memo, 'ーーーー') as memo 
-FROM store 
-LEFT JOIN reputation 
-ON store.number = reputation.number
-AND reputation.users_number = 3
-INNER JOIN (
-	SELECT number
-　　　　　　　, cast(avg(cast(reputation as decimal)) as decimal(10,1))　as avg_reputation
-	FROM reputation
-	GROUP BY number
-	　　) as avg_table 
-ON store.number = avg_table.number 
+d
 WHERE store.branch LIKE ? 
 OR store.name LIKE ? 
 OR reputation.memo LIKE ?;
