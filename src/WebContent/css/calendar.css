@@ -4,3 +4,16 @@
 	  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, YuGothic, "Yu Gothic", "Noto Sans JP", "Noto Sans CJK JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo;
 
 }
+
+.img{
+  margin: auto;
+}
+.img img{
+  width: 50px;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+.img:hover img{
+  opacity: 0.6;
+  transition-duration: 0.3s;
+}

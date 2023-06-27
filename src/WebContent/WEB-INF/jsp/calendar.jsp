@@ -7,9 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <!--フルカレンダーのcss情報をもらう -->
+
 <link rel="stylesheet" href="/KSHMY/css/common.css">
 <link href='/KSHMY/fullcalendar-5.11.5/lib/main.css' rel='stylesheet' />
 <link rel="stylesheet" href="/KSHMY/css/test.css">
+<link rel="stylesheet" href="/KSHMY/css/calendar.css">
+
+
 <!--↑より先に書くとcssが上書きされるので注意-->
 <title>カレンダーページ</title>
 </head>
@@ -34,7 +38,9 @@
             </ul>
         </li>
         <li class="main_menu"><a href="/KSHMY/LogoutServlet">ログアウト</a></li>
-		<li class="main_menu"><a href ="/KSHMY/UserEditServlet" >ユーザー</a></li>
+        <div class ="img">
+		<li class="main_menu"><a href ="/KSHMY/UserEditServlet" ><img src = "/KSHMY/img/user.png" alt="ユーザー"></a></li>
+    	</div>
     </ul>
 </nav>
 </header>

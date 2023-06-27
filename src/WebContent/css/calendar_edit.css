@@ -18,7 +18,7 @@
 #editform {
   width: 80%;
   margin: 0 auto;
-  max-width: 300px;
+  max-width: 330px;
   margin-top: 2%;
 }
 
@@ -32,7 +32,7 @@
     background: #FFF;
     border: solid 3px #9d9d9f;/*線*/
     border-radius: 10px;/*角の丸み*/
-    line-height:35px;/*行*/
+    line-height:25px;/*行*/
 }
 
 /* ラジオボタン */
@@ -64,6 +64,7 @@ input[type=submit] {
     border-radius: 5px;
     display: block;
     width: 150px;
+    margin: 0 auto;
     padding: 15px;
     box-sizing: border-box;
     text-decoration: none;
@@ -81,6 +82,9 @@ input[type=submit] {
     line-height: 15px;
 }
 
+#tyuuou {
+	margin: 0 auto;
+}
 
 
 

@@ -28,7 +28,12 @@
 .logintitle {
 	border-bottom: double 4px #404040;
 	font-size: 40px;
+	position: relative;     /* 基準値とする */
 }
+.logintitle::before {
+  content: "";              /* 疑似要素には必須 */
+}
+
 
 .loginbox{
 	font-size: 25px;

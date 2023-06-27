@@ -62,45 +62,45 @@
 
 			<form action="https://maps.google.com/"><input class="normal"type="submit" value="MAP"></form>
 
-			グルメリスト<button class = "tr2 triangle" type="button" >▼</button><br><!-- onclick="glist()" -->
+			グルメリスト<button class = "tr2 triangle" type="button" onclick="glist(this)">▼</button><br>
 			<div class = "glist close">
-			<table>
-				<tr class = "tr">
-					<th>お気に入り</th>
-					<th>ジャンル</th>
-					<th>店名</th>
-					<th>営業所</th>
-					<th>総合評価</th>
-					<th>個人評価</th>
-					<th>メモ</th>
-				</tr>
+				<table>
+					<tr class = "tr">
+						<th>お気に入り</th>
+						<th>ジャンル</th>
+						<th>店名</th>
+						<th>営業所</th>
+						<th>総合評価</th>
+						<th>個人評価</th>
+						<th>メモ</th>
+					</tr>
 
-				<c:forEach var="e" items="${e.gourmetList}">
-				<form id="edit-form" method="GET" action="/KSHMY/GourmetEditServlet">
-				<tr><td style="display: none"><input type="hidden" name="number"
-					value="${e.store_number}"></td>
+					<c:forEach var="e" items="${e.gourmetList}">
+					<form id="edit-form" method="GET" action="/KSHMY/GourmetEditServlet">
+					<tr><td style="display: none"><input type="hidden" name="number"
+						value="${e.store_number}"></td>
 
-				<td><button type ="button" name="test"  value = "${e.favorite}" id = "${e.store_number}" onclick = "fav_change()">
-					<c:if test="${e.favorite == 1}">★</c:if>
-					<c:if test="${e.favorite == 0}">☆</c:if>
-				</button></td>
+					<td><input type ="hidden" name="test"  value = "${e.favorite}" id = "${e.store_number}" onclick = "fav_change()">
+						<c:if test="${e.favorite == 1}">★</c:if>
+						<c:if test="${e.favorite == 0}">☆</c:if>
+					</td>
 
-				<td>${e.genre}</td>
+					<td>${e.genre}</td>
 
-				<td>${e.name}</td>
+					<td>${e.name}</td>
 
-				<td>${e.branch}</td>
+					<td>${e.branch}</td>
 
-				<td>${e.avg_reputation}</td>
+					<td>${e.avg_reputation}</td>
 
-				<td>${e.reputation}</td>
+					<td>${e.reputation}</td>
 
-				<td>${e.memo}</td>
-				<td><input class="update" id="update" name="update" type="submit" value="編集"></td></tr>
-				</form>
-				</c:forEach>
+					<td>${e.memo}</td>
+					<td><input class="update" id="update" name="update" type="submit" value="編集"></td></tr>
+					</form>
+					</c:forEach>
 
-			</table>
+				</table>
 			</div>
 			</div>
 			<hr>
@@ -133,7 +133,7 @@
 <script src='/KSHMY/js/common.js'></script>
 <script src='/KSHMY/js/main.js'></script>
 <script>
-var button = document.getElementsByClassName('tr2');
+/* var button = document.getElementsByClassName('tr2');
 let str = "";
 for (i = 0; i < button.length; i++) {
   button[i].addEventListener("click", function() {
@@ -145,6 +145,6 @@ for (i = 0; i < button.length; i++) {
 	this.innerHTML = str;
     this.next().classList.toggle('close');
   });
-}
+}*/
 </script>
 </html>

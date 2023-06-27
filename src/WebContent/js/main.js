@@ -121,15 +121,20 @@ function msg() {
 		document.getElementById('msg').classList.toggle('open');
 }
 
-/* function glist() {
-		if(this.textContent === '▼'){
+
+ function glist(element) {
+ 		//element.textContent
+		if(element.textContent === '▼'){
 			str = "▲";
 		}else{
 			str = "▼";
 		}
-		document.getElementsByName('tr2').innerHTML = str;
-		document.getElementsByClassName('glist').classList.toggle('close');
+		element.textContent = str;
+
+		//element.nextElementSibling.nextElementSibling glist要素が取り出せる。
+
+		element.nextElementSibling.nextElementSibling.classList.toggle('close');
 }
-*/
+
 
 

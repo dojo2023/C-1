@@ -11,51 +11,91 @@
 <link rel = "stylesheet" href = "/KSHMY/css/calendar_edit.css">
 </head>
 <body>
-	<div id=waku>
+	<header>
+		<nav>
+		<ul class="gnav_wrap">
+		<li class="main_menu">
+			<a href ="/KSHMY/MainServlet" ><img src = "/KSHMY/img/KMlogo.jpeg" width="150" height="100" alt="KSHMY"></a>
+		</li>
+		<li class="main_menu">
+			 <a href="/KSHMY/MainServlet">メイン</a>
+		</li>
+		<li class="main_menu">
+			<a href="/KSHMY/CalendarServlet">カレンダー</a>
+		</li>
+		<li class="main_menu">
+			 グルメ
+			<ul class="sub_menu">
+				<a href="/KSHMY/GourmetServlet"><li>一覧/検索</li></a>
+				<a href="/KSHMY/GourmetRegistServlet"><li>登録</li></a>
+			</ul>
+		</li>
+			<li class="main_menu"><a href="/KSHMY/LogoutServlet">ログアウト</a></li>
+			<li class="main_menu"><a href ="/KSHMY/UserEditServlet" >ユーザー</a></li>
+		</ul>
+		</nav>
+	</header>
+		<div class = "conteinar">
+			<hr size="3" color="#404040">
+		</div>
 
-	<div id=title1>
-	<span class="title">Schedule editing</span>
-	</div>
+	<div id=waku>
+		<div id=title1>
+			<span class="title">Schedule editing</span>
+		</div>
 
 	<form  id=editform method="POST"  action="/KSHMY/CalendarEditServlet">
 
-			営業所：<select id="branch" name="branch">
-			<c:forEach var="e" items="${branch}" >
-				<option value="${e}">${e}</option>
-	        </c:forEach>
-	    </select>
-	    <button id="add" type="button" onclick="workspaceAdd()">+</button><br>
-		<div><input type="text" id = "new" name="none" value="" placeholder="営業所">
-		</div>
+		<br>
+			営業所：
+			<select id="branch" name="branch">
+				<c:forEach var="e" items="${branch}" >
+					<option value="${e}">${e}</option>
+	        	</c:forEach>
+	    	</select>
+				<button id="add" type="button" onclick="workspaceAdd()">+</button><br>
+				<div>
+					<input type="text" id = "new" name="none" value="" placeholder="営業所">
+				</div>
 
-			<label for="date">開始日時：</label>
-			<input type="datetime-local"  id="date" name="start_date" value="${calendar.start_date}" />
-			<br>
-			<label for="date">終了日時：</label>
-			<input type="datetime-local"  id="date" name="end_date" value="${calendar.end_date}" />
-			<br>
-			色：
-			<input type="radio" name="color" value="e49aab"  id="colorimage1"><label for="colorimage1"></label>
-			<input type="radio" name="color" value="9ae3ae" id="colorimage2"><label for="colorimage2"></label>
-			<input type="radio" name="color" value="9ad0e3" id="colorimage3"><label for="colorimage3"></label><br>
-
-			メモ：<textarea class="textarean" name = "memo">${calendar.memo}</textarea><br>
-
-
-				<table>
+			<table>
 				<tr>
-				<td><input class="normal" type="submit" onclick="return confirmTest()"  name="SUBMIT" value="更新"></td>
-				<td><input class="reversal" type="submit"  onclick="return confirmTest2()" name="SUBMIT" value="削除"></td>
+					<td>
+						<label for="date">開始日時：</label>
+						<input type="datetime-local"  id="date" name="start_date" value="${calendar.start_date}" />
+					</td>
+					<td>
+						<label for="date">終了日時：</label>
+						<input type="datetime-local"  id="date" name="end_date" value="${calendar.end_date}" />
+					</td>
 				</tr>
-				</table>
+			</table>
+						色：
+						<input type="radio" name="color" value="e49aab"  id="colorimage1"><label for="colorimage1"></label>
+						<input type="radio" name="color" value="9ae3ae" id="colorimage2"><label for="colorimage2"></label>
+						<input type="radio" name="color" value="9ad0e3" id="colorimage3"><label for="colorimage3"></label>
+					<br>
+						メモ：
+						<textarea class="textarean" name = "memo">${calendar.memo}</textarea>
+					<br>
+			<table id=tyuuou>
+				<tr>
+					<td>
+						<input class="normal" type="submit" onclick="return confirmTest()"  name="SUBMIT" value="更新">
+					</td>
+					<td>
+						<input class="reversal" type="submit"  onclick="return confirmTest2()" name="SUBMIT" value="削除">
+					</td>
+				</tr>
+			</table>
 
-				<input type="hidden" name ="number" value="${calendar.number}">
+						<input type="hidden" name ="number" value="${calendar.number}">
 
 			</form>
-				<input type="hidden"  id = "branch_box"  value="${calendar.branch}">
-				<input type="hidden"  id = "color_box"  value="${calendar.color}">
+						<input type="hidden"  id = "branch_box"  value="${calendar.branch}">
+						<input type="hidden"  id = "color_box"  value="${calendar.color}">
 
 	</div>
 </body>
-<script src='/KSHMY/js/calendar_edit.js'></script>
+	<script src='/KSHMY/js/calendar_edit.js'></script>
 </html>
