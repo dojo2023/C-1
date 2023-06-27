@@ -45,7 +45,19 @@
 	</div>
 	<form method="POST" action="/KSHMY/GourmetServlet">
 		<div class = "search">
-	            <div class="top">
+	           	 <div class = "top">
+	                <input class = "checkbox" type="checkbox" name="genre" value="和食" 	<c:if test="${genre[0]}">checked</c:if> >和食 
+	                <input class = "checkbox" type="checkbox" name="genre" value="洋食" 	<c:if test="${genre[1]}">checked</c:if> >洋食 
+	                <input class = "checkbox" type="checkbox" name="genre" value="中華" 	<c:if test="${genre[2]}">checked</c:if> >中華 
+	                <input class = "checkbox" type="checkbox" name="genre" value="その他" 	<c:if test="${genre[3]}">checked</c:if> >その他 
+	                &emsp;お気に入り
+	                <select id="favorite" name="favorite">
+						<option value=2>全て</option>
+						<option value=1>★</option>
+						<option value=0>☆</option>
+					</select>
+				</div>
+				<div class="bottom">
 	            	<div class="search-left">
 	                並び替え
 	                <select id="kind" name="kind">
@@ -65,18 +77,6 @@
 					<input class="search-btn" name="search-btn" type="submit" value="">
 	                </div>
  	             </div>
-	           	 <div class = "bottom">
-	                <input class = "checkbox" type="checkbox" name="genre" value="和食" 	<c:if test="${genre[0]}">checked</c:if> >和食 
-	                <input class = "checkbox" type="checkbox" name="genre" value="洋食" 	<c:if test="${genre[1]}">checked</c:if> >洋食 
-	                <input class = "checkbox" type="checkbox" name="genre" value="中華" 	<c:if test="${genre[2]}">checked</c:if> >中華 
-	                <input class = "checkbox" type="checkbox" name="genre" value="その他" 	<c:if test="${genre[3]}">checked</c:if> >その他 
-	                &emsp;お気に入り
-	                <select id="favorite" name="favorite">
-						<option value=2>全て</option>
-						<option value=1>★</option>
-						<option value=0>☆</option>
-					</select>
-				</div>
 			</div>
 	</form>
 	<table>

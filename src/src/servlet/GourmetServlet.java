@@ -80,7 +80,7 @@ public class GourmetServlet extends HttpServlet {
 			int users_number = user.getNumber();
 			UsersDAO uDAO = new UsersDAO();
 			Users card = uDAO.select_User(user);
-		
+			
 			//リクエストパラメータを取得する
 			request.setCharacterEncoding("UTF-8");
 			String kind = request.getParameter("kind");
@@ -88,7 +88,10 @@ public class GourmetServlet extends HttpServlet {
 			String[] genre = request.getParameterValues("genre");
 			int favorite = Integer.valueOf(request.getParameter("favorite"));
 			String keyword = request.getParameter("keyword");
-
+			
+			if(genre == null) {
+				System.out.println("空");
+			}
 			request.setAttribute("kind", kind);
 			request.setAttribute("order", order);
 			request.setAttribute("genre", genre);

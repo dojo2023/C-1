@@ -6,17 +6,18 @@
 	font-weight: normal;
 }
 .top{
+	transform: scale(0.9);
+	height: 20px;
+    text-align: center;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.bottom{
 	text-align: center;
 	display:flex;
 	margin:0 auto;
 	justify-content: center;
-}
-
-.bottom{
-	transform: scale(0.9);
-	height: 20px;
-    margin-top: 5px;
-    text-align: center;
 }
 .search-right{
 	border-bottom: solid 1px #404040;
