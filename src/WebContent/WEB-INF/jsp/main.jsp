@@ -11,6 +11,8 @@
 <link rel = "stylesheet" href = "/KSHMY/css/main.css">
 </head>
 <body>
+<div class="shutter"></div>
+<div class="content">
 
  <header>
 <nav>
@@ -139,7 +141,7 @@
 	<input type = "hidden" id="ido" value="${prefecture.ido}">
 	<input type = "hidden" id="keido" value="${prefecture.keido}">
 
-
+</div>
 </body>
 <script src='/KSHMY/js/common.js'></script>
 <script src='/KSHMY/js/main.js'></script>
