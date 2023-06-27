@@ -161,7 +161,7 @@ public class GourmetDAO {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
 
 				// SQL文を準備する
-				String sql = "SELECT store.number, users_number,  IsNull(favorite, '0') as favorite, name, genre, branch, avg_reputation, IsNull(reputation, '0') as reputation, IsNull(memo, 'ーーーー') as memo "
+				String sql = "SELECT store.number, users_number, favorite, name, genre, branch, avg_reputation, reputation, IsNull(memo, 'ーーーー') as memo "
 						+ "from store "
 						+ "LEFT OUTER JOIN reputation "
 						+ "on store.number = reputation.number "
@@ -169,7 +169,7 @@ public class GourmetDAO {
 						+ "JOIN (SELECT number, cast(avg(cast(reputation as decimal)) as decimal(10,1)) as avg_reputation from reputation group by number) as avg_table "
 						+ "on store.number = avg_table.number "
 						+ "where (store.branch LIKE ? OR store.name LIKE ? OR reputation.memo LIKE ?)";
-				
+
 				//genreチェックボックス 要検証！
 				int count = 0;
 				for (String genres : checkedGenre) {
@@ -190,14 +190,14 @@ public class GourmetDAO {
 				if(favorite != 2) {
 					sql +=" AND favorite = ? ";
 				}
-				
+
 				sql += " group by store.number ";
-				
-				
+
+
 				if(kind.equals("ジャンル") && order.equals("降順")) {
-					sql += " order by genre   = ? desc , genre = ? desc , genre = ? desc "; 
+					sql += " order by genre   = ? desc , genre = ? desc , genre = ? desc ";
 				}else if(kind.equals("ジャンル") && order.equals("昇順")) {
-					sql += " order by genre   = ? asc , genre = ? asc , genre = ? asc "; 
+					sql += " order by genre   = ? asc , genre = ? asc , genre = ? asc ";
 				}else if(kind.equals("店名")) {
 					sql += " order by store.name ";
 				}else if(kind.equals("営業所")) {
@@ -207,7 +207,7 @@ public class GourmetDAO {
 				}else {
 					sql += " order by REPUTATION  ";
 				}
-				
+
 				if(!kind.equals("ジャンル")) {
 					if(order.equals("降順")) {
 						sql += " desc ";
@@ -215,12 +215,12 @@ public class GourmetDAO {
 						sql += " asc ";
 					}
 				}
-				
+
 				System.out.println();
 				System.out.println("sql");
 				System.out.println(sql);
 				System.out.println();
-				
+
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
@@ -228,13 +228,13 @@ public class GourmetDAO {
 				pStmt.setString(2,"%"+keyword+"%");
 				pStmt.setString(3,"%"+keyword+"%");
 				pStmt.setString(4,"%"+keyword+"%");
-				
+
 				int count2 = 5; //?の挿入場所
 				if(favorite != 2) {
 					pStmt.setInt(count2,  favorite );
 					count2++;
 				}
-				
+
 				if(kind.equals("ジャンル")) {
 					pStmt.setString(count2,  user.getFirst());
 					count2++;
@@ -291,20 +291,20 @@ public class GourmetDAO {
 			return GourmetList;
 
 		}
-	
+
 	// 引数listで検索項目を指定し、storeのリストを返す(reputationテーブルと結合)
 	public List<Gourmet> select_GourmetList(Gourmet gourmet,Users user) {
 		Connection conn = null;
 		List<Gourmet> GourmetList = new ArrayList<Gourmet>();
-	
-	
+
+
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
-	
+
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/KSHMY", "sa", "");
-	
+
 			// SQL文を準備する
 			String sql = "SELECT store.number, users_number,  IsNull(favorite, '0') as favorite, name, genre, branch, avg_reputation, IsNull(reputation, '0') as reputation, IsNull(memo, 'ーーーー') as memo "
 					+ "from store "
@@ -315,20 +315,20 @@ public class GourmetDAO {
 					+ "on store.number = avg_table.number "
 					+ "group by store.number "
 					+ "order by genre   = ? desc , genre = ? desc , genre = ? desc ";
-	
+
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-	
+
 			// SQL文を完成させる
 			pStmt.setInt(1,  gourmet.getUsers_number());
 			pStmt.setString(2,  user.getFirst());
 			pStmt.setString(3,  user.getSecond());
 			pStmt.setString(4,  user.getThird());
-	
-	
+
+
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
-	
-	
+
+
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 				Gourmet card = new Gourmet(
@@ -341,12 +341,12 @@ public class GourmetDAO {
 						rs.getDouble("avg_reputation"),
 						rs.getInt("reputation"),
 						rs.getString("memo")
-	
+
 						);
 				GourmetList.add(card);
 			}
 		}
-	
+
 		catch (SQLException e) {
 			e.printStackTrace();
 			GourmetList = null;
@@ -367,10 +367,10 @@ public class GourmetDAO {
 				}
 			}
 		}
-	
+
 		// 結果を返す
 		return GourmetList;
-	
+
 	}
 
 	//main.jspで表示するbranchに関連するグルメリストの表示
@@ -686,37 +686,47 @@ public class GourmetDAO {
 			// SQL文を完成させる
 			if (list.getNumber() != 0 ) {
 				pStmt.setInt(1, list.getNumber());
+				System.out.println("１");
 			}
 			else {
 				pStmt.setInt(1, 0);
+				System.out.println("２");
 			}
 
 			if (list.getUsers_number() != 0 ) {
 				pStmt.setInt(2, list.getUsers_number());
+				System.out.println("１");
 			}
 			else {
 				pStmt.setInt(2, 0);
+				System.out.println("２");
 			}
 
 			if (list.getReputation() != 0 ) {
 				pStmt.setInt(3, list.getReputation());
+				System.out.println("１");
 			}
 			else {
 				pStmt.setInt(3, 0);
+				System.out.println("２");
 			}
 
 			if (list.getFavorite() != 0 ) {
 				pStmt.setInt(4, list.getFavorite());
+				System.out.println("１");
 			}
 			else {
 				pStmt.setInt(4, 0);
+				System.out.println("２");
 			}
 
 			if (list.getMemo() != null && !list.getMemo().equals("")) {
 				pStmt.setString(5, list.getMemo());
+				System.out.println("１");
 			}
 			else {
 				pStmt.setString(5, null);
+				System.out.println("２");
 			}
 
 
@@ -868,6 +878,12 @@ public class GourmetDAO {
 		Connection conn = null;
 		boolean result = false;
 
+		System.out.println(list.getReputation());
+		System.out.println(list.getFavorite());
+		System.out.println(list.getMemo());
+		System.out.println(list.getStore_number());
+		System.out.println(list.getUsers_number());
+
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -902,7 +918,7 @@ public class GourmetDAO {
 				pStmt.setString(3, null);
 			}
 
-			pStmt.setInt(4, list.getNumber());
+			pStmt.setInt(4, list.getStore_number());
 			pStmt.setInt(5, list.getUsers_number());
 
 			// SQL文を実行する

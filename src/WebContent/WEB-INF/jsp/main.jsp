@@ -62,8 +62,8 @@
 
 			<form action="https://maps.google.com/"><input class="normal"type="submit" value="MAP"></form>
 
-			グルメリスト<button id = "tr2" class = "triangle" type="button" onclick="glist()">▼</button><br>
-			<div id = "glist" class = "close">
+			グルメリスト<button class = "tr2 triangle" type="button" >▼</button><br><!-- onclick="glist()" -->
+			<div class = "glist close">
 			<table>
 				<tr class = "tr">
 					<th>お気に入り</th>
@@ -75,7 +75,7 @@
 					<th>メモ</th>
 				</tr>
 
-				<c:forEach var="e" items="${gourmetList}">
+				<c:forEach var="e" items="${e.gourmetList}">
 				<form id="edit-form" method="GET" action="/KSHMY/GourmetEditServlet">
 				<tr><td style="display: none"><input type="hidden" name="number"
 					value="${e.store_number}"></td>
@@ -132,4 +132,19 @@
 </body>
 <script src='/KSHMY/js/common.js'></script>
 <script src='/KSHMY/js/main.js'></script>
+<script>
+var button = document.getElementsByClassName('tr2');
+let str = "";
+for (i = 0; i < button.length; i++) {
+  button[i].addEventListener("click", function() {
+	  if(this.textContent === '▼'){
+			str = "▲";
+		}else{
+			str = "▼";
+		}
+	this.innerHTML = str;
+    this.next().classList.toggle('close');
+  });
+}
+</script>
 </html>

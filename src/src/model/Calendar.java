@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 
 
@@ -19,6 +20,7 @@ public class Calendar implements Serializable {
 	private String memo;
 	private String branch;
 	private String time;
+	private List<Gourmet> gourmetList;
 
 
 	//引数ありのコンストラクタ
@@ -40,7 +42,7 @@ public class Calendar implements Serializable {
 		this.memo = memo;
 		this.branch = branch;
 	}
-	
+
 
 	//fullCalendar用
 	public Calendar(int number,int users_number,String calendar_startD, String calendar_endD, String calendar_startT, String calendar_endT,String nextD, String color, String memo, String branch) {
@@ -56,7 +58,7 @@ public class Calendar implements Serializable {
 		this.branch = branch;
 		System.out.println("next"+nextD);
 	}
-	
+
 	public Calendar(int users_number,Timestamp start_date, Timestamp end_date, String color, String memo, String branch, String time) {
 		this.users_number = users_number;
 		this.start_date= start_date;
@@ -92,7 +94,7 @@ public class Calendar implements Serializable {
 	public void setTime(String time) {
 		this.time = time;
 	}
-	
+
 	public int getNumber() {
 		return number;
 	}
@@ -167,7 +169,7 @@ public class Calendar implements Serializable {
 	public String getBranch() {
 		return branch;
 	}
-	
+
 	public String getCalendar_startD() {
 		return calendar_startD;
 	}
@@ -212,5 +214,14 @@ public class Calendar implements Serializable {
 	public void setCalendar_endT(String calendar_endT) {
 		this.calendar_endT = calendar_endT;
 	}
+
+	public List<Gourmet> getGourmetList() {
+		return gourmetList;
+	}
+
+	public void setGourmetList(List<Gourmet> gourmetList) {
+		this.gourmetList = gourmetList;
+	}
+
 
 }
