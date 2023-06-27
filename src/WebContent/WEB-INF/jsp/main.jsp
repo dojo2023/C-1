@@ -113,10 +113,15 @@
 			<div class = "today-box">
 				<div id = "today"></div>
 				<div id = "today_weather"></div>
+				<div id = "today_temp_max"></div>
+				<div id = "today_temp_min"></div>
+
 			</div>
 			<div class = "nextday-box">
 				<div id = "nextday"></div>
 				<div id = "nextday_weather"></div>
+				<div id = "nextday_temp_max"></div>
+				<div id = "nextday_temp_min"></div>
 			</div>
 		</div>
 		</div>
