@@ -166,7 +166,7 @@ public class GourmetDAO {
 						+ "LEFT OUTER JOIN reputation "
 						+ "on store.number = reputation.number "
 						+ "AND reputation.users_number = ? "
-						+ "JOIN (SELECT number, cast(avg(cast(reputation as decimal)) as decimal(10,1)) as avg_reputation from reputation group by number) as avg_table "
+						+ "JOIN (SELECT number, cast(avg(cast(reputation as decimal)) as decimal(10,1)) as avg_reputation from reputation where reputation >= 1 group by number) as avg_table "
 						+ "on store.number = avg_table.number "
 						+ "where (store.branch LIKE ? OR store.name LIKE ? OR reputation.memo LIKE ?)";
 
