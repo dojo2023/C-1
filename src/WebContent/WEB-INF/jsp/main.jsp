@@ -80,11 +80,10 @@
 			<div class = "glist close">
 				<table>
 					<tr class = "tr">
-						<th></th>
-						<th>ジャンル</th>
+						<th class="gen">ジャンル</th>
 						<th>店名</th>
-						<th>総合評価</th>
-						<th>個人評価</th>
+						<th class="avg_rep">総合評価</th>
+						<th class="rep">個人評価</th>
 						<th>メモ</th>
 					</tr>
 
@@ -96,9 +95,9 @@
 					<td><input type ="hidden" name="test"  value = "${e.favorite}" id = "${e.store_number}" onclick = "fav_change()">
 						<c:if test="${e.favorite == 1}">★</c:if>
 						<c:if test="${e.favorite == 0}">☆</c:if>
-					</td>
-
-					<td>${e.genre}</td>
+					
+					
+					${e.genre}</td>
 					
 					<td>${e.name}</td>
 

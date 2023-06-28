@@ -185,9 +185,20 @@
 table{
 	margin:auto;
 	width:100%;
+	margin-top: 5px;
+    font-size: 13px;
+    border-collapse: collapse;
+}
+.gen{
+	min-width: 4em;
+}
+.avg-rep .rep{
+	min-width: 5em;
 }
 td{
 	font-weight:normal;
+	padding-top:4px;
+	border-bottom: 1px solid #555;
 }
 
 .glist {
@@ -212,15 +223,13 @@ td{
 
 /*角が丸い四角で囲んだ範囲*/
 #waku {
-	padding: 1.5em 3em;
+	padding: 1.5em 1.5em;
 	margin-top: 20px;
 }
 
 #waku2 {
-	padding: 1.5em 1em;
-	margin-top : 20px;
-	background: white;
-
+    padding: 1.5em 1.5em;
+    margin-top: 20px;
 }
 
 /*背景画像*/
