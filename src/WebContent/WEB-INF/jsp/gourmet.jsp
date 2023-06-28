@@ -31,7 +31,9 @@
             </ul>
         </li>
         <li class="main_menu"><a href="/KSHMY/LogoutServlet">ログアウト</a></li>
-		<li class="main_menu"><a href ="/KSHMY/UserEditServlet" >ユーザー</a></li>
+		<div class ="img">
+		<li class="main_menu"><a href ="/KSHMY/UserEditServlet" ><img src = "/KSHMY/img/user.png" alt="ユーザー"></a></li>
+    	</div>
     </ul>
 </nav>
 		<hr size="3" color="#404040">

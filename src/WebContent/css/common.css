@@ -146,3 +146,19 @@ input[type=submit]{
 
 
 /*フッター*/
+
+
+
+/*ユーザーボタン*/
+.img{
+  margin: auto;
+}
+.img img{
+  width: 50px;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+.img:hover img{
+  opacity: 0.6;
+  transition-duration: 0.3s;
+}
